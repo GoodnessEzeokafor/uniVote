@@ -1,0 +1,28 @@
+{
+  "name": "univote",
+  "version": "1.0.0",
+  "description": "A decentralized voting aplication for universities built on the Ethereum Blockchain",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "node index.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild":"npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoodnessEzeokafor/uniVote.git"
+  },
+  "author": "@GoodnessEzeokafor @EmmanuelUmeh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GoodnessEzeokafor/uniVote/issues"
+  },
+  "homepage": "https://github.com/GoodnessEzeokafor/uniVote#readme",
+  "dependencies": {
+    "concurrently": "^5.0.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
