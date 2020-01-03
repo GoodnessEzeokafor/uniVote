@@ -6,6 +6,9 @@ import Home from"./Components/Content/Home"
 import Score from"./Components/Content/Score"
 import Vote from "./Components/Content/Vote"
 import Profile from "./Components/Profile/Dashboard"
+import Login from "./Components/Auth/Login"
+import Signup from "./Components/Auth/Signup"
+
 
 
 export default class App extends Component {
