@@ -82,15 +82,25 @@ contract('Elections', ([deployer,another,third]) => {
     describe('Voting', async() => {
         it("Votes successfully", async()=>{
 
-            candidateCount = await contract.candidateCount()
             await contract.register_voter(third)
-            await contract.start_election(1000000)
+
+            candidateCount = await contract.candidateCount()
+            
+            await contract.start_election(1000000, {from : deployer})
 
             // User is not yet registered so voting fails
             voting = await contract.voteCandidate(candidateCount).should.be.rejected
 
 
-            // User is registered so voting passes
+          
+
+            registered  = await contract.voters(third)
+            hasVoted  = await contract.hasVoted(third)
+
+            console.log(registered)
+            console.log(hasVoted)
+
+              // User is registered so voting passes
             await contract.voteCandidate(candidateCount, {from : third})
             
 
@@ -102,37 +112,37 @@ contract('Elections', ([deployer,another,third]) => {
             console.log(voting)
         })
 
-        // it("Sets state of voter to true", async()=>{
-        //     candidateCount = await contract.candidateCount()
-        //     // await contract.voteCandidate(candidateCount)
-        //     addedVoter = await contract.voters(deployer)
-        //     addedVoter2 = await contract.voters(another)
+        it("Sets state of voter to true", async()=>{
+            // candidateCount = await contract.candidateCount()
+            // await contract.voteCandidate(candidateCount)
+            addedVoter = await contract.hasVoted(third)
+            // addedVoter2 = await contract.hasVoted(another)
 
-        //     assert.equal(addedVoter, true, "Voter state was updated to true")
-        //     assert.equal(addedVoter2, true, "Voter2 state was updated to true")
+            assert.equal(addedVoter, true, "Voter state was updated to true")
+            // assert.equal(addedVoter2, true, "Voter2 state was updated to true")
             
 
-        // })
+        })
 
-        // it("SHould be Rejected", async()=>{
-        //     // Cant vote on a particular election more than once
-        //     await contract.voteCandidate(candidateCount, {from : another}).should.be.rejected
-        //     await contract.voteCandidate(candidateCount).should.be.rejected
-        //     // Rejects the user voting on another candidate after voting initially
-        //     await contract.voteCandidate(1).should.be.rejected
-
-
-        //     // Asserts that the event was reverted and the vote count wasnt updated
-        //     candidate1 = await contract.candidates(1)
+        it("SHould be Rejected", async()=>{
+            // Cant vote on a particular election more than once
+            await contract.voteCandidate(candidateCount, {from : third}).should.be.rejected
+            // Ensures one cannot vote twice
+            await contract.voteCandidate(candidateCount, {from : another})
+            await contract.voteCandidate(candidateCount, {from : another}).should.be.rejected
+            // Rejects the user voting on another candidate after voting initially
+            await contract.voteCandidate(0).should.be.rejected
 
 
-        //     assert.equal(candidate1.voteCount, 0)
+            // Asserts that the event was reverted and the vote count wasnt updated
+            // candidate1 = await contract.candidates(1)
 
-        // })
+
+            // assert.equal(candidate1.voteCount, 0)
+
+        })
       
     })
-    
-
 
     
     
