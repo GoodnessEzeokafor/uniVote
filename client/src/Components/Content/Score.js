@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-export default class Vote extends Component {
+export default class Score extends Component {
     render() {
         return (
             <div>
-            <h3>Vote Component</h3>
+                <h3>Score Component</h3>
             </div>
         );
     }

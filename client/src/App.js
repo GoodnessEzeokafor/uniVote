@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import Nav from "./Components/Content/Nav"
+import { Route, Link, Switch, BrowserRouter as Router } from "react-router-dom";
+
+import Home from"./Components/Content/Home"
+import Score from"./Components/Content/Score"
+import Vote from "./Components/Content/Vote"
+import Profile from "./Components/Profile/Dashboard"
+
 
 export default class App extends Component {
   render() {
     return (
-
+<Router>
       <div>
       <div className="mobile-sticky-body-overlay"></div>
 
@@ -46,28 +53,32 @@ export default class App extends Component {
 
               {/* <!-- sidebar menu --> */}
               <ul className="nav sidebar-inner" id="sidebar-menu">
+              <li  className="has-sub active expand" >
+                    <Link className="sidenav-item-link" to="/">
+                      <i className="mdi mdi-view-dashboard-outline"></i>
+                      <span className="nav-text">Home</span> 
+                      {/* <b className="caret"></b> */}
+                    </Link>
+                  </li>
                   <li  className="has-sub active expand" >
-                    <a className="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
-                      aria-expanded="false" aria-controls="dashboard">
+                    <Link className="sidenav-item-link" to="/score">
                       <i className="mdi mdi-view-dashboard-outline"></i>
                       <span className="nav-text">Live Score</span> 
                       {/* <b className="caret"></b> */}
-                    </a>
+                    </Link>
                   </li>
                   <li  className="has-sub" >
-                    <a className="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#ui-elements"
-                      aria-expanded="false" aria-controls="ui-elements">
+                    <Link className="sidenav-item-link" to="/vote">
                       <i className="mdi mdi-folder-multiple-outline"></i>
                       <span className="nav-text">Vote</span> 
-                    </a>
+                    </Link>
                   </li>
                   <li  className="has-sub" >
-                    <a className="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#charts"
-                      aria-expanded="false" aria-controls="charts">
+                    <Link className="sidenav-item-link" to="/profile">
                       <i className="mdi mdi-chart-pie"></i>
                       <span className="nav-text">Profile</span> 
                       {/* <b className="caret"></b> */}
-                    </a>
+                    </Link>
                   </li>        
               </ul>
             </div>
@@ -83,6 +94,22 @@ export default class App extends Component {
 
         <div className="content-wrapper">
           <div className="content">	
+          <Switch>
+            <Route path="/score">
+                <Score />
+            </Route>
+            <Route path="/profile">
+                <Profile />
+            </Route>
+            <Route path="/vote">
+                <Vote />
+            </Route>
+            
+            <Route path="/">
+                <Home />
+            </Route>
+            
+          </Switch>
           </div>
         </div>
 
@@ -90,6 +117,8 @@ export default class App extends Component {
       </div>
     </div>
 </div>
+</Router>
     );
+ 
   }
 }
