@@ -154,6 +154,7 @@ contract('Voting', ([deployer,voter,voter2]) => {
         it("checks if getElectionCandidates works", async() => {
           const candidates = await this.contract.getElectionCandidates(1)
           console.log("It Works")  
+          console.log(candidates)
         })
     });
 
@@ -194,35 +195,40 @@ contract('Voting', ([deployer,voter,voter2]) => {
             console.log(candidate)
         })
 
-        // it("Sets state of voter to true", async()=>{
-        //     // candidateCount = await contract.candidateCount()
-        //     // await contract.voteCandidate(candidateCount)
-        //     addedVoter = await contract.hasVoted(third)
-        //     // addedVoter2 = await contract.hasVoted(another)
+        it("Sets state of voter to true", async()=>{
+            // candidateCount = await contract.candidateCount()
+            // await contract.voteCandidate(candidateCount)
+            addedVoter = await this.contract.hasVoted(voter2)
+           
 
-        //     assert.equal(addedVoter, true, "Voter state was updated to true")
-        //     // assert.equal(addedVoter2, true, "Voter2 state was updated to true")
+            assert.equal(addedVoter, true, "Voter state was updated to true")
+            // assert.equal(addedVoter2, true, "Voter2 state was updated to true")
             
 
-        // })
+        })
 
-        // it("SHould be Rejected", async()=>{
-        //     // Cant vote on a particular election more than once
-        //     await contract.voteCandidate(candidateCount, {from : third}).should.be.rejected
-        //     // Ensures one cannot vote twice
-        //     await contract.voteCandidate(candidateCount, {from : another})
-        //     await contract.voteCandidate(candidateCount, {from : another}).should.be.rejected
-        //     // Rejects the user voting on another candidate after voting initially
-        //     await contract.voteCandidate(0).should.be.rejected
-
-
-        //     // Asserts that the event was reverted and the vote count wasnt updated
-        //     // candidate1 = await contract.candidates(1)
+        it("SHould be Rejected", async()=>{
+            // Cant vote on a particular election more than once
+            // await contract.voteCandidate(candidateCount, {from : third}).should.be.rejected
+            // Ensures one cannot vote twice
+            // await contract.voteCandidate(candidateCount, {from : another})
+            await this.contract.voteCandidate(candidateCount, 1, {from : voter2}).should.be.rejected
+            // Rejects the user voting on another candidate after voting initially
 
 
-        //     // assert.equal(candidate1.voteCount, 0)
+            // Ensures users cant vote on invalid candidates or elections
+            await this.contract.voteCandidate(0,0).should.be.rejected
+            await this.contract.voteCandidate(1,0).should.be.rejected
+            await this.contract.voteCandidate(0,1).should.be.rejected
 
-        // })
+
+            // Asserts that the event was reverted and the vote count wasnt updated
+            // candidate1 = await contract.candidates(1)
+
+
+            // assert.equal(candidate1.voteCount, 0)
+
+        })
       
     })
 

@@ -84,7 +84,7 @@ export default class App extends Component {
           // console.log({projects:this.state.projects})
         //   console.log({contributors:this.state.contributors})
       }else {
-              window.alert("Marketplace contract is not deployed to the network")
+              window.alert("UniVote contract is not deployed to the network")
             }
 
   }

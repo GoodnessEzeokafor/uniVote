@@ -169,6 +169,7 @@ contract Voting{
 
             // Ensures the candidate exists
         require(_candidateId > 0 && _candidateId <= candidateCount);
+        require(_electionId > 0 && _electionId <= electionCount);
 
         // record that voter has voted
         hasVoted[msg.sender] = true;
