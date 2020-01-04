@@ -1,4 +1,4 @@
-pragma solidity 0.5.0;
+pragma solidity ^0.5.0;
 
 contract Elections {
 
@@ -83,7 +83,7 @@ contract Elections {
       function start_election(uint duration) public
         only_election_authority
     {
-        electionEndTime = block.timestamp + duration;
+        electionEndTime =   block.timestamp + duration;
     }
   
     

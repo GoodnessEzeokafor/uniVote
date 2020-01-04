@@ -76,7 +76,7 @@ export default class Nav extends Component {
                 {/* <!-- User Account --> */}
                 <li className="dropdown user-menu">
                   <button href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-                    <img src="assets/img/user/user.png" className="user-image" alt="User Image" />
+                    <img src="/assets/img/user/user.png" className="user-image" alt="User" />
                     <span className="d-none d-lg-inline-block">Abdus Salam</span>
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right">

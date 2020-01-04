@@ -1,126 +1,203 @@
 import React, { Component } from 'react';
 import Nav from "./Components/Content/Nav"
 import { Route, Link, Switch, BrowserRouter as Router } from "react-router-dom";
+import Web3 from "web3";
 
+
+/* COMPONENTS */
 import Home from"./Components/Content/Home"
 import Score from"./Components/Content/Score"
 import Vote from "./Components/Content/Vote"
 import Profile from "./Components/Profile/Dashboard"
-import Login from "./Components/Auth/Login"
-import Signup from "./Components/Auth/Signup"
+import ElectionAbi from "./abis/Elections.json";
 
+// import Login from "./Components/Auth/Login"
+// import Signup from "./Components/Auth/Signup"
+/* COMPONENTS */
 
 
 export default class App extends Component {
+  async componentWillMount() {
+    await this.loadWeb3();
+    await this.loadBlockchainData();
+  }
+
+  async loadWeb3() {
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+      await window.ethereum.enable();
+    } else if (window.web3) {
+      window.web3 = new Web3(window.web3.currentProvider);
+    } else {
+      window.alert(
+        "Non-Ethereum browser detected. You should consider trying MetaMask!"
+      );
+    }
+  }
+
+  async loadBlockchainData() {
+    // console.log(SocialNetwork)
+    const web3 = window.web3;
+    window.web3 = new Web3(window.ethereum);
+    
+    //     // // load accounts
+        const accounts = await web3.eth.getAccounts() // returns all the account in our wallet 
+        this.setState({account:accounts[0]})
+        // console.log(accounts)
+    
+    //     // // detects the network dynamically 
+        const networkId = await web3.eth.net.getId()
+    
+    //     // // get network data
+        const ElectionNetworkData= ElectionAbi.networks[networkId]
+        if(ElectionNetworkData){
+          const ElectionDapp = new web3.eth.Contract(ElectionAbi.abi, ElectionNetworkData.address) // loads the smart contract    
+          console.log(ElectionDapp)
+    
+    
+          // const projectCount = await ProjectDapp.methods.projectCount().call() 
+          // console.log("Projects Length:", projectCount)
+
+
+            // this.setState({ProjectDapp})
+            //  this.setState({projectCount})
+    
+    //       // Load Projects
+          // for(var j=1; j <= projectCount; j++){
+          //   const project = await ProjectDapp.methods.projects(j).call()
+          //   this.setState({
+          //     projects:[...this.state.projects, project]
+          //   })
+          // }
+          // console.log({projects:this.state.projects})
+        //   console.log({contributors:this.state.contributors})
+      }else {
+              window.alert("Marketplace contract is not deployed to the network")
+            }
+
+  }
+  constructor(props) {
+    super(props)
+    this.state ={
+     account:'',
+     ElectionDapp:null,
+    //  projects:[],
+     loader:false,
+     message:''
+    //  message:''
+    }
+   }
+
+
   render() {
     return (
-<Router>
-      <div>
-      <div className="mobile-sticky-body-overlay"></div>
+  <Router>
+        <div>
+        <div className="mobile-sticky-body-overlay"></div>
 
-    <div className="wrapper">
-      
-              {/* <!--
-          ====================================
-          ——— LEFT SIDEBAR WITH FOOTER
-          =====================================
-        --> */}
-        <aside className="left-sidebar bg-sidebar">
-          <div id="sidebar" className="sidebar sidebar-with-footer">
-            {/* <!-- Aplication Brand -->
-             */}
-            <div className="app-brand">
-              <a href="/">
-                <svg
-                  className="brand-icon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid"
-                  width="30"
-                  height="33"
-                  viewBox="0 0 30 33"
-                >
-                  <g fill="none" fillRule="evenodd">
-                    <path
-                      className="logo-fill-blue"
-                      fill="#7DBCFF"
-                      d="M0 4v25l8 4V0zM22 4v25l8 4V0z"
-                    />
-                    <path className="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
-                  </g>
-                </svg>
-                <span className="brand-name">Sleek Dashboard</span>
-              </a>
+      <div className="wrapper">
+        
+                {/* <!--
+            ====================================
+            ——— LEFT SIDEBAR WITH FOOTER
+            =====================================
+          --> */}
+          <aside className="left-sidebar bg-sidebar">
+            <div id="sidebar" className="sidebar sidebar-with-footer">
+              {/* <!-- Aplication Brand -->
+              */}
+              <div className="app-brand">
+                <a href="/">
+                  <svg
+                    className="brand-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="xMidYMid"
+                    width="30"
+                    height="33"
+                    viewBox="0 0 30 33"
+                  >
+                    <g fill="none" fillRule="evenodd">
+                      <path
+                        className="logo-fill-blue"
+                        fill="#7DBCFF"
+                        d="M0 4v25l8 4V0zM22 4v25l8 4V0z"
+                      />
+                      <path className="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
+                    </g>
+                  </svg>
+                  <span className="brand-name">Sleek Dashboard</span>
+                </a>
+              </div>
+              {/* <!-- begin sidebar scrollbar --> */}
+              <div className="sidebar-scrollbar">
+
+                {/* <!-- sidebar menu --> */}
+                <ul className="nav sidebar-inner" id="sidebar-menu">
+                <li  className="has-sub active expand" >
+                      <Link className="sidenav-item-link" to="/">
+                        <i className="mdi mdi-view-dashboard-outline"></i>
+                        <span className="nav-text">Home</span> 
+                        {/* <b className="caret"></b> */}
+                      </Link>
+                    </li>
+                    <li  className="has-sub active expand" >
+                      <Link className="sidenav-item-link" to="/score">
+                        <i className="mdi mdi-view-dashboard-outline"></i>
+                        <span className="nav-text">Live Score</span> 
+                        {/* <b className="caret"></b> */}
+                      </Link>
+                    </li>
+                    <li  className="has-sub" >
+                      <Link className="sidenav-item-link" to="/vote">
+                        <i className="mdi mdi-folder-multiple-outline"></i>
+                        <span className="nav-text">Vote</span> 
+                      </Link>
+                    </li>
+                    <li  className="has-sub" >
+                      <Link className="sidenav-item-link" to="/profile">
+                        <i className="mdi mdi-chart-pie"></i>
+                        <span className="nav-text">Profile</span> 
+                        {/* <b className="caret"></b> */}
+                      </Link>
+                    </li>        
+                </ul>
+              </div>
+              {/* <hr className="separator" /> */}
             </div>
-            {/* <!-- begin sidebar scrollbar --> */}
-            <div className="sidebar-scrollbar">
+          </aside>
+        <div className="page-wrapper">
+                    {/* <!-- Header --> */}
+            <header className="main-header " id="header">
+              <Nav />
+            </header>
 
-              {/* <!-- sidebar menu --> */}
-              <ul className="nav sidebar-inner" id="sidebar-menu">
-              <li  className="has-sub active expand" >
-                    <Link className="sidenav-item-link" to="/">
-                      <i className="mdi mdi-view-dashboard-outline"></i>
-                      <span className="nav-text">Home</span> 
-                      {/* <b className="caret"></b> */}
-                    </Link>
-                  </li>
-                  <li  className="has-sub active expand" >
-                    <Link className="sidenav-item-link" to="/score">
-                      <i className="mdi mdi-view-dashboard-outline"></i>
-                      <span className="nav-text">Live Score</span> 
-                      {/* <b className="caret"></b> */}
-                    </Link>
-                  </li>
-                  <li  className="has-sub" >
-                    <Link className="sidenav-item-link" to="/vote">
-                      <i className="mdi mdi-folder-multiple-outline"></i>
-                      <span className="nav-text">Vote</span> 
-                    </Link>
-                  </li>
-                  <li  className="has-sub" >
-                    <Link className="sidenav-item-link" to="/profile">
-                      <i className="mdi mdi-chart-pie"></i>
-                      <span className="nav-text">Profile</span> 
-                      {/* <b className="caret"></b> */}
-                    </Link>
-                  </li>        
-              </ul>
+
+          <div className="content-wrapper">
+            <div className="content">	
+            <Switch>
+              <Route path="/score">
+                  <Score />
+              </Route>
+              <Route path="/profile">
+                  <Profile />
+              </Route>
+              <Route path="/vote">
+                  <Vote />
+              </Route>
+              
+              <Route path="/">
+                  <Home />
+              </Route>
+              
+            </Switch>
             </div>
-            {/* <hr className="separator" /> */}
           </div>
-        </aside>
-      <div className="page-wrapper">
-                  {/* <!-- Header --> */}
-          <header className="main-header " id="header">
-             <Nav />
-          </header>
 
 
-        <div className="content-wrapper">
-          <div className="content">	
-          <Switch>
-            <Route path="/score">
-                <Score />
-            </Route>
-            <Route path="/profile">
-                <Profile />
-            </Route>
-            <Route path="/vote">
-                <Vote />
-            </Route>
-            
-            <Route path="/">
-                <Home />
-            </Route>
-            
-          </Switch>
-          </div>
         </div>
-
-
       </div>
-    </div>
-</div>
-</Router>
+  </div>
+  </Router>
     );
  
   }
