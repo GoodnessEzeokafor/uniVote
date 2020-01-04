@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-
+import Identicon from 'identicon.js';
 export default class Nav extends Component {
+  constructor(props) {
+    super(props);
+    
+  }
+  
     render() {
         return (
             <nav className="navbar navbar-static-top navbar-expand-lg">
@@ -76,8 +81,14 @@ export default class Nav extends Component {
                 {/* <!-- User Account --> */}
                 <li className="dropdown user-menu">
                   <button href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-                    <img src="assets/img/user/user.png" className="user-image" alt="User Image" />
-                    <span className="d-none d-lg-inline-block">Abdus Salam</span>
+                  {this.props.account
+             ? <img className="ml-2" 
+             width="30"
+             height="30"
+             src={`data:image/png;base64, ${ new Identicon(this.props.account, 30).toString()}`}
+             />
+             : <span> </span>
+            }                  <span className="d-none d-lg-inline-block">{this.props.account}</span>
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right">
                     {/* <!-- User image --> */}
