@@ -9,12 +9,14 @@ import Home from"./Components/Content/Home"
 import Score from"./Components/Content/Score"
 import Vote from "./Components/Content/Vote"
 import Profile from "./Components/Profile/Dashboard"
-import ElectionAbi from "./abis/Elections.json";
+import CandidateForm from "./Components/Content/Electoral/CandidateForm"
+
 
 // import Login from "./Components/Auth/Login"
 // import Signup from "./Components/Auth/Signup"
 /* COMPONENTS */
 
+import ElectionAbi from "./abis/Elections.json";
 
 export default class App extends Component {
   async componentWillMount() {
@@ -52,13 +54,13 @@ export default class App extends Component {
         const ElectionNetworkData= ElectionAbi.networks[networkId]
         if(ElectionNetworkData){
           const ElectionDapp = new web3.eth.Contract(ElectionAbi.abi, ElectionNetworkData.address) // loads the smart contract    
-          console.log(ElectionDapp)
+          // console.log(ElectionDapp)
     
     
           const electionAuthority = await ElectionDapp.methods.electionAuthority().call()  // gets the address of the election coordinator
           console.log("Account of Election Coordinator:",electionAuthority)
           this.setState({electionAuthority})
-
+          this.setState({ElectionDapp})
           // const electionEndTime = await ProjectDapp.methods.projectCount().call() 
           // const candidates = await ProjectDapp.methods.projectCount().call() 
           // const voters = await ProjectDapp.methods.projectCount().call() 
@@ -141,12 +143,22 @@ export default class App extends Component {
                 {/* <!-- sidebar menu --> */}
                 <ul className="nav sidebar-inner" id="sidebar-menu">
                 <li  className="has-sub active expand" >
-                      <Link className="sidenav-item-link" to="/">
-                        <i className="mdi mdi-view-dashboard-outline"></i>
-                        <span className="nav-text">Home</span> 
-                        {/* <b className="caret"></b> */}
-                      </Link>
-                    </li>
+                    <Link className="sidenav-item-link" to="/">
+                      <i className="mdi mdi-view-dashboard-outline"></i>
+                      <span className="nav-text">Home</span> 
+                      {/* <b className="caret"></b> */}
+                    </Link>
+                </li>
+                {this.state.account == this.state.electionAuthority ?
+                <li  className="has-sub active expand" >
+                <Link className="sidenav-item-link" to="/createCandidate">
+                  <i className="mdi mdi-view-dashboard-outline"></i>
+                  <span className="nav-text">Create Candidate</span> 
+                  {/* <b className="caret"></b> */}
+                </Link>
+            </li> 
+                 : <span></span>}
+              
                     <li  className="has-sub active expand" >
                       <Link className="sidenav-item-link" to="/score">
                         <i className="mdi mdi-view-dashboard-outline"></i>
@@ -184,6 +196,12 @@ export default class App extends Component {
           <div className="content-wrapper">
             <div className="content">	
             <Switch>
+            <Route path="/createCandidate">
+                  <CandidateForm 
+                    ElectionDapp={this.state.ElectionDapp}
+                    account={this.state.account}
+                  />
+              </Route>
               <Route path="/score">
                   <Score />
               </Route>
@@ -193,11 +211,9 @@ export default class App extends Component {
               <Route path="/vote">
                   <Vote />
               </Route>
-              
               <Route path="/">
                   <Home />
-              </Route>
-              
+              </Route>              
             </Switch>
             </div>
           </div>

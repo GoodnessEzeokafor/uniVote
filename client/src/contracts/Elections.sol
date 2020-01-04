@@ -10,10 +10,11 @@ contract Elections {
 
 
     mapping (uint => Candidate) public candidates; // Candidate ID to number of votes
+    // mapping (uint => Election) public election_list; // Election Lists
     // mapping (string => uint) public votes; // Candidate ID to number of votes
     mapping (address => bool) public voters; // Registered voters
     mapping (address => bool) public hasVoted; // If a registered voter has voted or not
-
+   
 
 
 
@@ -59,6 +60,13 @@ contract Elections {
         uint voteCount;
 
     }
+
+    event NewElection(
+        uint id,
+        string name_of_election,
+        string description_of_election,
+        uint duration
+    );
 
     event NewCandidate(
         uint id,
