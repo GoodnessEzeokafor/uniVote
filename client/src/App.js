@@ -9,8 +9,8 @@ import Home from"./Components/Content/Home"
 import Score from"./Components/Content/Score"
 import Vote from "./Components/Content/Vote"
 import Profile from "./Components/Profile/Dashboard"
-import CandidateForm from "./Components/Content/Electoral/CandidateForm"
-
+import ElectionForm from "./Components/Content/Electoral/ElectionForm"
+import Elections from "./Components/Content/Electoral/Elections"
 
 // import Login from "./Components/Auth/Login"
 // import Signup from "./Components/Auth/Signup"
@@ -169,6 +169,14 @@ export default class App extends Component {
                         {/* <b className="caret"></b> */}
                       </Link>
                     </li>
+                    <li  className="has-sub active expand" >
+                      <Link className="sidenav-item-link" to="/elections">
+                        <i className="mdi mdi-view-dashboard-outline"></i>
+                        <span className="nav-text">Elections</span> 
+                        {/* <b className="caret"></b> */}
+                      </Link>
+                    </li>
+                    
                     <li  className="has-sub" >
                       <Link className="sidenav-item-link" to="/vote">
                         <i className="mdi mdi-folder-multiple-outline"></i>
@@ -200,13 +208,16 @@ export default class App extends Component {
             <div className="content">	
             <Switch>
             <Route path="/createElection">
-                  <CandidateForm 
+                  <ElectionForm 
                     ElectionDapp={this.state.ElectionDapp}
                     account={this.state.account}
                   />
               </Route>
               <Route path="/score">
                   <Score />
+              </Route>
+              <Route path="/elections">
+                  <Elections />
               </Route>
               <Route path="/profile">
                   <Profile />
