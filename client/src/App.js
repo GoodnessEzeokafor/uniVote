@@ -55,7 +55,14 @@ export default class App extends Component {
           console.log(ElectionDapp)
     
     
-          // const projectCount = await ProjectDapp.methods.projectCount().call() 
+          const electionAuthority = await ElectionDapp.methods.electionAuthority().call()  // gets the address of the election coordinator
+          console.log("Account of Election Coordinator:",electionAuthority)
+          this.setState({electionAuthority})
+
+          // const electionEndTime = await ProjectDapp.methods.projectCount().call() 
+          // const candidates = await ProjectDapp.methods.projectCount().call() 
+          // const voters = await ProjectDapp.methods.projectCount().call() 
+          // const hasVoted = await ElectionDapp.methods.hasVoted()
           // console.log("Projects Length:", projectCount)
 
 
@@ -168,7 +175,9 @@ export default class App extends Component {
         <div className="page-wrapper">
                     {/* <!-- Header --> */}
             <header className="main-header " id="header">
-              <Nav />
+              <Nav 
+                account={this.state.account}
+                />
             </header>
 
 
