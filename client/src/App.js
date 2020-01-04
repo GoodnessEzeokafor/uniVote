@@ -59,6 +59,7 @@ export default class App extends Component {
     
           const electionAuthority = await ElectionDapp.methods.electionAuthority().call()  // gets the address of the election coordinator
           const dapp_name = await ElectionDapp.methods.dapp_name().call()
+          const electionCount = await ElectionDapp.methods.electionCount().call()
           console.log("Account of Election Coordinator:",electionAuthority)
           this.setState({electionAuthority})
           this.setState({ElectionDapp})
@@ -73,13 +74,13 @@ export default class App extends Component {
             // this.setState({ProjectDapp})
             //  this.setState({projectCount})
     
-    //       // Load Projects
-          // for(var j=1; j <= projectCount; j++){
-          //   const project = await ProjectDapp.methods.projects(j).call()
-          //   this.setState({
-          //     projects:[...this.state.projects, project]
-          //   })
-          // }
+    //       // Load ELECTIONS
+          for(var j=1; j <= electionCount; j++){
+            const election = await ElectionDapp.methods.elections(j).call()
+            this.setState({
+              elections:[...this.state.elections, election]
+            })
+          }
           // console.log({projects:this.state.projects})
         //   console.log({contributors:this.state.contributors})
       }else {
@@ -95,7 +96,8 @@ export default class App extends Component {
     //  projects:[],
      loader:false,
      message:'',
-     dapp_name:''
+     dapp_name:'',
+     elections:[]
     //  message:''
     }
    }
@@ -217,7 +219,8 @@ export default class App extends Component {
                   <Score />
               </Route>
               <Route path="/elections">
-                  <Elections />
+                  <Elections 
+                   elections={this.state.elections} />
               </Route>
               <Route path="/profile">
                   <Profile />
