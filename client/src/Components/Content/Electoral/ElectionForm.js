@@ -15,7 +15,7 @@ export default class CandidateForm extends Component {
         console.log("Election Description:", this.description_of_election.value)
         console.log("Election Duration:", this.duration.value)
         console.log("Election StartTime:", this.startTime.value)
-        let startTime= this.startTime.value 
+        let startTime= new Date(this.startTime.value) 
         startTime = startTime.getTime()       
         // Write to the Blockchains
         this.props.ElectionDapp.methods.createElection(
@@ -37,7 +37,7 @@ export default class CandidateForm extends Component {
             <div className="col-lg-6 mr-auto ml-auto">
                 <div className="card card-default">
                     <div className="card-header card-header-border-bottom">
-                        <h2>ADD CANDIDATE</h2>
+                        <h2>CREATE ELECTION</h2>
                     </div>
                     <div className="card-body">
                         <form onSubmit = {this.handleSubmit}>
