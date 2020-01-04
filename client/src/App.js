@@ -16,7 +16,7 @@ import CandidateForm from "./Components/Content/Electoral/CandidateForm"
 // import Signup from "./Components/Auth/Signup"
 /* COMPONENTS */
 
-import ElectionAbi from "./abis/Elections.json";
+import ElectionAbi from "./abis/Voting.json";
 
 export default class App extends Component {
   async componentWillMount() {
@@ -58,9 +58,11 @@ export default class App extends Component {
     
     
           const electionAuthority = await ElectionDapp.methods.electionAuthority().call()  // gets the address of the election coordinator
+          const dapp_name = await ElectionDapp.methods.dapp_name().call()
           console.log("Account of Election Coordinator:",electionAuthority)
           this.setState({electionAuthority})
           this.setState({ElectionDapp})
+          this.setState({dapp_name})
           // const electionEndTime = await ProjectDapp.methods.projectCount().call() 
           // const candidates = await ProjectDapp.methods.projectCount().call() 
           // const voters = await ProjectDapp.methods.projectCount().call() 
@@ -92,7 +94,8 @@ export default class App extends Component {
      ElectionDapp:null,
     //  projects:[],
      loader:false,
-     message:''
+     message:'',
+     dapp_name:''
     //  message:''
     }
    }
@@ -134,7 +137,7 @@ export default class App extends Component {
                       <path className="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
                     </g>
                   </svg>
-                  <span className="brand-name">Sleek Dashboard</span>
+            <span className="brand-name">{this.state.dapp_name}</span>
                 </a>
               </div>
               {/* <!-- begin sidebar scrollbar --> */}
@@ -149,14 +152,14 @@ export default class App extends Component {
                       {/* <b className="caret"></b> */}
                     </Link>
                 </li>
-                {this.state.account == this.state.electionAuthority ?
+                {this.state.account === this.state.electionAuthority ?
                 <li  className="has-sub active expand" >
-                <Link className="sidenav-item-link" to="/createCandidate">
+                <Link className="sidenav-item-link" to="/createElection">
                   <i className="mdi mdi-view-dashboard-outline"></i>
-                  <span className="nav-text">Create Candidate</span> 
+                  <span className="nav-text">Create Election</span> 
                   {/* <b className="caret"></b> */}
                 </Link>
-            </li> 
+                 </li> 
                  : <span></span>}
               
                     <li  className="has-sub active expand" >
@@ -196,7 +199,7 @@ export default class App extends Component {
           <div className="content-wrapper">
             <div className="content">	
             <Switch>
-            <Route path="/createCandidate">
+            <Route path="/createElection">
                   <CandidateForm 
                     ElectionDapp={this.state.ElectionDapp}
                     account={this.state.account}
