@@ -132,9 +132,8 @@ contract Elections {
         candidates[_candidateId].voteCount ++;
 
         emit Voted(msg.sender,true);
-
-
     }
+
 
      
 

@@ -73,8 +73,159 @@ contract('Voting', ([deployer,voter,voter2]) => {
             assert.equal(event['department'],"Computer Science")
             assert.equal(event['level'],"400 Level")
             assert.equal(event['voteCount'],0)
+            const date_start_time = new Date("January 17, 2000 03:24:00")
+            const startTime = date_start_time.getTime() // getTimestamp
+            const duration = parseInt("40", 10)
+
+            // should fail
+            // await this.contract.createElection(
+            //     "Narcoss Vice President Post",
+            //     "Narcoss Vice President Election Post",
+            //     startTime,
+            //     duration,
+            //     {from:voter})            
+        })
+
+        it("checks if the createCandidate works well 2",async() =>{
+            const electionId = await this.contract.electionCount()
+            const new_candidate = await this.contract.createCandidate(
+                electionId,
+                "Jane Simeon",
+                "Computer Science",
+                "400 Level",
+                {from:deployer}
+            )
+            const candidateCount = await this.contract.candidateCount()
+            // console.log(new_candidate.logs[0].args)
+            const event = new_candidate.logs[0].args
+            assert.equal(event['name'],"Jane Simeon")
+            assert.equal(event['department'],"Computer Science")
+            assert.equal(event['level'],"400 Level")
+            assert.equal(event['voteCount'],0)
+            assert.equal(event['id'].toString(), candidateCount)
+        })
+
+
+        it("creates multiple elections", async() => {
+            const date_start_time = new Date("January 17, 2000 03:24:00")
+            const startTime = date_start_time.getTime() // getTimestamp
+            const duration = parseInt("40", 10)
+            let election
+            let result = []
+            await this.contract.createElection(
+                "Narcoss Vice President Post",
+                "Narcoss Vice President Election Post",
+                startTime,
+                duration,
+                {from:deployer})
+            await this.contract.createElection(
+                "Narcoss Director Of Software Post",
+                "Narcoss Director Of Software Post",
+                startTime,
+                duration,
+                {from:deployer})
+            
+            await this.contract.createElection(
+                "Narcoss Director Of Sport Post",
+                "Narcoss Director Of Sport Post",
+                startTime,
+                duration,
+                {from:deployer})
+            const electionCount = await this.contract.electionCount()
+            for(var i = 0; i <= electionCount;i++){
+                election = await this.contract.elections(i)
+                result.push(election)                
+            }
+            // console.log(result)
+
+        })
+        
+        // it("checks if the createCandidate works multiple time", async() => {
+        //     const result = []
+        //     await this.contract.createCandidate(1, "Patra Chineme","Computer Science","300 Level",{from:deployer})
+        //     await this.contract.createCandidate(1, "Goodness Ezeokafor","Computer Science","300 Level",{from:deployer})
+        //     await this.contract.createCandidate(1, "Emma Nduka","Computer Science","300 Level",{from:deployer})
+        //     const election = await this.contract.elections(1)
+        //     console.log(election.candidates)
+        // })
+    });
+    
+    describe('RETURNING CANDIDATES', () => {
+        it("checks if getElectionCandidates works", async() => {
+          const candidates = await this.contract.getElectionCandidates(1)
+          console.log("It Works")  
         })
     });
+
+
+
+
+
+    describe('Voting', async() => {
+        it("Votes successfully", async()=>{
+
+            await this.contract.register_voter(voter2)
+
+            candidateCount = await this.contract.candidateCount()
+            
+            await this.contract.start_election(1000000, {from : deployer})
+
+            // User is not yet registered so voting fails
+            voting = await this.contract.voteCandidate(candidateCount).should.be.rejected
+
+
+          
+
+            registered  = await this.contract.voters(voter2)
+            hasVoted  = await this.contract.hasVoted(voter2)
+
+            // console.log(registered)
+            // console.log(hasVoted)
+
+              // User is registered so voting passes
+            await this.contract.voteCandidate(1,1, {from : voter2})
+            
+
+            candidate = await this.contract.getElectionCandidates(1)
+
+            // console.log(candidate)
+
+            // assert.equal(candidate.voteCount, 1, "Vote Count increased successfully")
+            console.log(candidate)
+        })
+
+        // it("Sets state of voter to true", async()=>{
+        //     // candidateCount = await contract.candidateCount()
+        //     // await contract.voteCandidate(candidateCount)
+        //     addedVoter = await contract.hasVoted(third)
+        //     // addedVoter2 = await contract.hasVoted(another)
+
+        //     assert.equal(addedVoter, true, "Voter state was updated to true")
+        //     // assert.equal(addedVoter2, true, "Voter2 state was updated to true")
+            
+
+        // })
+
+        // it("SHould be Rejected", async()=>{
+        //     // Cant vote on a particular election more than once
+        //     await contract.voteCandidate(candidateCount, {from : third}).should.be.rejected
+        //     // Ensures one cannot vote twice
+        //     await contract.voteCandidate(candidateCount, {from : another})
+        //     await contract.voteCandidate(candidateCount, {from : another}).should.be.rejected
+        //     // Rejects the user voting on another candidate after voting initially
+        //     await contract.voteCandidate(0).should.be.rejected
+
+
+        //     // Asserts that the event was reverted and the vote count wasnt updated
+        //     // candidate1 = await contract.candidates(1)
+
+
+        //     // assert.equal(candidate1.voteCount, 0)
+
+        // })
+      
+    })
+
     
     
 })

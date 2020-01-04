@@ -13,7 +13,7 @@ contract Voting{
     // mapping (uint => Candidate) public candidates; // Candidate ID to number of votes
     mapping (address => bool) public voters; // Registered voters
     mapping (address => bool) public hasVoted; // If a registered voter has voted or not
-
+    Candidate[] public candidates;
     /* MODIFIERS */
         // Modifiers
 
@@ -82,6 +82,8 @@ contract Voting{
     );
 
     event NewCandidate(
+        string election_name,
+        string election_description,
         uint id,
         string name,
         string department,
@@ -133,11 +135,17 @@ contract Voting{
                             string memory _department,
                             string memory  _level
                             ) public only_election_authority{
-        // Election memory e = elections[_id];
+        Election memory e = elections[_id];
         candidateCount++;
         Candidate memory new_candidate = Candidate(candidateCount,_name,_department,_level, 0);
         elections[_id].candidates.push(new_candidate);
-        emit NewCandidate(candidateCount,_name,_department,_level, 0);
+        emit NewCandidate(
+                e.name_of_election,
+                e.description_of_election,
+                candidateCount,
+                _name,
+                _department,
+                _level, 0);
     }
 
 // Register a voter for when we using the UJ API to register voters
@@ -156,9 +164,6 @@ contract Voting{
         // only_during_election_time
         vote_only_once
         {
-     
-
-
         // // require that they haven't voted before
         // require(!voters[msg.sender]);
 
@@ -172,11 +177,11 @@ contract Voting{
         elections[_electionId].candidates[_candidateId].voteCount ++;
 
         emit Voted(msg.sender,true);
-
-
     }
 
-
+    function getElectionCandidates(uint _id) public view returns(Candidate[] memory){
+        return elections[_id].candidates;
+    }
 
 }
 
