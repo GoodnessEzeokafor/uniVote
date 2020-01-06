@@ -36,7 +36,10 @@ contract('Voting', ([deployer,voter,voter2]) => {
 
     describe('VOTING CONTRACT: CREATE ELECTION SUCCESSFULLY', () => {
         it("checks the createElection", async() => {
-            const date_start_time = new Date("January 17, 2000 03:24:00")
+            const date_start_time = new Date("January 17, 2020 03:24:00")
+           
+
+
             const startTime = date_start_time.getTime() // getTimestamp
             const duration = parseInt("40", 10)
             const new_election = await this.contract.createElection(
@@ -50,6 +53,9 @@ contract('Voting', ([deployer,voter,voter2]) => {
             // console.log(new_election.logs[0].args)
             const electionCount = await this.contract.electionCount()
             const event = new_election.logs[0].args
+
+            // Check if election count increased
+            assert.equal(electionCount, 1)
             assert.equal(event['id'],1)
             assert.equal(electionCount,1)
             
@@ -65,6 +71,7 @@ contract('Voting', ([deployer,voter,voter2]) => {
                 "Steve Dozie",
                 "Computer Science",
                 "400 Level",
+                "Naccoss President",
                 {from:deployer}
             )
             // console.log(new_candidate.logs[0].args)
@@ -73,6 +80,7 @@ contract('Voting', ([deployer,voter,voter2]) => {
             assert.equal(event['department'],"Computer Science")
             assert.equal(event['level'],"400 Level")
             assert.equal(event['voteCount'],0)
+            assert.equal(event['post'],"Naccoss President")
             const date_start_time = new Date("January 17, 2000 03:24:00")
             const startTime = date_start_time.getTime() // getTimestamp
             const duration = parseInt("40", 10)
@@ -93,6 +101,7 @@ contract('Voting', ([deployer,voter,voter2]) => {
                 "Jane Simeon",
                 "Computer Science",
                 "400 Level",
+                "Sport President",
                 {from:deployer}
             )
             const candidateCount = await this.contract.candidateCount()
@@ -103,6 +112,29 @@ contract('Voting', ([deployer,voter,voter2]) => {
             assert.equal(event['level'],"400 Level")
             assert.equal(event['voteCount'],0)
             assert.equal(event['id'].toString(), candidateCount)
+        })
+
+        // Check if candidate was added to listing
+        it("Checks if the candidate was added to listing",async() =>{
+            const electionId = await this.contract.electionCount()
+            // const new_candidate = await this.contract.createCandidate(
+            //     electionId,
+            //     "Jane Simeon",
+            //     "Computer Science",
+            //     "400 Level",
+            //     "Sport President",
+            //     {from:deployer}
+            // )
+            const candidateCount = await this.contract.candidateCount()
+            const candidates = await this.contract.candidates(candidateCount)
+            console.log(candidates)
+            // console.log(new_candidate.logs[0].args)
+            // const event = candidates.logs[0].args
+            assert.equal(candidates.name,"Jane Simeon")
+            assert.equal(candidates.department,"Computer Science")
+            assert.equal(candidates.level,"400 Level")
+            assert.equal(candidates.voteCount,0)
+            assert.equal((candidates.id).toString(), candidateCount)
         })
 
 
