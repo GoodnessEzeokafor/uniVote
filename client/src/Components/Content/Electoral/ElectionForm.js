@@ -76,6 +76,7 @@ export default class CandidateForm extends Component {
                                         type="date" 
                                         className="form-control" 
                                         id="" 
+                                        placeholder="Select Date"
                                         required />
                                     <div className="valid-feedback">
                                         Looks good!
@@ -87,7 +88,7 @@ export default class CandidateForm extends Component {
                                         type="text" 
                                         className="form-control" 
                                         id="" 
-                                        placeholder="Election Duration"  required />
+                                        placeholder="Election Duration(min)"  required />
                                     <div className="valid-feedback">
                                         Looks good!
                                     </div>

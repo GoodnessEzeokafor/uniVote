@@ -1,23 +1,45 @@
 import React, { Component } from 'react';
+import FormModal from "./Modal/FormModal";
+import "./modal.css"
+// import VoteImg from "./"
 
 export default class Elections extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            // single_project: "",
+            // // addModalShow: false,
+            show: false,
+            loader: false
+          };
     }
-    
+    showModal = () => {
+        this.setState({show : true})
+      }
+      hideModal = () => {
+        this.setState({ show: false });
+      };
     render() {
         return (
             <div>
                 <div className="card card-default">
                     <div className="card-header card-header-border-bottom">
-                        <h2>Card with Deck </h2>
+                        {/* <h2>Card with Deck </h2>
+                         */}
                     </div>
                     <div className="card-body">
-                        <p className="mb-5">Need a set of equal width and height cards that aren’t attached to one another? Use card decks. Read bootstrap documentaion for <a href="https://getbootstrap.com/docs/4.1/components/card/#card-decks" target="_blank"> More Details	</a></p>
+                        {/* <p className="mb-5">Need a set of equal width and height cards that aren’t attached to one another? Use card decks. Read bootstrap documentaion for <a href="https://getbootstrap.com/docs/4.1/components/card/#card-decks" target="_blank"> More Details	</a></p> */}
                         <div className="card-deck">
                            {this.props.elections.map((election,key) => {
                                return(
-                                <div className="card">
+                                <div className="card" key={key}>
+                                <FormModal
+                                show={this.state.show}
+                                handleClose={this.hideModal}
+                                // single_project={this.state.single_project}
+                                // ProjectDapp = {this.props.ProjectDapp}
+                                // account={this.props.account}
+                            />
                                 <img 
                                     className="card-img-top" 
                                     src="/assets/img/elements/cc3a.jpg" alt="Card image cap" />
@@ -27,7 +49,30 @@ export default class Elections extends Component {
                                         {election.description_of_election}
                                     </p>
                                     <p className="card-text">
-                                        <small className="text-muted">Last updated 3 mins ago</small>
+                                        {/* <small className="text-muted">Last updated 3 mins ago</small> */}
+                                        {/* BUTTON 2 */}
+                                        <button
+                                        className="btn btn-primary"
+                                        id={election.id}
+                                        data-target="#exampleModal"
+                                        // style={{marginLeft:"20px"}}
+                                        //  to={`/project/${project.id}`}
+                                        onClick={async(event) => {
+                                            this.showModal();
+                                        //     const id = parseInt(event.target.id, 10);
+                                        //     // console.log(id, typeof id);
+                                        //     const single_project = await this.getSingleProject(id);
+                                        // console.log("Content:",single_project["name"])
+                                        //     this.setState({ single_project });
+                                            event.persist();
+                                        }
+                                            // console.log("Hello WOrld")
+                                            // window.alert("Hello")
+                                            
+                                            // {this.showModal()}
+                                        }
+                                        > Add Candidate
+                                        </button>
                                     </p>
                                 </div>
                             </div>
@@ -42,3 +87,5 @@ export default class Elections extends Component {
     );
     }
 }
+
+{/* <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
