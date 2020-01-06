@@ -138,6 +138,24 @@ contract('Voting', ([deployer,voter,voter2]) => {
             }
             // console.log(result)
 
+            it("checks if the createCandidate works well 2",async() =>{
+                // const electionId = await this.contract.electionCount()
+                const new_candidate = await this.contract.createCandidate(
+                    2,
+                    "Blessing Doe",
+                    "Computer Science",
+                    "400 Level",
+                    {from:deployer}
+                )
+                const candidateCount = await this.contract.candidateCount()
+                // console.log(new_candidate.logs[0].args)
+                const event = new_candidate.logs[0].args
+                // assert.equal(event['name'],"Jane Simeon")
+                // assert.equal(event['department'],"Computer Science")
+                // assert.equal(event['level'],"400 Level")
+                // assert.equal(event['voteCount'],0)
+                // assert.equal(event['id'].toString(), 2)
+            })
         })
         
         // it("checks if the createCandidate works multiple time", async() => {
@@ -152,7 +170,7 @@ contract('Voting', ([deployer,voter,voter2]) => {
     
     describe('RETURNING CANDIDATES', () => {
         it("checks if getElectionCandidates works", async() => {
-          const candidates = await this.contract.getElectionCandidates(1)
+          const candidates = await this.contract.getElectionCandidates(2)
           console.log("It Works")  
           console.log(candidates)
         })
@@ -192,7 +210,7 @@ contract('Voting', ([deployer,voter,voter2]) => {
             // console.log(candidate)
 
             // assert.equal(candidate.voteCount, 1, "Vote Count increased successfully")
-            console.log(candidate)
+            // console.log(candidate)
         })
 
         it("Sets state of voter to true", async()=>{
