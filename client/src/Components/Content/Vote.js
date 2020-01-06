@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CandidateImg from "./candidates.png"
 
 export default class Vote extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ export default class Vote extends Component {
                           
                             <img 
                                 className="card-img-top" 
-                                src="" 
+                                src={CandidateImg} 
                                 alt="Card image cap" />
                             <div className="card-body">
                            <h5 className="card-title text-primary">{candidate.name}</h5>
@@ -42,7 +43,7 @@ export default class Vote extends Component {
                                     data-target="#exampleModal"
                                     style={{marginRight:"20px"}}
                                     >
-                                        Vote Candidates
+                                        Vote Candidate
                                     </button>
                                 </p>
                             </div>
@@ -61,3 +62,5 @@ export default class Vote extends Component {
         );
     }
 }
+
+{/* <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}

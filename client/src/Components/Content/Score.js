@@ -4,8 +4,9 @@ export default class Score extends Component {
     render() {
         return (
             <div>
-            <table class="table">
-                <thead class="thead-dark">
+                <h3 className="text-center mb-2">LIVE SCORE</h3>
+            <table className="table">
+                <thead className="thead-dark">
                         <tr>
                         <th scope="col">#</th>
                         <th scope="col">FULL NAME</th>
