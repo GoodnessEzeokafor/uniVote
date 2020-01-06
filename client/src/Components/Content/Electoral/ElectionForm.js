@@ -28,6 +28,7 @@ export default class CandidateForm extends Component {
     .once('receipt', (receipt) => {
         console.log(receipt);
         this.setState({loading:false})
+        window.location.reload()
     })
     }
     render() { 
