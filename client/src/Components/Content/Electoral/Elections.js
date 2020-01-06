@@ -60,10 +60,7 @@ export default class Elections extends Component {
                                 // single_project={this.state.single_project}
                                 ElectionDapp = {this.props.ElectionDapp}
                                 account={this.props.account}
-                                
                             />
-
-                            <SecondCountDown targetDate="Jan 10, 2020" targetTime="18:00:00" />
                             <ViewCandidatesModal 
                                  show={this.state.show2}
                                  handleClose={this.hideModal2}
