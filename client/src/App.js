@@ -60,10 +60,14 @@ export default class App extends Component {
           const electionAuthority = await ElectionDapp.methods.electionAuthority().call()  // gets the address of the election coordinator
           const dapp_name = await ElectionDapp.methods.dapp_name().call()
           const electionCount = await ElectionDapp.methods.electionCount().call()
+          const candidateCount = await ElectionDapp.methods.candidateCount().call()
           console.log("Account of Election Coordinator:",electionAuthority)
           this.setState({electionAuthority})
           this.setState({ElectionDapp})
           this.setState({dapp_name})
+          this.setState({candidateCount})
+          this.setState({electionCount})
+
           // const electionEndTime = await ProjectDapp.methods.projectCount().call() 
           // const candidates = await ProjectDapp.methods.projectCount().call() 
           // const voters = await ProjectDapp.methods.projectCount().call() 
@@ -81,7 +85,15 @@ export default class App extends Component {
               elections:[...this.state.elections, election]
             })
           }
-          // console.log({projects:this.state.projects})
+          // LOAD CANDIDATES
+          for(var j=1; j <= electionCount; j++){
+            const candidate = await ElectionDapp.methods.candidates(j).call()
+            this.setState({
+              candidate_lists:[...this.state.candidate_lists, candidate]
+            })
+          }
+
+          console.log({candidates:this.state.candidate_lists})
         //   console.log({contributors:this.state.contributors})
       }else {
               window.alert("UniVote contract is not deployed to the network")
@@ -97,7 +109,11 @@ export default class App extends Component {
      loader:false,
      message:'',
      dapp_name:'',
-     elections:[]
+     elections:[],
+     candidate_lists:[],
+     candidateCount:0,
+     electionCount:0,
+
     //  message:''
     }
    }
