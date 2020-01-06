@@ -91,6 +91,7 @@ contract Voting{
         string name,
         string department,
         string level,
+        string post,
         uint voteCount
     );
 
@@ -150,7 +151,10 @@ contract Voting{
                 candidateCount,
                 _name,
                 _department,
-                _level, 0);
+            
+                _level,
+                _post,
+                 0);
     }
 
 // Register a voter for when we using the UJ API to register voters
