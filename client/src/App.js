@@ -232,7 +232,11 @@ export default class App extends Component {
                   />
               </Route>
               <Route path="/score">
-                  <Score />
+                  <Score 
+                            candidate_lists={this.state.candidate_lists} 
+                            ElectionDapp={this.state.ElectionDapp}
+                            account={this.state.account}
+                    />
               </Route>
               <Route path="/elections">
                   <Elections 

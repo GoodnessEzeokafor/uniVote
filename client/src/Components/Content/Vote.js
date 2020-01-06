@@ -41,7 +41,6 @@ export default class Vote extends Component {
                                     id={candidate.id}
                                     data-target="#exampleModal"
                                     style={{marginRight:"20px"}}
-                                    
                                     >
                                         Vote Candidates
                                     </button>
