@@ -91,6 +91,7 @@ contract Voting{
         string name,
         string department,
         string level,
+        string post,
         uint voteCount
     );
 
