@@ -3,6 +3,7 @@ import FormModal from "./Modal/FormModal";
 import ViewCandidatesModal from "./Modal/ViewCandidatesModal"
 
 import "./modal.css"
+import CountDown from './SecondCountDown';
 // import VoteImg from "./"
 
 export default class Elections extends Component {
@@ -61,6 +62,8 @@ export default class Elections extends Component {
                                 ElectionDapp = {this.props.ElectionDapp}
                                 account={this.props.account}
                             />
+
+<CountDown targetDate="Jan 10, 2020" targetTime="18:00:00" />;
                             <ViewCandidatesModal 
                                  show={this.state.show2}
                                  handleClose={this.hideModal2}
