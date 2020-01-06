@@ -49,7 +49,7 @@ export default class CandidateForm extends Component {
                                         ref = {(input) => this.name_of_election = input}
                                         type="text" 
                                         className="form-control" 
-                                        id="validationServer01" 
+                                        // id="validationServer01" 
                                         placeholder="Election Name Here"  required />
                                     <div className="valid-feedback">
                                         Looks good!

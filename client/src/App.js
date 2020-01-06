@@ -220,7 +220,10 @@ export default class App extends Component {
               </Route>
               <Route path="/elections">
                   <Elections 
-                   elections={this.state.elections} />
+                   elections={this.state.elections} 
+                   ElectionDapp={this.state.ElectionDapp}
+                   account={this.state.account}
+                   />
               </Route>
               <Route path="/profile">
                   <Profile />

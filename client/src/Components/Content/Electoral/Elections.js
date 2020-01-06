@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import FormModal from "./Modal/FormModal";
+import ViewCandidatesModal from "./Modal/ViewCandidatesModal"
+
 import "./modal.css"
 // import VoteImg from "./"
 
@@ -10,15 +12,33 @@ export default class Elections extends Component {
             // single_project: "",
             // // addModalShow: false,
             show: false,
-            loader: false
+            show2: false,
+            loader: false,
+            getcandidates:""
           };
     }
     showModal = () => {
         this.setState({show : true})
       }
+
       hideModal = () => {
         this.setState({ show: false });
-      };
+      }
+      showModal2 = () => {
+        this.setState({show2 : true})
+      }
+      hideModal2 = () => {
+        this.setState({ show2: false });
+      }
+      async getCandidates(id) {
+        const getCandidate = await this.props.ElectionDapp.methods
+          .getElectionCandidates(id)
+          .call();
+        console.log("Writing To The Blockchain");
+        console.log(getCandidate);
+        return getCandidate;
+      }
+      
     render() {
         return (
             <div>
@@ -36,9 +56,19 @@ export default class Elections extends Component {
                                 <FormModal
                                 show={this.state.show}
                                 handleClose={this.hideModal}
+                                id={parseInt(election.id,10)}
                                 // single_project={this.state.single_project}
-                                // ProjectDapp = {this.props.ProjectDapp}
-                                // account={this.props.account}
+                                ElectionDapp = {this.props.ElectionDapp}
+                                account={this.props.account}
+                            />
+                            <ViewCandidatesModal 
+                                 show={this.state.show2}
+                                 handleClose={this.hideModal2}
+                                 id={parseInt(election.id,10)}
+                                 // single_project={this.state.single_project}
+                                 ElectionDapp = {this.props.ElectionDapp}
+                                 account={this.props.account}
+                                 getCandidates ={this.state.getcandidates}
                             />
                                 <img 
                                     className="card-img-top" 
@@ -55,7 +85,7 @@ export default class Elections extends Component {
                                         className="btn btn-primary"
                                         id={election.id}
                                         data-target="#exampleModal"
-                                        // style={{marginLeft:"20px"}}
+                                        style={{marginRight:"20px"}}
                                         //  to={`/project/${project.id}`}
                                         onClick={async(event) => {
                                             this.showModal();
@@ -72,6 +102,25 @@ export default class Elections extends Component {
                                             // {this.showModal()}
                                         }
                                         > Add Candidate
+                                        </button>
+                                        <button 
+                                        className="btn btn-success"
+                                        id={election.id}
+                                        data-target="#exampleModal"
+                                        style={{marginRight:"20px"}}
+                                        //  to={`/project/${project.id}`}
+                                        onClick={async(event) => {
+                                            this.showModal2();
+                                            const id = parseInt(event.target.id, 10);
+                                            console.log(id, typeof id);
+                                            console.log(id)
+                                            const getcandidates = await this.getCandidates(id);
+                                        console.log("Content:",getcandidates["0"])
+                                            this.setState({ getcandidates });
+                                            event.persist();
+                                        }}
+                                        >
+                                            View Candidates
                                         </button>
                                     </p>
                                 </div>

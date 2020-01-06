@@ -13,7 +13,9 @@ contract Voting{
     // mapping (uint => Candidate) public candidates; // Candidate ID to number of votes
     mapping (address => bool) public voters; // Registered voters
     mapping (address => bool) public hasVoted; // If a registered voter has voted or not
-    Candidate[] public candidates;
+    mapping(uint => Candidate) public candidates;  //GET ELECTION LIST
+
+    // Candidate[] public candidates;
     /* MODIFIERS */
         // Modifiers
 
@@ -52,6 +54,7 @@ contract Voting{
         string name;
         string department;
         string level;
+        string post;
         uint voteCount;
     }
     /* END CANDIDATE STRUCT */
@@ -109,7 +112,7 @@ contract Voting{
                  ) public only_election_authority {
         
         electionCount ++;
-        Candidate memory new_candidate = Candidate(0,"Not A Candidate","Not A Candidate", "Not A Candidate",0);
+        Candidate memory new_candidate = Candidate(0,"Not A Candidate","Not A Candidate", "Not A Candidate","NOT A CANDIDATE",0);
         elections[electionCount].id = electionCount;
         elections[electionCount].name_of_election = _name_of_election;
         elections[electionCount].description_of_election = _description_of_election;
@@ -133,12 +136,14 @@ contract Voting{
                             uint _id,
                             string memory  _name,
                             string memory _department,
-                            string memory  _level
+                            string memory  _level,
+                            string memory _post
                             ) public only_election_authority{
         Election memory e = elections[_id];
         candidateCount++;
-        Candidate memory new_candidate = Candidate(candidateCount,_name,_department,_level, 0);
+        Candidate memory new_candidate = Candidate(candidateCount,_name,_department,_level,_post, 0);
         elections[_id].candidates.push(new_candidate);
+        candidates[candidateCount] = new_candidate;
         emit NewCandidate(
                 e.name_of_election,
                 e.description_of_election,
@@ -180,8 +185,20 @@ contract Voting{
         emit Voted(msg.sender,true);
     }
 
-    function getElectionCandidates(uint _id) public view returns(Candidate[] memory){
-        return elections[_id].candidates;
+    function getElectionCandidates(uint _id) public view returns(
+                                string memory,
+                                string memory,
+                                Candidate[] memory){
+        // return elections[_id].candidates;  
+        Election memory e = elections[_id];
+
+        // return elections[_id];
+        return(
+            e.name_of_election,
+            e.description_of_election,
+            e.candidates
+        );
+
     }
 
 }
