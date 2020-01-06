@@ -3,7 +3,8 @@ import FormModal from "./Modal/FormModal";
 import ViewCandidatesModal from "./Modal/ViewCandidatesModal"
 
 import "./modal.css"
-// import VoteImg from "./"
+import CountDown from './SecondCountDown';
+import VoteImg from "../Electoral/vote.png"
 
 export default class Elections extends Component {
     constructor(props) {
@@ -61,6 +62,8 @@ export default class Elections extends Component {
                                 ElectionDapp = {this.props.ElectionDapp}
                                 account={this.props.account}
                             />
+
+<CountDown targetDate="Jan 10, 2020" targetTime="18:00:00" />;
                             <ViewCandidatesModal 
                                  show={this.state.show2}
                                  handleClose={this.hideModal2}
@@ -72,7 +75,7 @@ export default class Elections extends Component {
                             />
                                 <img 
                                     className="card-img-top" 
-                                    src="/assets/img/elements/cc3a.jpg" alt="Card image cap" />
+                                    src={VoteImg} alt="Card image cap" />
                                 <div className="card-body">
                                <h5 className="card-title text-primary">{election.name_of_election}</h5>
                                     <p className="card-text pb-3">
