@@ -86,8 +86,8 @@ export default class App extends Component {
             })
           }
           // LOAD CANDIDATES
-          for(var j=1; j <= electionCount; j++){
-            const candidate = await ElectionDapp.methods.candidates(j).call()
+          for(var i=1; i <= candidateCount; i++){
+            const candidate = await ElectionDapp.methods.candidates(i).call()
             this.setState({
               candidate_lists:[...this.state.candidate_lists, candidate]
             })
@@ -195,7 +195,7 @@ export default class App extends Component {
                       </Link>
                     </li>
                     
-                    <li  className="has-sub" >
+                    <li  className="has-sub active expand">
                       <Link className="sidenav-item-link" to="/vote">
                         <i className="mdi mdi-folder-multiple-outline"></i>
                         <span className="nav-text">Vote</span> 
@@ -245,7 +245,11 @@ export default class App extends Component {
                   <Profile />
               </Route>
               <Route path="/vote">
-                  <Vote />
+                  <Vote 
+                      candidate_lists={this.state.candidate_lists} 
+                      ElectionDapp={this.state.ElectionDapp}
+                      account={this.state.account}
+                  />
               </Route>
               <Route path="/">
                   <Home />
