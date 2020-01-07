@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-/src/abis
+# /src/abis
 
 # testing
 /coverage
@@ -24,4 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 /abis
 # --allow-unrelated-histories
-/src/abis
+# /src/abis
