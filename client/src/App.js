@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Nav from "./Components/Content/Nav"
 import { Route, Link, Switch, BrowserRouter as Router } from "react-router-dom";
 import Web3 from "web3";
+import Fortmatic from "fortmatic";
+
 
 
 /* COMPONENTS */
@@ -25,15 +27,17 @@ export default class App extends Component {
   }
 
   async loadWeb3() {
+    
     // Sync functions that returns users' addresses if they are already logged in with enable().
     // Not recommended as sync functions will be deprecated in web3 1.0
-    const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4", 'kovan');
+    const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4");
+    // fm.user.logout();
     window.web3 = new Web3(fm.getProvider());
     const web3 = window.web3;
     console.log(window.web3.currentProvider.isFortmatic)
     
 
-   
+  
     // window.web3.currentProvider.isFortmatic; // => true
     // console.log(web3.eth.accounts); // ['0x...']
     // console.log(web3.eth.coinbase); // '0x...'
@@ -54,7 +58,7 @@ export default class App extends Component {
 
   async loadBlockchainData() {
     // console.log(SocialNetwork)
-    const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4", "kovan");
+    const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4");
     window.web3 = new Web3(fm.getProvider());
 
     const web3 = window.web3;
@@ -79,6 +83,7 @@ export default class App extends Component {
           const electionCount = await ElectionDapp.methods.electionCount().call()
           const candidateCount = await ElectionDapp.methods.candidateCount().call()
           console.log("Account of Election Coordinator:",electionAuthority)
+          console.log("Account of the deployer", this.state.account)
           this.setState({electionAuthority})
           this.setState({ElectionDapp})
           this.setState({dapp_name})
