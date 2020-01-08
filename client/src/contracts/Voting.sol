@@ -44,7 +44,7 @@ contract Voting{
         _;
     }
     constructor() public {
-        electionAuthority = msg.sender;
+        electionAuthority = 0x6415d68373647F99270E24eB145be4d6E0141Ab2;
     }
 
 
