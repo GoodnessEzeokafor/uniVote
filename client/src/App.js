@@ -25,23 +25,40 @@ export default class App extends Component {
   }
 
   async loadWeb3() {
-    if (window.ethereum) {
-      window.web3 = new Web3(window.ethereum);
-      await window.ethereum.enable();
-    } else if (window.web3) {
-      window.web3 = new Web3(window.web3.currentProvider);
-    } else {
-      window.alert(
-        "Non-Ethereum browser detected. You should consider trying MetaMask!"
-      );
-    }
+    // Sync functions that returns users' addresses if they are already logged in with enable().
+    // Not recommended as sync functions will be deprecated in web3 1.0
+    const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4", 'kovan');
+    window.web3 = new Web3(fm.getProvider());
+    const web3 = window.web3;
+    console.log(window.web3.currentProvider.isFortmatic)
+    
+
+   
+    // window.web3.currentProvider.isFortmatic; // => true
+    // console.log(web3.eth.accounts); // ['0x...']
+    // console.log(web3.eth.coinbase); // '0x...'
+
+    // await window.ethereum.enable();
+
+    // Async functions that triggers login modal, if user not already logged in
+    web3.eth.getAccounts((error, accounts) => {
+      if (error) throw error;
+      console.log(accounts); // ['0x...']
+    });
+    //  else {
+    //   window.alert(
+    //     "Non-Ethereum browser detected. You should consider trying MetaMask or FortMatic!"
+    //   );
+    // }
   }
 
   async loadBlockchainData() {
     // console.log(SocialNetwork)
+    const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4", "kovan");
+    window.web3 = new Web3(fm.getProvider());
+
     const web3 = window.web3;
-    window.web3 = new Web3(window.ethereum);
-    
+
     //     // // load accounts
         const accounts = await web3.eth.getAccounts() // returns all the account in our wallet 
         this.setState({account:accounts[0]})
@@ -60,10 +77,14 @@ export default class App extends Component {
           const electionAuthority = await ElectionDapp.methods.electionAuthority().call()  // gets the address of the election coordinator
           const dapp_name = await ElectionDapp.methods.dapp_name().call()
           const electionCount = await ElectionDapp.methods.electionCount().call()
+          const candidateCount = await ElectionDapp.methods.candidateCount().call()
           console.log("Account of Election Coordinator:",electionAuthority)
           this.setState({electionAuthority})
           this.setState({ElectionDapp})
           this.setState({dapp_name})
+          this.setState({candidateCount})
+          this.setState({electionCount})
+
           // const electionEndTime = await ProjectDapp.methods.projectCount().call() 
           // const candidates = await ProjectDapp.methods.projectCount().call() 
           // const voters = await ProjectDapp.methods.projectCount().call() 
@@ -81,7 +102,15 @@ export default class App extends Component {
               elections:[...this.state.elections, election]
             })
           }
-          // console.log({projects:this.state.projects})
+          // LOAD CANDIDATES
+          for(var i=1; i <= candidateCount; i++){
+            const candidate = await ElectionDapp.methods.candidates(i).call()
+            this.setState({
+              candidate_lists:[...this.state.candidate_lists, candidate]
+            })
+          }
+
+          console.log({candidates:this.state.candidate_lists})
         //   console.log({contributors:this.state.contributors})
       }else {
               window.alert("UniVote contract is not deployed to the network")
@@ -97,7 +126,11 @@ export default class App extends Component {
      loader:false,
      message:'',
      dapp_name:'',
-     elections:[]
+     elections:[],
+     candidate_lists:[],
+     candidateCount:0,
+     electionCount:0,
+
     //  message:''
     }
    }
@@ -179,7 +212,7 @@ export default class App extends Component {
                       </Link>
                     </li>
                     
-                    <li  className="has-sub" >
+                    <li  className="has-sub active expand">
                       <Link className="sidenav-item-link" to="/vote">
                         <i className="mdi mdi-folder-multiple-outline"></i>
                         <span className="nav-text">Vote</span> 
@@ -216,7 +249,11 @@ export default class App extends Component {
                   />
               </Route>
               <Route path="/score">
-                  <Score />
+                  <Score 
+                            candidate_lists={this.state.candidate_lists} 
+                            ElectionDapp={this.state.ElectionDapp}
+                            account={this.state.account}
+                    />
               </Route>
               <Route path="/elections">
                   <Elections 
@@ -229,7 +266,11 @@ export default class App extends Component {
                   <Profile />
               </Route>
               <Route path="/vote">
-                  <Vote />
+                  <Vote 
+                      candidate_lists={this.state.candidate_lists} 
+                      ElectionDapp={this.state.ElectionDapp}
+                      account={this.state.account}
+                  />
               </Route>
               <Route path="/">
                   <Home />

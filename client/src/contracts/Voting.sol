@@ -44,7 +44,7 @@ contract Voting{
         _;
     }
     constructor() public {
-        electionAuthority = msg.sender;
+        electionAuthority = 0x6415d68373647F99270E24eB145be4d6E0141Ab2;
     }
 
 
@@ -69,7 +69,7 @@ contract Voting{
         uint startTime; // 
         uint timestamp; 
         // mapping (uint => Candidate)  candidates; // Candidate ID to number of votes
-        Candidate[] candidates;
+        // Candidate[] candidates;
     }
     /* END ELECTION STRUCT */
 
@@ -80,8 +80,8 @@ contract Voting{
         string description_of_election,
         uint duration,
         uint startTime,
-        uint timestamp,
-        Candidate candidates // Candidate ID to number of votes
+        uint timestamp
+        // Candidate candidates // Candidate ID to number of votes
     );
 
     event NewCandidate(
@@ -113,22 +113,22 @@ contract Voting{
                  ) public only_election_authority {
         
         electionCount ++;
-        Candidate memory new_candidate = Candidate(0,"Not A Candidate","Not A Candidate", "Not A Candidate","NOT A CANDIDATE",0);
+        // Candidate memory new_candidate = Candidate(0,"Not A Candidate","Not A Candidate", "Not A Candidate","NOT A CANDIDATE",0);
         elections[electionCount].id = electionCount;
         elections[electionCount].name_of_election = _name_of_election;
         elections[electionCount].description_of_election = _description_of_election;
         elections[electionCount].duration = _duration;
         elections[electionCount].startTime = _startTime;
         elections[electionCount].timestamp = now;
-        elections[electionCount].candidates.push(new_candidate);
+        // elections[electionCount].candidates.push(new_candidate);
         emit NewElection(
             electionCount,
             _name_of_election,
             _description_of_election,
             _duration,
             _startTime,
-            now,
-            new_candidate        
+            now
+            // new_candidate        
         );
     }
 
@@ -140,21 +140,18 @@ contract Voting{
                             string memory  _level,
                             string memory _post
                             ) public only_election_authority{
-        Election memory e = elections[_id];
+        // Election memory e = elections[_id];
         candidateCount++;
         Candidate memory new_candidate = Candidate(candidateCount,_name,_department,_level,_post, 0);
-        elections[_id].candidates.push(new_candidate);
+        // elections[_id].candidates.push(new_candidate);
         candidates[candidateCount] = new_candidate;
-        emit NewCandidate(
-                e.name_of_election,
-                e.description_of_election,
-                candidateCount,
-                _name,
-                _department,
-            
-                _level,
-                _post,
-                 0);
+        // emit NewCandidate(
+        //         e.name_of_election,
+        //         e.description_of_election,
+        //         candidateCount,
+        //         _name,
+        //         _department,
+        //         _level, 0);
     }
 
 // Register a voter for when we using the UJ API to register voters
@@ -178,29 +175,30 @@ contract Voting{
 
             // Ensures the candidate exists
         require(_candidateId > 0 && _candidateId <= candidateCount);
-        require(_electionId > 0 && _electionId <= electionCount);
+        // require(_electionId > 0 && _electionId <= electionCount);
 
         // record that voter has voted
         hasVoted[msg.sender] = true;
 
         // update candidate vote Count
-        elections[_electionId].candidates[_candidateId].voteCount ++;
-
+        // elections[_electionId].candidates[_candidateId].voteCount ++;
+        candidates[_candidateId].voteCount ++;
         emit Voted(msg.sender,true);
     }
 
     function getElectionCandidates(uint _id) public view returns(
                                 string memory,
-                                string memory,
-                                Candidate[] memory){
+                                string memory
+                                // Candidate[] memory
+                                ){
         // return elections[_id].candidates;  
         Election memory e = elections[_id];
 
         // return elections[_id];
         return(
             e.name_of_election,
-            e.description_of_election,
-            e.candidates
+            e.description_of_election
+            // e.candidates
         );
 
     }
