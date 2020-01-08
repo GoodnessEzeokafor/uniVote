@@ -53,6 +53,7 @@ export default class Elections extends Component {
                         <div className="card-deck">
                            {this.props.elections.map((election,key) => {
                                return(
+                                <div className="col-md-6 mb-3">
                                 <div className="card" key={key}>
                                 <FormModal
                                 show={this.state.show}
@@ -128,7 +129,9 @@ export default class Elections extends Component {
                                     </p>
                                 </div>
                             </div>
+                            </div>
                                );
+
                            })} 
 
                             
