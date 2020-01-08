@@ -25,23 +25,40 @@ export default class App extends Component {
   }
 
   async loadWeb3() {
-    if (window.ethereum) {
-      window.web3 = new Web3(window.ethereum);
-      await window.ethereum.enable();
-    } else if (window.web3) {
-      window.web3 = new Web3(window.web3.currentProvider);
-    } else {
-      window.alert(
-        "Non-Ethereum browser detected. You should consider trying MetaMask!"
-      );
-    }
+    // Sync functions that returns users' addresses if they are already logged in with enable().
+    // Not recommended as sync functions will be deprecated in web3 1.0
+    const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4", 'kovan');
+    window.web3 = new Web3(fm.getProvider());
+    const web3 = window.web3;
+    console.log(window.web3.currentProvider.isFortmatic)
+    
+
+   
+    // window.web3.currentProvider.isFortmatic; // => true
+    // console.log(web3.eth.accounts); // ['0x...']
+    // console.log(web3.eth.coinbase); // '0x...'
+
+    // await window.ethereum.enable();
+
+    // Async functions that triggers login modal, if user not already logged in
+    web3.eth.getAccounts((error, accounts) => {
+      if (error) throw error;
+      console.log(accounts); // ['0x...']
+    });
+    //  else {
+    //   window.alert(
+    //     "Non-Ethereum browser detected. You should consider trying MetaMask or FortMatic!"
+    //   );
+    // }
   }
 
   async loadBlockchainData() {
     // console.log(SocialNetwork)
+    const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4", "kovan");
+    window.web3 = new Web3(fm.getProvider());
+
     const web3 = window.web3;
-    window.web3 = new Web3(window.ethereum);
-    
+
     //     // // load accounts
         const accounts = await web3.eth.getAccounts() // returns all the account in our wallet 
         this.setState({account:accounts[0]})
