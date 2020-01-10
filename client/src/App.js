@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Nav from "./Components/Content/Nav"
 import { Route, Link, Switch, BrowserRouter as Router } from "react-router-dom";
 import Web3 from "web3";
+import Fortmatic from "fortmatic";
 
 
 /* COMPONENTS */
@@ -11,6 +12,7 @@ import Vote from "./Components/Content/Vote"
 import Profile from "./Components/Profile/Dashboard"
 import ElectionForm from "./Components/Content/Electoral/ElectionForm"
 import Elections from "./Components/Content/Electoral/Elections"
+
 
 // import Login from "./Components/Auth/Login"
 // import Signup from "./Components/Auth/Signup"
@@ -24,16 +26,19 @@ export default class App extends Component {
     await this.loadBlockchainData();
   }
 
+
   async loadWeb3() {
+    
     // Sync functions that returns users' addresses if they are already logged in with enable().
     // Not recommended as sync functions will be deprecated in web3 1.0
-    const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4", 'kovan');
+    const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4");
+    // fm.user.logout();
     window.web3 = new Web3(fm.getProvider());
     const web3 = window.web3;
     console.log(window.web3.currentProvider.isFortmatic)
     
 
-   
+  
     // window.web3.currentProvider.isFortmatic; // => true
     // console.log(web3.eth.accounts); // ['0x...']
     // console.log(web3.eth.coinbase); // '0x...'
@@ -54,7 +59,7 @@ export default class App extends Component {
 
   async loadBlockchainData() {
     // console.log(SocialNetwork)
-    const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4", "kovan");
+    const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4");
     window.web3 = new Web3(fm.getProvider());
 
     const web3 = window.web3;
@@ -78,20 +83,25 @@ export default class App extends Component {
           const dapp_name = await ElectionDapp.methods.dapp_name().call()
           const electionCount = await ElectionDapp.methods.electionCount().call()
           const candidateCount = await ElectionDapp.methods.candidateCount().call()
+          const voters = await ElectionDapp.methods.voters(this.state.account).call()
           console.log("Account of Election Coordinator:",electionAuthority)
+          console.log("Account of the deployer", this.state.account)
           this.setState({electionAuthority})
           this.setState({ElectionDapp})
           this.setState({dapp_name})
           this.setState({candidateCount})
           this.setState({electionCount})
-
+          this.setState({voters})
           // const electionEndTime = await ProjectDapp.methods.projectCount().call() 
           // const candidates = await ProjectDapp.methods.projectCount().call() 
           // const voters = await ProjectDapp.methods.projectCount().call() 
           // const hasVoted = await ElectionDapp.methods.hasVoted()
           // console.log("Projects Length:", projectCount)
-
-
+          if(voters === true){
+            console.log("VOTERS:", voters);
+          } else{
+            console.log("NOT TRUE:")
+          }
             // this.setState({ProjectDapp})
             //  this.setState({projectCount})
     
@@ -117,6 +127,73 @@ export default class App extends Component {
             }
 
   }
+  // async loadBlockchainData() {
+  //   // console.log(SocialNetwork)
+  //   const web3 = window.web3;
+
+  //   const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4");
+  //   window.web3 = new Web3(fm.getProvider());
+
+  //   // window.web3 = new Web3(window.ethereum);
+    
+  //   //     // // load accounts
+  //       const accounts = await web3.eth.getAccounts() // returns all the account in our wallet 
+  //       this.setState({account:accounts[0]})
+  //       // console.log(accounts)
+    
+  //   //     // // detects the network dynamically 
+  //       const networkId = await web3.eth.net.getId()
+    
+  //   //     // // get network data
+  //       const ElectionNetworkData= ElectionAbi.networks[networkId]
+  //       if(ElectionNetworkData){
+  //         const ElectionDapp = new web3.eth.Contract(ElectionAbi.abi, ElectionNetworkData.address) // loads the smart contract    
+  //         // console.log(ElectionDapp)
+    
+    
+  //         const electionAuthority = await ElectionDapp.methods.electionAuthority().call()  // gets the address of the election coordinator
+  //         const dapp_name = await ElectionDapp.methods.dapp_name().call()
+  //         const electionCount = await ElectionDapp.methods.electionCount().call()
+  //         const candidateCount = await ElectionDapp.methods.candidateCount().call()
+  //         console.log("Account of Election Coordinator:",electionAuthority)
+  //         this.setState({electionAuthority})
+  //         this.setState({ElectionDapp})
+  //         this.setState({dapp_name})
+  //         this.setState({candidateCount})
+  //         this.setState({electionCount})
+
+  //         // const electionEndTime = await ProjectDapp.methods.projectCount().call() 
+  //         // const candidates = await ProjectDapp.methods.projectCount().call() 
+  //         // const voters = await ProjectDapp.methods.projectCount().call() 
+  //         // const hasVoted = await ElectionDapp.methods.hasVoted()
+  //         // console.log("Projects Length:", projectCount)
+
+
+  //           // this.setState({ProjectDapp})
+  //           //  this.setState({projectCount})
+    
+  //   //       // Load ELECTIONS
+  //         for(var j=1; j <= electionCount; j++){
+  //           const election = await ElectionDapp.methods.elections(j).call()
+  //           this.setState({
+  //             elections:[...this.state.elections, election]
+  //           })
+  //         }
+  //         // LOAD CANDIDATES
+  //         for(var i=1; i <= candidateCount; i++){
+  //           const candidate = await ElectionDapp.methods.candidates(i).call()
+  //           this.setState({
+  //             candidate_lists:[...this.state.candidate_lists, candidate]
+  //           })
+  //         }
+
+  //         console.log({candidates:this.state.candidate_lists})
+  //       //   console.log({contributors:this.state.contributors})
+  //     }else {
+  //             window.alert("UniVote contract is not deployed to the network")
+  //           }
+
+  // }
   constructor(props) {
     super(props)
     this.state ={
@@ -130,7 +207,7 @@ export default class App extends Component {
      candidate_lists:[],
      candidateCount:0,
      electionCount:0,
-
+     voters:null
     //  message:''
     }
    }
@@ -270,10 +347,14 @@ export default class App extends Component {
                       candidate_lists={this.state.candidate_lists} 
                       ElectionDapp={this.state.ElectionDapp}
                       account={this.state.account}
+                      voters={this.state.voters}
                   />
               </Route>
               <Route path="/">
-                  <Home />
+                  <Home 
+                      ElectionDapp={this.state.ElectionDapp}
+                      account={this.state.account}                    
+                    />
               </Route>              
             </Switch>
             </div>

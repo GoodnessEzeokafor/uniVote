@@ -64,7 +64,7 @@ export default class Elections extends Component {
                                 account={this.props.account}
                             />
 
-<CountDown targetDate="Jan 10, 2020" targetTime="18:00:00" />;
+<CountDown targetDate="Jan 16, 2020" targetTime="18:00:00" />;
                             <ViewCandidatesModal 
                                  show={this.state.show2}
                                  handleClose={this.hideModal2}
