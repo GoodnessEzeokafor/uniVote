@@ -82,6 +82,7 @@ export default class App extends Component {
           const dapp_name = await ElectionDapp.methods.dapp_name().call()
           const electionCount = await ElectionDapp.methods.electionCount().call()
           const candidateCount = await ElectionDapp.methods.candidateCount().call()
+          const voters = await ElectionDapp.methods.voters(this.state.account).call()
           console.log("Account of Election Coordinator:",electionAuthority)
           console.log("Account of the deployer", this.state.account)
           this.setState({electionAuthority})
@@ -95,8 +96,11 @@ export default class App extends Component {
           // const voters = await ProjectDapp.methods.projectCount().call() 
           // const hasVoted = await ElectionDapp.methods.hasVoted()
           // console.log("Projects Length:", projectCount)
-
-
+          if(voters === true){
+            console.log("VOTERS:", voters);
+          } else{
+            console.log("NOT TRUE:")
+          }
             // this.setState({ProjectDapp})
             //  this.setState({projectCount})
     
