@@ -86,6 +86,8 @@ export default class Elections extends Component {
                                     <p className="card-text">
                                         {/* <small className="text-muted">Last updated 3 mins ago</small> */}
                                         {/* BUTTON 2 */}
+                                        {this.props.account === this.props.electionAuthority ? 
+                                        
                                         <button
                                         className="btn btn-primary"
                                         id={election.id}
@@ -108,6 +110,8 @@ export default class Elections extends Component {
                                         }
                                         > Add Candidate
                                         </button>
+                                        
+                                        :<span></span>}
                                         <button 
                                         className="btn btn-success"
                                         id={election.id}

@@ -342,6 +342,7 @@ export default class App extends Component {
                    elections={this.state.elections} 
                    ElectionDapp={this.state.ElectionDapp}
                    account={this.state.account}
+                   electionAuthority={this.state.electionAuthority}
                    />
               </Route>
               <Route path="/profile">
