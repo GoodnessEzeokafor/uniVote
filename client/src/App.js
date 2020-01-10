@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Nav from "./Components/Content/Nav"
 import { Route, Link, Switch, BrowserRouter as Router } from "react-router-dom";
 import Web3 from "web3";
+import Fortmatic from "fortmatic";
 
 
 /* COMPONENTS */
@@ -11,6 +12,7 @@ import Vote from "./Components/Content/Vote"
 import Profile from "./Components/Profile/Dashboard"
 import ElectionForm from "./Components/Content/Electoral/ElectionForm"
 import Elections from "./Components/Content/Electoral/Elections"
+
 
 // import Login from "./Components/Auth/Login"
 // import Signup from "./Components/Auth/Signup"
