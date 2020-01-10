@@ -164,7 +164,7 @@ contract Voting{
     }
   
 
-      function voteCandidate(uint _electionId, uint _candidateId) public only_registered_voters
+      function voteCandidate(uint _candidateId) public only_registered_voters
 
         // Remember to check why time fails in tests!!
         // only_during_election_time

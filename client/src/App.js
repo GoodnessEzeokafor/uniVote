@@ -90,7 +90,7 @@ export default class App extends Component {
           this.setState({dapp_name})
           this.setState({candidateCount})
           this.setState({electionCount})
-
+          this.setState({voters})
           // const electionEndTime = await ProjectDapp.methods.projectCount().call() 
           // const candidates = await ProjectDapp.methods.projectCount().call() 
           // const voters = await ProjectDapp.methods.projectCount().call() 
@@ -206,7 +206,7 @@ export default class App extends Component {
      candidate_lists:[],
      candidateCount:0,
      electionCount:0,
-
+     voters:null
     //  message:''
     }
    }
@@ -346,6 +346,7 @@ export default class App extends Component {
                       candidate_lists={this.state.candidate_lists} 
                       ElectionDapp={this.state.ElectionDapp}
                       account={this.state.account}
+                      voters={this.state.voters}
                   />
               </Route>
               <Route path="/">
