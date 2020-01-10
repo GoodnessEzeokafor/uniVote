@@ -236,7 +236,7 @@ export default class App extends Component {
               {/* <!-- Aplication Brand -->
               */}
               <div className="app-brand">
-                <a href="/">
+                <a href="#">
                   <svg
                     className="brand-icon"
                     xmlns="http://www.w3.org/2000/svg"
