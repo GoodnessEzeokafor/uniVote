@@ -345,7 +345,10 @@ export default class App extends Component {
                   />
               </Route>
               <Route path="/">
-                  <Home />
+                  <Home 
+                      ElectionDapp={this.state.ElectionDapp}
+                      account={this.state.account}                    
+                    />
               </Route>              
             </Switch>
             </div>
