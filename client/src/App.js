@@ -19,6 +19,7 @@ import Elections from "./Components/Content/Electoral/Elections"
 /* COMPONENTS */
 
 import ElectionAbi from "./abis/Voting.json";
+import PlanLoader from './Components/Loader';
 
 export default class App extends Component {
   async componentWillMount() {
@@ -67,6 +68,7 @@ export default class App extends Component {
     //     // // load accounts
         const accounts = await web3.eth.getAccounts() // returns all the account in our wallet 
         this.setState({account:accounts[0]})
+        this.setState({loader:true})
         // console.log(accounts)
     
     //     // // detects the network dynamically 
@@ -109,7 +111,8 @@ export default class App extends Component {
           for(var j=1; j <= electionCount; j++){
             const election = await ElectionDapp.methods.elections(j).call()
             this.setState({
-              elections:[...this.state.elections, election]
+              elections:[...this.state.elections, election],
+              
             })
           }
           // LOAD CANDIDATES
@@ -121,6 +124,7 @@ export default class App extends Component {
           }
 
           console.log({candidates:this.state.candidate_lists})
+          this.setState({loader:false})
         //   console.log({contributors:this.state.contributors})
       }else {
               window.alert("UniVote contract is not deployed to the network")
@@ -218,6 +222,7 @@ export default class App extends Component {
   <Router>
         <div>
         <div className="mobile-sticky-body-overlay"></div>
+        {this.state.loader ? <PlanLoader /> : 
 
       <div className="wrapper">
         
@@ -363,8 +368,13 @@ export default class App extends Component {
 
         </div>
       </div>
+
+} 
   </div>
+  
   </Router>
+
+
     );
  
   }

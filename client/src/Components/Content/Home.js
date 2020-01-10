@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SecondCountDown from './Electoral/SecondCountDown';
+import PlanLoader from '../Loader';
 
 export default class Home extends Component {
     constructor(props) {
@@ -11,12 +12,18 @@ export default class Home extends Component {
         return (
             <div>
 
+
+
+
+
                     <div className="col-lg-6 mr-auto ml-auto">
                         {/* <!-- Block buttons --> */}
                         <div className="card card-default">
                             <div className="card-header card-header-border-bottom">
                                 <h2>CLICK ON THIS BUTTON TO REGISTER</h2>
                             </div>
+
+                            
                             <div className="card-body">
 
                                 <button 

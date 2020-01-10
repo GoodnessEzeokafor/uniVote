@@ -44,7 +44,7 @@ contract Voting{
         _;
     }
     constructor() public {
-        electionAuthority = 0x6415d68373647F99270E24eB145be4d6E0141Ab2;
+        electionAuthority = 0x1A98cA9788077B83b6C6ffd56E4ECDEe00bdd2c7;
     }
 
 

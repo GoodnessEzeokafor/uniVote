@@ -47,6 +47,7 @@ export default class Elections extends Component {
                     <div className="card-header card-header-border-bottom">
                         {/* <h2>Card with Deck </h2>
                          */}
+                          <h1>CountDown To Elections</h1>
                     </div>
                     <div className="card-body">
                         {/* <p className="mb-5">Need a set of equal width and height cards that aren’t attached to one another? Use card decks. Read bootstrap documentaion for <a href="https://getbootstrap.com/docs/4.1/components/card/#card-decks" target="_blank"> More Details	</a></p> */}

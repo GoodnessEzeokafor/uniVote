@@ -1,0 +1,131 @@
+.plan-loader__under-content, .plan-loader__upper-content {
+	 position: absolute;
+	 left: 50%;
+	 top: 50%;
+	 transform: translate(-50%, -50%);
+	 border-radius: 100%;
+	 width: 10rem;
+	 height: 10rem;
+}
+ .plan-loader {
+	 position: relative;
+	 background-color: transparent;
+	 height: 100vh;
+	 opacity: 1;
+	 animation: fadein 2s ease;
+}
+ .plan-loader__glass {
+	 position: absolute;
+	 left: 0;
+	 top: 0;
+	 width: 100%;
+	 height: 100%;
+}
+ .plan-loader__glass, .plan-loader__under-content {
+	 filter: blur(1px) opacity(0.75);
+}
+ .plan-loader__upper-content {
+	 border-radius: 100%;
+	 box-shadow: inset 0 0 0.5rem 0.5rem rgba(0, 0, 0, 0.33);
+	 background: #fff;
+	 overflow: hidden;
+}
+ .plan-loader__upper-text {
+	 text-align: center;
+	 font-size: 1.8rem;
+	 background: transparent;
+	 position: absolute;
+	 left: 50%;
+	 top: 50%;
+	 transform: translate(-50%, 6rem);
+	 border-radius: 100%;
+	 width: 100%;
+	 height: auto;
+}
+ .plan-loader__phrase {
+	 text-align: center;
+	 height: 4rem;
+	 line-height: 4rem;
+	 position: absolute;
+	 width: 100%;
+	 display: none;
+}
+ .plan-loader__phrase > span {
+	 opacity: 0;
+	 transition: opacity 0.2s linear;
+}
+ .plan-loader__phrase > span.visible {
+	 opacity: 1;
+}
+ .plan-loader__phrase--visible {
+	 display: block;
+}
+ .plan-loader__inner {
+	 box-shadow: inset 0 0 0.75rem 0.5rem rgba(0, 0, 0, 0.35), 0 0 1px 0 #fff;
+	 background: #fff;
+	 width: 10rem;
+	 height: 10rem;
+	 position: relative;
+	 overflow: hidden;
+	 border-radius: 50%;
+	 margin: 0 auto;
+	 z-index: 3;
+}
+ .plan-loader__big-gear, .plan-loader__small-gear, .plan-loader__micro-gear {
+	 animation-delay: 0.1s;
+	 position: absolute;
+}
+ .plan-loader__big-gear, .plan-loader__small-gear {
+	 animation: spin 1.5s cubic-bezier(0.96, 0.22, 0.22, 0.96) infinite alternate;
+}
+ .plan-loader__big-gear {
+	 right: -5rem;
+	 top: -1.25rem;
+}
+ .plan-loader__small-gear {
+	 top: 0.5rem;
+	 left: -4.5rem;
+}
+ .plan-loader__micro-gear {
+	 top: 6.25rem;
+	 left: 2.125rem;
+	 animation: spiny 1.5s cubic-bezier(0.96, 0.22, 0.22, 0.96) infinite alternate;
+}
+ .plan-loader--finish {
+	 animation: fadeout 2s ease;
+	 transition: opacity 0.3s ease;
+	 opacity: 1;
+}
+ .plan-loader--finish .plan-loader__big-gear, .plan-loader--finish .plan-loader__small-gear {
+	 animation-delay: 0;
+}
+ .plan-loader--finish .plan-loader__big-gear, .plan-loader--finish .plan-loader__small-gear {
+	 animation: spin 0.3s linear infinite;
+}
+ .plan-loader--finish .plan-loader__micro-gear {
+	 animation: spiny 0.3s linear infinite;
+}
+ @keyframes spin {
+	 100% {
+		 transform: rotate(180deg);
+	}
+}
+ @keyframes spiny {
+	 100% {
+		 transform: rotate(-180deg);
+	}
+}
+ @keyframes fadein {
+	 0% {
+		 opacity: 0;
+	}
+	 100% {
+		 opacity: 1;
+	}
+}
+ @keyframes fadeout {
+	 100% {
+		 opacity: 0;
+	}
+}
+ 
