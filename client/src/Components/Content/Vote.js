@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CandidateImg from "./candidates.png"
+import { Route, Link, Switch, BrowserRouter as Router } from "react-router-dom";
 
 export default class Vote extends Component {
     constructor(props) {
@@ -36,15 +37,32 @@ export default class Vote extends Component {
                                 <p className="card-text">
                                     {/* <small className="text-muted">Last updated 3 mins ago</small> */}
                                     {/* BUTTON 2 */}
-                                    
-                                    <button 
-                                    className="btn btn-success"
-                                    id={candidate.id}
-                                    data-target="#exampleModal"
-                                    style={{marginRight:"20px"}}
-                                    >
-                                        Vote Candidate
-                                    </button>
+                                    {this.props.voters ? 
+                                            <button 
+                                            className="btn btn-success"
+                                            id={candidate.id}
+                                            data-target="#exampleModal"
+                                            style={{marginRight:"20px"}}
+                                            onClick={async(event) => {
+                                                const id = parseInt(candidate.id, 10)
+                                                console.log(id)
+                                                console.log(typeof id)
+                                                this.props.ElectionDapp.methods.voteCandidate(id)                                                                             
+                                                .send({from:this.props.account})
+                                                .once('receipt', (receipt) => {
+                                                    console.log(receipt);
+                                                    // this.setState({loading:false})
+                                                    window.location.reload()
+                                                })
+                                                event.preventDefault()
+                                            }}
+                                            >
+                                                Vote Candidate
+                                            </button>
+                                    :
+                                    <Link to="/" className="btn btn-success"></Link>
+                                    }
+
                                 </p>
                             </div>
                         </div>
