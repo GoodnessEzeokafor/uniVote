@@ -66,7 +66,10 @@ export default class CountDown extends Component {
     return (
       <Fragment>
         {!isExpired && targetDate && targetTime ? (
+         
           <div className="counter">
+            
+
             {Object.entries(remaining).map((el, i) => (
               <div key={i} className="entry">
                 <div key={el[1]} className="entry-value">
