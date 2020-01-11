@@ -89,6 +89,7 @@ export default class Nav extends Component {
              />
              : <span> </span>
             }                  <span className="d-none d-lg-inline-block">{this.props.account}</span>
+                                {/* <span className="d-none d-lg-inline-block">{this.props.email}</span> */}
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right">
                     {/* <!-- User image --> */}
