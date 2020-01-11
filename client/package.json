@@ -42,6 +42,6 @@
     ]
   },
 
-    "proxy":"http://ujevote.herokuapp.com/"
+    "proxy":"http://localhost:3000"
   
 }
