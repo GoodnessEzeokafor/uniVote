@@ -9,7 +9,7 @@ import Fortmatic from "fortmatic";
 import Home from"./Components/Content/Home"
 import Score from"./Components/Content/Score"
 import Vote from "./Components/Content/Vote"
-import Profile from "./Components/Profile/Dashboard"
+// import Profile from "./Components/Profile/Dashboard"
 import ElectionForm from "./Components/Content/Electoral/ElectionForm"
 import Elections from "./Components/Content/Electoral/Elections"
 
@@ -20,6 +20,7 @@ import Elections from "./Components/Content/Electoral/Elections"
 
 import ElectionAbi from "./abis/Voting.json";
 import PlanLoader from './Components/Loader';
+import CardProfile from './Components/Profile/Dashboard';
 
 export default class App extends Component {
   async componentWillMount() {
@@ -29,6 +30,7 @@ export default class App extends Component {
 
 
   async loadWeb3() {
+    this.setState({loader:true})
     
     // Sync functions that returns users' addresses if they are already logged in with enable().
     // Not recommended as sync functions will be deprecated in web3 1.0
@@ -59,20 +61,30 @@ export default class App extends Component {
   }
 
   async loadBlockchainData() {
+    this.setState({loader:true})
     // console.log(SocialNetwork)
     const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4");
     window.web3 = new Web3(fm.getProvider());
 
     const web3 = window.web3;
 
+    // fm.user.login().then(() => {
+
     //     // // load accounts
         const accounts = await web3.eth.getAccounts() // returns all the account in our wallet 
         this.setState({account:accounts[0]})
-        this.setState({loader:true})
+        
         // console.log(accounts)
     
     //     // // detects the network dynamically 
         const networkId = await web3.eth.net.getId()
+
+        // gets the email of the user
+        var loggedInMail = await fm.user.getUser(); 
+        var email = loggedInMail.email
+        console.log(email)
+
+        this.setState({email})
     
     //     // // get network data
         const ElectionNetworkData= ElectionAbi.networks[networkId]
@@ -131,6 +143,8 @@ export default class App extends Component {
             }
 
   }
+
+
   // async loadBlockchainData() {
   //   // console.log(SocialNetwork)
   //   const web3 = window.web3;
@@ -202,6 +216,7 @@ export default class App extends Component {
     super(props)
     this.state ={
      account:'',
+     email : '',
      ElectionDapp:null,
     //  projects:[],
      loader:false,
@@ -317,6 +332,7 @@ export default class App extends Component {
             <header className="main-header " id="header">
               <Nav 
                 account={this.state.account}
+                email ={this.state.loggedInMail}
                 />
             </header>
 
@@ -346,7 +362,8 @@ export default class App extends Component {
                    />
               </Route>
               <Route path="/profile">
-                  <Profile />
+                  <CardProfile  email = {this.state.email}
+                  account={this.state.account} />
               </Route>
               <Route path="/vote">
                   <Vote 
@@ -359,6 +376,7 @@ export default class App extends Component {
               <Route path="/">
                   <Home 
                       ElectionDapp={this.state.ElectionDapp}
+                      email = {this.state.email}
                       account={this.state.account}                    
                     />
               </Route>              

@@ -110,11 +110,11 @@ render() {
                                     <img className="plan-loader__micro-gear" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/micro-gear.svg" />
             </div>
             <div className="plan-loader__upper-text" ref="texts">
-                <span className="plan-loader__phrase">gerando retorno esperado com base no valor de mercado . . .</span>
-                <span className="plan-loader__phrase">criando gradiente de balanceamento entre ativos . . .</span>
-                <span className="plan-loader__phrase">calculando a melhor alocação livre de risco . . .</span>
-                <span className="plan-loader__phrase">diluindo alocação nas carteiras diversificadas da Vérios . . .</span>
-                <span className="plan-loader__phrase">Seu plano de investimento está pronto!</span>
+                <span className="plan-loader__phrase">UniVote Rocks . . .</span>
+                <span className="plan-loader__phrase">Welcome To UniVote . . .</span>
+                <span className="plan-loader__phrase">Emmanuel Nduka and Goodness Ezeokafor . . .</span>
+                <span className="plan-loader__phrase">Voting . . .</span>
+                <span className="plan-loader__phrase">Manifesto!</span>
             </div>
         </div>
     );
