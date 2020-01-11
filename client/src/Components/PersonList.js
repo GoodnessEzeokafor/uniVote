@@ -10,18 +10,23 @@ export default class PersonList extends Component {
     
       componentDidMount() {
         // axios.get(`https://jsonplaceholder.typicode.com/users`)
-        axios.get(`https://ujevote.herokuapp.com/users`)
+        axios.get(`/users`)
           .then(res => {
-            const persons = res.data;
+            const persons = res.data.userdetails;
             this.setState({ persons });
           })
       }
     
     render() {
+      console.log(this.state.persons)
         return (
             <ul>
-        { this.state.persons.map(person => <li>{person.name}</li>)}
-      </ul>
+                {this.state.persons.map((person,key) => {
+                  return(
+                  <li>{person.email}</li>
+                  )
+                })}
+</ul>
         );
     }
 }
