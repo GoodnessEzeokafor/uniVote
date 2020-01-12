@@ -78,6 +78,8 @@ export default class App extends Component {
     
     //     // // detects the network dynamically 
         const networkId = await web3.eth.net.getId()
+        const balance = await web3.eth.getBalance(this.state.account)
+
 
         // gets the email of the user
         var loggedInMail = await fm.user.getUser(); 
@@ -85,6 +87,7 @@ export default class App extends Component {
         console.log(email)
 
         this.setState({email})
+        console.log("Balance:",balance)
     
     //     // // get network data
         const ElectionNetworkData= ElectionAbi.networks[networkId]

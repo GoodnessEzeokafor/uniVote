@@ -155,12 +155,12 @@ contract Voting{
     }
 
 // Register a voter for when we using the UJ API to register voters
-    function register_voter(address addr) public only_election_authority{
+    function register_voter(address addr) public{
         voters[addr] = true;
     }
 
       function start_election(uint duration) public only_election_authority{
-        electionEndTime =   block.timestamp + duration;
+        electionEndTime =   block.timestamp + duration; 
     }
   
 
