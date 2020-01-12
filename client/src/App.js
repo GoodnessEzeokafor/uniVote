@@ -315,7 +315,7 @@ export default class App extends Component {
                         <span className="nav-text">Vote</span> 
                       </Link>
                     </li>
-                    <li  className="has-sub" >
+                    <li  className="has-sub active expand">
                       <Link className="sidenav-item-link" to="/profile">
                         <i className="mdi mdi-chart-pie"></i>
                         <span className="nav-text">Profile</span> 

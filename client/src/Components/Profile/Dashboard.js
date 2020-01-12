@@ -140,7 +140,7 @@ export default class CardProfile extends React.Component {
              status, 
              active} = this.state;
       return (
-          
+        <div className="col-lg-6 mr-auto ml-auto">
         <div className ="ProfileBody" >
             
             
@@ -157,6 +157,7 @@ export default class CardProfile extends React.Component {
               name={name} 
               status={status}/>)}
           
+        </div>
         </div>
       )
     }
