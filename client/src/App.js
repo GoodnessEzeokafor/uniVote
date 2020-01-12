@@ -12,7 +12,7 @@ import Vote from "./Components/Content/Vote"
 // import Profile from "./Components/Profile/Dashboard"
 import ElectionForm from "./Components/Content/Electoral/ElectionForm"
 import Elections from "./Components/Content/Electoral/Elections"
-
+import PersonList from "./Components/PersonList"
 
 // import Login from "./Components/Auth/Login"
 // import Signup from "./Components/Auth/Signup"
@@ -251,7 +251,7 @@ export default class App extends Component {
               {/* <!-- Aplication Brand -->
               */}
               <div className="app-brand">
-                <a href="/">
+                <a href="#">
                   <svg
                     className="brand-icon"
                     xmlns="http://www.w3.org/2000/svg"
@@ -315,10 +315,17 @@ export default class App extends Component {
                         <span className="nav-text">Vote</span> 
                       </Link>
                     </li>
-                    <li  className="has-sub" >
+                    <li  className="has-sub active expand">
                       <Link className="sidenav-item-link" to="/profile">
                         <i className="mdi mdi-chart-pie"></i>
                         <span className="nav-text">Profile</span> 
+                        {/* <b className="caret"></b> */}
+                      </Link>
+                    </li>    
+                    <li  className="has-sub" >
+                      <Link className="sidenav-item-link" to="/persons">
+                        <i className="mdi mdi-chart-pie"></i>
+                        <span className="nav-text">Persons</span> 
                         {/* <b className="caret"></b> */}
                       </Link>
                     </li>        
@@ -358,6 +365,7 @@ export default class App extends Component {
                    elections={this.state.elections} 
                    ElectionDapp={this.state.ElectionDapp}
                    account={this.state.account}
+                   electionAuthority={this.state.electionAuthority}
                    />
               </Route>
               <Route path="/profile">
@@ -366,6 +374,14 @@ export default class App extends Component {
               </Route>
               <Route path="/vote">
                   <Vote 
+                      candidate_lists={this.state.candidate_lists} 
+                      ElectionDapp={this.state.ElectionDapp}
+                      account={this.state.account}
+                      voters={this.state.voters}
+                  />
+              </Route>
+              <Route path="/persons">
+                  <PersonList 
                       candidate_lists={this.state.candidate_lists} 
                       ElectionDapp={this.state.ElectionDapp}
                       account={this.state.account}
