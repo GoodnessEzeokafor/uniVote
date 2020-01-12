@@ -155,7 +155,11 @@ contract Voting{
     }
 
 // Register a voter for when we using the UJ API to register voters
+<<<<<<< HEAD
     function register_voter(address addr) public{
+=======
+    function register_voter(address addr) public {
+>>>>>>> 29e571e0d55ee9f41558974077124ba4644df6e7
         voters[addr] = true;
     }
 

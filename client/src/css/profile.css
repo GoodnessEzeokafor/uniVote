@@ -148,7 +148,7 @@ input::placeholder{
   color: #fff;
   width: 180px;
 }
-button:hover{
+/* button:hover{
   left: 0;
   color: #fff;
   width: 180px;
