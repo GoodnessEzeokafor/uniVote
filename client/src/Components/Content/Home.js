@@ -73,7 +73,7 @@ export default class Home extends Component {
                                             const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4");
                                             console.log("Logging out")
                                             await fm.user.logout();
-                                               
+                                               window.location.reload()
                                             // event.preventDefault()
                                         }}>Logout</button>
                             </div>
