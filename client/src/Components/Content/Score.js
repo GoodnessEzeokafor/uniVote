@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 
 export default class Score extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
+
+
+    
     render() {
         return (
             <div>
@@ -17,14 +25,15 @@ export default class Score extends Component {
                 </thead>
                     <tbody>
                         {this.props.candidate_lists.map((candidate,key) => {
-                            return(
 
+                           return(
                         <tr key={key}>
                         <th scope="row">{candidate.id}</th>
                         <td>{candidate.name}</td>
                         <td>{candidate.department}</td>
                         <td>{candidate.level}</td>
                         <td>{candidate.voteCount}</td>
+                        
                         </tr>
                             );  
                         })}
