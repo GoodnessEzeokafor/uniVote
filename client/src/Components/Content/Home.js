@@ -58,7 +58,7 @@ export default class Home extends Component {
                                         // this.setState({loading:false})
                                         // window.location.reload()
                                     })
-                                   this.props.ShowLoader()
+                                   this.props.HideLoader()
                                     event.preventDefault()
                                 }}>REGISTER TO VOTE</button>
 
