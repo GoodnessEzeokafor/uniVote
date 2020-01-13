@@ -325,13 +325,12 @@ export default class App extends Component {
                         {/* <b className="caret"></b> */}
                       </Link>
                     </li>    
-                    <li  className="has-sub" >
+                    {/* <li  className="has-sub" >
                       <Link className="sidenav-item-link" to="/persons">
                         <i className="mdi mdi-chart-pie"></i>
                         <span className="nav-text">Persons</span> 
-                        {/* <b className="caret"></b> */}
                       </Link>
-                    </li>        
+                    </li> */}                            
                 </ul>
               </div>
               {/* <hr className="separator" /> */}
@@ -383,19 +382,20 @@ export default class App extends Component {
                       voters={this.state.voters}
                   />
               </Route>
-              <Route path="/persons">
+              {/* <Route path="/persons">
                   <PersonList 
                       candidate_lists={this.state.candidate_lists} 
                       ElectionDapp={this.state.ElectionDapp}
                       account={this.state.account}
                       voters={this.state.voters}
                   />
-              </Route>
+              </Route> */}
               <Route path="/">
                   <Home 
                       ElectionDapp={this.state.ElectionDapp}
                       email = {this.state.email}
-                      account={this.state.account}                    
+                      account={this.state.account}    
+                      voters={this.state.voters}                
                     />
               </Route>              
             </Switch>
