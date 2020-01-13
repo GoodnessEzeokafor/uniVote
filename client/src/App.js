@@ -215,8 +215,29 @@ export default class App extends Component {
   //           }
 
   // }
+
+  ShowLoader(){
+
+    this.setState({
+     
+      loader : true
+    })
+  }
+
+  HideLoader(){
+
+    this.setState({
+     
+      loader : false
+    })
+  }
+
   constructor(props) {
+
+   
     super(props)
+    this.ShowLoader = this.ShowLoader.bind(this)
+    this.HideLoader = this.HideLoader.bind(this)
     this.state ={
      account:'',
      email : '',
@@ -395,7 +416,9 @@ export default class App extends Component {
                       ElectionDapp={this.state.ElectionDapp}
                       email = {this.state.email}
                       account={this.state.account}    
-                      voters={this.state.voters}                
+                      voters={this.state.voters}   
+                      ShowLoader={this.ShowLoader}     
+                      HideLoader={this.HideLoader}          
                     />
               </Route>              
             </Switch>

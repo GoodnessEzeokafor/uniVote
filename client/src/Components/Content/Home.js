@@ -48,14 +48,17 @@ export default class Home extends Component {
                                 type="button" 
                                 className="mb-1 btn btn-block  btn-secondary"
                                 onClick ={async(event) => {
+
                                     console.log("HELLO VOTER")
+                                    this.props.ShowLoader()
                                     this.props.ElectionDapp.methods.register_voter(this.props.account)                                                                             
                                     .send({from:this.props.account})
                                     .once('receipt', (receipt) => {
                                         console.log(receipt);
                                         // this.setState({loading:false})
-                                        window.location.reload()
+                                        // window.location.reload()
                                     })
+                                   this.props.ShowLoader()
                                     event.preventDefault()
                                 }}>REGISTER TO VOTE</button>
 
@@ -70,7 +73,7 @@ export default class Home extends Component {
                                             const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4");
                                             console.log("Logging out")
                                             await fm.user.logout();
-                                                window.location.reload()
+                                               
                                             // event.preventDefault()
                                         }}>Logout</button>
                             </div>
