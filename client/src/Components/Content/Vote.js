@@ -60,7 +60,7 @@ export default class Vote extends Component {
                                                 Vote Candidate
                                             </button>
                                     :
-                                    <Link to="/" className="btn btn-success"></Link>
+                                    <Link to="/" className="btn btn-success">Can't Vote</Link>
                                     }
 
                                 </p>
