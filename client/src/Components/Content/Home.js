@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import SecondCountDown from './Electoral/SecondCountDown';
-import PlanLoader from '../Loader';
-import Web3 from "web3";
+// import SecondCountDown from './Electoral/SecondCountDown';
+// import PlanLoader from '../Loader';
+// import Web3 from "web3";
+
 import Fortmatic from "fortmatic";
 
 export default class Home extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
 
     render() {
@@ -58,7 +59,7 @@ export default class Home extends Component {
                                         // this.setState({loading:false})
                                         // window.location.reload()
                                     })
-                                   this.props.ShowLoader()
+                                   this.props.HideLoader()
                                     event.preventDefault()
                                 }}>REGISTER TO VOTE</button>
 
@@ -73,7 +74,7 @@ export default class Home extends Component {
                                             const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4");
                                             console.log("Logging out")
                                             await fm.user.logout();
-                                               
+                                               window.location.reload()
                                             // event.preventDefault()
                                         }}>Logout</button>
                             </div>

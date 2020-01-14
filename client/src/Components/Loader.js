@@ -18,7 +18,7 @@ componentDidMount() {
     // var words = React.findDOMNode(this.refs.texts).children;
         
             for (let i in words) {
-                    if (words[i].nodeType == 1) {
+                    if (words[i].nodeType === 1) {
                         this._splitText(words[i]);
                     }
     }
@@ -99,15 +99,40 @@ render() {
         <div className="plan-loader" ref="planLoader">
             <div className="plan-loader__glass">
                 <div className="plan-loader__under-content">
-                                            <img className="plan-loader__big-gear" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/big-gear.svg" />
-                    <img className="plan-loader__small-gear" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/small-gear.svg" />
-                                            <img className="plan-loader__micro-gear" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/micro-gear.svg" />
+                                            <img 
+                                            className="plan-loader__big-gear" 
+                                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/big-gear.svg" 
+                                            alt="source one"
+
+                                            />
+                    <img 
+                        className="plan-loader__small-gear" 
+                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/small-gear.svg" 
+                        alt="source two"    
+                        />
+                                            <img 
+                                            className="plan-loader__micro-gear" 
+                                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/micro-gear.svg" 
+                                            alt="source three"    
+                                            />
                 </div>
             </div>
             <div className="plan-loader__upper-content">
-                                    <img className="plan-loader__big-gear" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/big-gear.svg" />
-                                    <img className="plan-loader__small-gear" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/small-gear.svg" />
-                                    <img className="plan-loader__micro-gear" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/micro-gear.svg" />
+                                    <img 
+                                        className="plan-loader__big-gear" 
+                                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/big-gear.svg" 
+                                        alt="source four"
+                                        />
+                                    <img 
+                                        className="plan-loader__small-gear" 
+                                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/small-gear.svg" 
+                                        alt="four five"
+                                        />
+                                    <img 
+                                        className="plan-loader__micro-gear" 
+                                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/micro-gear.svg" 
+                                        alt="four six"
+                                        />
             </div>
             <div className="plan-loader__upper-text" ref="texts">
                 <span className="plan-loader__phrase">UniVote Rocks . . .</span>

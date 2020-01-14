@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Identicon from 'identicon.js';
 export default class Nav extends Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
     
-  }
+  // }
   
     render() {
         return (
@@ -86,6 +86,7 @@ export default class Nav extends Component {
              width="30"
              height="30"
              src={`data:image/png;base64, ${ new Identicon(this.props.account, 30).toString()}`}
+             alt="source 4"
              />
              : <span> </span>
             }                  <span className="d-none d-lg-inline-block">{this.props.account}</span>

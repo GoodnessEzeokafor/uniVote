@@ -47,7 +47,7 @@ export default class Elections extends Component {
                     <div className="card-header card-header-border-bottom">
                         {/* <h2>Card with Deck </h2>
                          */}
-                          <h1>CountDown To Elections</h1>
+                          <h1>ELECTION COUNTDOWN</h1>
                     </div>
                     <div className="card-body">
                         {/* <p className="mb-5">Need a set of equal width and height cards that aren’t attached to one another? Use card decks. Read bootstrap documentaion for <a href="https://getbootstrap.com/docs/4.1/components/card/#card-decks" target="_blank"> More Details	</a></p> */}
@@ -65,7 +65,7 @@ export default class Elections extends Component {
                                 account={this.props.account}
                             />
 
-<CountDown targetDate="Jan 16, 2020" targetTime="18:00:00" />;
+<CountDown targetDate="Jan 13, 2020" targetTime="23:00:00" />;
                             <ViewCandidatesModal 
                                  show={this.state.show2}
                                  handleClose={this.hideModal2}
@@ -77,7 +77,7 @@ export default class Elections extends Component {
                             />
                                 <img 
                                     className="card-img-top" 
-                                    src={VoteImg} alt="Card image cap" />
+                                    src={VoteImg} alt="Card  cap" />
                                 <div className="card-body">
                                <h5 className="card-title text-primary">{election.name_of_election}</h5>
                                     <p className="card-text pb-3">
