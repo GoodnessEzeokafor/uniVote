@@ -3,6 +3,10 @@ import CandidateImg from "./candidates.png"
 import { Route, Link, Switch, BrowserRouter as Router } from "react-router-dom";
 
 export default class Vote extends Component {
+
+    
+
+
     constructor(props) {
         super(props);
         
