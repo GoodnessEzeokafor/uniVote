@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import SecondCountDown from './Electoral/SecondCountDown';
-import PlanLoader from '../Loader';
-import Web3 from "web3";
+// import SecondCountDown from './Electoral/SecondCountDown';
+// import PlanLoader from '../Loader';
+// import Web3 from "web3";
+
 import Fortmatic from "fortmatic";
 
 export default class Home extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
 
     render() {

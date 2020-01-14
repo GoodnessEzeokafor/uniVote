@@ -77,7 +77,7 @@ export default class Elections extends Component {
                             />
                                 <img 
                                     className="card-img-top" 
-                                    src={VoteImg} alt="Card image cap" />
+                                    src={VoteImg} alt="Card  cap" />
                                 <div className="card-body">
                                <h5 className="card-title text-primary">{election.name_of_election}</h5>
                                     <p className="card-text pb-3">
