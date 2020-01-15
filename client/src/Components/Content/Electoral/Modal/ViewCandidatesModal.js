@@ -91,7 +91,7 @@ export default class ViewCandidatesModal extends Component {
                 <div className="col-lg-12">
                     <div class="alert alert-info alert-highlighted" role="alert">
                     <h5 className="modal-title text-center">
-                        ELECTION ELECTION ELECTION
+                        {this.state.message}
                     </h5>
                     </div>
                     </div>
