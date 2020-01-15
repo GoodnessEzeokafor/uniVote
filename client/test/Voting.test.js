@@ -1,33 +1,36 @@
 require('chai')
     .use(require('chai-as-promised'))
     .should()
-
-
 const Voting = artifacts.require('./Voting.sol')
 
 contract('Voting', ([deployer,voter1,voter2,voter3,voter4, voter5 ]) => {
     before(async() => {
         this.contract =  await Voting.deployed()
     })
+    describe('VOTING CONTRACT: DEPLOYED SUCCESSFULLY', () => {
+        it("checks deployment", async() => {
 
-    describe('Check if the contract deployed successfully', () => {
-        it("checks if the contract deploys successfully", async() => {
             const address = this.contract.address
-            assert.notEqual(address, 0x0)
+            assert.notEqual(address, "")
             assert.notEqual(address, null)
+            assert.notEqual(address, 0x0)
             assert.notEqual(address, undefined)
-            assert.notEqual(address, '')      
         })
-
-        it("checks the dapp_name", async() => {
+        it("checks dapp_name", async()=>{
             const dapp_name = await this.contract.dapp_name()
-            assert.equal(dapp_name, "UniVote") 
-            assert.notEqual(dapp_name, '')
+            assert.equal(dapp_name, "UniVote")
         })
-        it("checks the dapp_developer", async() => {
-            const dapp_developer = await this.contract.dapp_developer()
-            assert.equal(dapp_developer, "@GoodnessEzeokafor and @EmmanuelUmeh") 
-            assert.notEqual(dapp_developer, '')
+        it("checks Dapp Developers", async()=>{
+            const dapp_devs = await this.contract.dapp_developer()
+            assert.equal(dapp_devs, "@GoodnessEzeokafor and @EmmanuelUmeh")
+        })
+        it("checks  ElectionAuthority", async()=>{
+            const electionAuthority = await this.contract.electionAuthority()
+            assert.equal(electionAuthority, deployer)
+        })
+        it("checks ElectionCount", async()=> {
+            const electionCount = await this.contract.electionCount()
+            assert.equal(electionCount,0)
         })
     })
 

@@ -63,6 +63,7 @@ export default class Elections extends Component {
                                 // single_project={this.state.single_project}
                                 ElectionDapp = {this.props.ElectionDapp}
                                 account={this.props.account}
+
                             />
 
 <CountDown targetDate="Jan 13, 2020" targetTime="23:00:00" />;
@@ -74,6 +75,7 @@ export default class Elections extends Component {
                                  ElectionDapp = {this.props.ElectionDapp}
                                  account={this.props.account}
                                  getCandidates ={this.state.getcandidates}
+                                 candidateCount={this.props.candidateCount}
                             />
                                 <img 
                                     className="card-img-top" 
@@ -124,7 +126,7 @@ export default class Elections extends Component {
                                             console.log(id, typeof id);
                                             console.log(id)
                                             const getcandidates = await this.getCandidates(id);
-                                        console.log("Content:",getcandidates["0"])
+                                        console.log("Content:",getcandidates)
                                             this.setState({ getcandidates });
                                             event.persist();
                                         }}

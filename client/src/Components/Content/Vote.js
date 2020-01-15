@@ -70,14 +70,14 @@ export default class Vote extends Component {
           this.setState({candidateCount})
     //       // Load ELECTIONS
           // LOAD CANDIDATES
-          for(var i=1; i <= candidateCount; i++){
-            const candidate = await ElectionDapp.methods.candidates(i).call()
-            this.setState({
-              candidate_lists:[...this.state.candidate_lists, candidate]
-            })
-          }
+        //   for(var i=1; i <= candidateCount; i++){
+        //     const candidate = await ElectionDapp.methods.candidates(i).call()
+        //     this.setState({
+        //       candidate_lists:[...this.state.candidate_lists, candidate]
+        //     })
+        //   }
 
-          console.log({candidates:this.state.candidate_lists})
+        //   console.log({candidates:this.state.candidate_lists})
       }else {
               window.alert("UniVote contract is not deployed to the network")
             }
@@ -98,13 +98,10 @@ export default class Vote extends Component {
     render() {
         return (
             <div>
-            <div className="card card-default">
+            {/* <div className="card card-default">
                 <div className="card-header card-header-border-bottom">
-                    {/* <h2>Card with Deck </h2>
-                     */}
                 </div>
                 <div className="card-body">
-                    {/* <p className="mb-5">Need a set of equal width and height cards that aren’t attached to one another? Use card decks. Read bootstrap documentaion for <a href="https://getbootstrap.com/docs/4.1/components/card/#card-decks" target="_blank"> More Details	</a></p> */}
                     <div className="card-deck">
                        {this.state.candidate_lists.map((candidate,key) => {
                            return(
@@ -118,12 +115,9 @@ export default class Vote extends Component {
                             <div className="card-body">
                            <h5 className="card-title text-primary">{candidate.name}</h5>
                                 <small className="card-text pb-3 font-weight-bold mb-2">
-                                    {/* {election.description_of_election} */}
                                    FOR {candidate.post}
                                 </small>
                                 <p className="card-text">
-                                    {/* <small className="text-muted">Last updated 3 mins ago</small> */}
-                                    {/* BUTTON 2 */}
                                     {this.props.voters ? 
                                             <button 
                                             className="btn btn-success"
@@ -160,7 +154,7 @@ export default class Vote extends Component {
                         
                     </div>
                 </div>
-            </div>
+            </div> */}
 </div>
 
         );

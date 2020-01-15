@@ -122,15 +122,17 @@ export default class App extends Component {
               
             })
           }
-          // LOAD CANDIDATES
-          for(var i=1; i <= candidateCount; i++){
-            const candidate = await ElectionDapp.methods.candidates(i).call()
-            this.setState({
-              candidate_lists:[...this.state.candidate_lists, candidate]
-            })
-          }
+          console.log({elections:this.state.elections})
 
-          console.log({candidates:this.state.candidate_lists})
+          // LOAD CANDIDATES
+          // for(var i=1; i <= candidateCount; i++){
+          //   const candidate = await ElectionDapp.methods.candidates(i).call()
+          //   this.setState({
+          //     candidate_lists:[...this.state.candidate_lists, candidate]
+          //   })
+          // }
+
+          // console.log({candidates:this.state.candidate_lists})
           this.setState({loader:false})
         //   console.log({contributors:this.state.contributors})
       }else {
@@ -301,7 +303,7 @@ export default class App extends Component {
               </Route>
               <Route path="/score">
                   <Score 
-                            candidate_lists={this.state.candidate_lists} 
+                            // candidate_lists={this.state.candidate_lists} 
                             ElectionDapp={this.state.ElectionDapp}
                             account={this.state.account}
                     />
@@ -312,6 +314,7 @@ export default class App extends Component {
                    ElectionDapp={this.state.ElectionDapp}
                    account={this.state.account}
                    electionAuthority={this.state.electionAuthority}
+                   candidateCount = {this.state.candidateCount}
                    />
               </Route>
               <Route path="/profile">
@@ -320,7 +323,7 @@ export default class App extends Component {
               </Route>
               <Route path="/vote">
                   <Vote 
-                      candidate_lists={this.state.candidate_lists} 
+                      // candidate_lists={this.state.candidate_lists} 
                       ElectionDapp={this.state.ElectionDapp}
                       account={this.state.account}
                       voters={this.state.voters}

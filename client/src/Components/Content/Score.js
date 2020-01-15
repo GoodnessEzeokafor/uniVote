@@ -62,14 +62,14 @@ export default class Score extends Component {
               this.setState({candidateCount})
         //       // Load ELECTIONS
               // LOAD CANDIDATES
-              for(var i=1; i <= candidateCount; i++){
-                const candidate = await ElectionDapp.methods.candidates(i).call()
-                this.setState({
-                  candidate_lists:[...this.state.candidate_lists, candidate]
-                })
-              }
+              // for(var i=1; i <= candidateCount; i++){
+              //   const candidate = await ElectionDapp.methods.candidates(i).call()
+              //   this.setState({
+              //     candidate_lists:[...this.state.candidate_lists, candidate]
+              //   })
+              // }
     
-              console.log({candidates:this.state.candidate_lists})
+              // console.log({candidates:this.state.candidate_lists})
           }else {
                   window.alert("UniVote contract is not deployed to the network")
                 }
@@ -90,7 +90,7 @@ export default class Score extends Component {
         return (
             <div>
                 <h3 className="text-center mb-2">LIVE SCORE</h3>
-            <table className="table">
+            {/* <table className="table">
                 <thead className="thead-dark">
                         <tr>
                         <th scope="col">#</th>
@@ -115,7 +115,7 @@ export default class Score extends Component {
                             );  
                         })}
                     </tbody>
-                </table>
+                </table> */}
 
             </div>
         );

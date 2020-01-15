@@ -8,6 +8,8 @@ contract Voting{
     uint public electionEndTime; // electionENdTIme
     uint public electionCount; //total number of election
     uint public candidateCount; // totalnumber of candidates
+    uint public registerVoterCount; // totalnumber of candidates
+    
     address public electionAuthority;  // election creator
     mapping(uint => Election) public elections;  //GET ELECTION LIST
     // mapping (uint => Candidate) public candidates; // Candidate ID to number of votes
@@ -49,7 +51,7 @@ contract Voting{
         _;
     }
     constructor() public {
-        electionAuthority =  0x4516dF95e7f7985FF2806AB06cEf1A9930662711;
+        electionAuthority =  0x6415d68373647F99270E24eB145be4d6E0141Ab2;
     }
 
 
@@ -113,7 +115,8 @@ contract Voting{
 
     event Voted(
         address voter,
-        bool voted
+        bool voted,
+        uint timestamp
     );
 
 
@@ -181,6 +184,7 @@ contract Voting{
 // Register a voter for when we using the UJ API to register voters
     function register_voter(address addr) public {
         voters[addr] = true;
+        registerVoterCount++;
     }
 
       function start_election(uint duration) public only_election_authority{
@@ -215,7 +219,7 @@ contract Voting{
             elections[_electionId].candidates[_candidateId - 1].voteCount ++;
             votedStruct[msg.sender].votedElections.push(_electionId);
              
-            emit Voted(msg.sender,true);
+            emit Voted(msg.sender,true,now);
         }
         else if(arrayLength !=0 ){
         for(uint i=0; i<arrayLength; i++){
@@ -229,7 +233,7 @@ contract Voting{
                 elections[_electionId].candidates[_candidateId - 1].voteCount ++;
                 votedStruct[msg.sender].votedElections.push(_electionId);
                 
-                emit Voted(msg.sender,true);
+                emit Voted(msg.sender,true,now);
             }
          
             
@@ -252,11 +256,11 @@ contract Voting{
          
         
         // singleElection.voteCount ++;
-        emit Voted(msg.sender,true);
+        // emit Voted(msg.sender,true);
     }
 
     function getElectionCandidates(uint _id) public view returns(
-                                // string memory,
+                                string memory,
                                 // string memory,
                                 Candidate[] memory
                                 ){
@@ -265,7 +269,7 @@ contract Voting{
 
         // return elections[_id];
         return(
-            // e.name_of_election,
+            e.name_of_election,
             // e.description_of_election,
             e.candidates
         );

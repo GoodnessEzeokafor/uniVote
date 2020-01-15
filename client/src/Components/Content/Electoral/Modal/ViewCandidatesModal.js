@@ -2,10 +2,63 @@ import React, { Component } from 'react';
 // import "../Modal.css"
 
 export default class ViewCandidatesModal extends Component {
+    //  async componentDidMount(){
+    //    await  this.renderTables()
+
+    // }
+    // async loadBlochainData(){
+    //       for(var i=0; i <= this.props.candidateCount; i++){
+    //         const candidate =  this.props.getCandidates[i]
+    //         this.setState({
+    //           candidate_lists:[...this.state.candidate_lists, candidate]
+    //         })
+    //       }
+
+    // }
+
+    renderTables(){
+        const temp = ``
+        const result =[]
+        // console.log("CandidatesProps:",this.props.getCandidates)
+        // for(var i=0; i <= this.props.candidateCount; i++){
+        //         // result.push(this.props.getCandidates[i])
+        //         const candidate = this.props.getCandidates[i]
+        //         this.setState({
+        //                 // candidate_lists:[...this.state.candidate_lists, this.props.getCandidates[i]]
+        //                 candidate_lists:candidate
+        //               })
+        //         // console.log(candidate)
+        //         // console.log(candidate[1].name)
+                
+        //         // temp = `
+        //         // <tr>
+        //         //         <th scope="col">${candidate['0']}</th>
+        //         //         <th scope="col">${candidate['1']}</th>
+        //         //         <th scope="col">${candidate['2']}</th>
+        //         //         <th scope="col">${candidate['3']}</th>
+        //         //         <th scope="col">VOTE</th>
+        //         //         </tr>
+        //         // `
+        //     }
+            // console.log(result[0])
+            // let total = result[0]
+            // console.log(total.name)
+            // return temp
+            // console.log(this.state.candidate_lists)
+            return{
+                result: this.props.getCandidates
+            }
+    }
     constructor(props) {
         super(props);
+        this.state = {
+            candidateCount:this.props.candidateCount,
+            candidate_lists:[]
+        }
         // this.getCandidates = this.getCandidates(this)
     }
+
+
     // async getCandidates(id){
     //     const result = await this.props.ElectionDapp.methods.getElectionCandidates(id).call();
     //     return result;
@@ -14,6 +67,12 @@ export default class ViewCandidatesModal extends Component {
         const showHideClassName = this.props.show ? "modal display-block" : "modal display-none";
         // const candidates = this.getCandidates()
         // console.log(this.getCandidates())
+        // this.renderTables()
+        // console.log("Candidates:",this.state.candidate_lists)
+        // (console.log(this.renderTables()))
+        const results = this.renderTables()
+        const results_arr = results.result
+        // console.log("Results",results.result)
         return (
             <div
             className={showHideClassName} 
@@ -31,31 +90,49 @@ export default class ViewCandidatesModal extends Component {
                 <div className="modal-body">
                 <table class="table">
                 <thead class="thead-dark">
-                     {/* {this.props.getCandidates['2'].map((candidate,key) => {
-                        return(  */}
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">FULL NAME</th>
-                        <th scope="col">DEPARTMENT</th>
-                        <th scope="col">LEVEL</th>
-                        <th scope="col">VOTE</th>
-                        </tr>
-                          {/* );
-                     })}  */}
+                     <tr>
+                         <th>#</th>
+                         <th>FULL NAME</th>
+                         <th>DEPARTMENT</th>
+                         <th>LEVEL</th>
+                         <th>Vote</th>
+
+
+                    </tr>
                 </thead>
                     <tbody>
-                        {/* {this.props.getCandidates['2'].map((candidate,key) =>{
-                            return(  */}
-                                <tr>
-                                <th scope="row">1</th>
-                                <td>GOODNESS CHINEMEREM EZEOKAFOR</td>
-                                <td>COMPUTER SCIENCE</td>
-                                <td>300 LEVEL</td>
-                                <td>{this.props.getCandidates['2']}</td>
-                                </tr>
-                             {/* );
-                        }) }  */}
+                    {/* {this.renderTables()} */}
+                    {!results_arr ?
+                        <tr></tr> 
+                    :
+                       <tr></tr> 
+                    }
+                    {results_arr ?
 
+                results_arr.map((result, key) => {
+                    return(
+                    <tr>
+
+                    <th scope="col">
+                        {/* ${result['3']} */}
+                        </th>
+                    <th scope="col">
+                        {/* ${result['0']} */}
+                        {result.name}
+                    </th>
+                    <th scope="col">
+                        {/* ${result['1']} */}
+                        {result.department}
+                    </th>
+                    <th scope="col">
+                        {/* ${result['2']} */}
+                        {result.level}
+                    </th>
+                    <th scope="col">VOTE</th>
+                    </tr>  
+                    )
+                })
+                    :<span></span>}
                     </tbody>
                 </table>
 
