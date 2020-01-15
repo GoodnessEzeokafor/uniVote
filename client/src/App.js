@@ -263,12 +263,12 @@ export default class App extends Component {
                       </Link>
                     </li>
                     
-                    <li  className="has-sub active expand">
+                    {/* <li  className="has-sub active expand">
                       <Link className="sidenav-item-link" to="/vote">
                         <i className="mdi mdi-folder-multiple-outline"></i>
                         <span className="nav-text">Vote</span> 
                       </Link>
-                    </li>
+                    </li> */}
                     <li  className="has-sub active expand">
                       <Link className="sidenav-item-link" to="/profile">
                         <i className="mdi mdi-chart-pie"></i>
@@ -326,14 +326,14 @@ export default class App extends Component {
                   <CardProfile  email = {this.state.email}
                   account={this.state.account} />
               </Route>
-              <Route path="/vote">
+              {/* <Route path="/vote">
                   <Vote 
                       // candidate_lists={this.state.candidate_lists} 
                       ElectionDapp={this.state.ElectionDapp}
                       account={this.state.account}
                       voters={this.state.voters}
                   />
-              </Route>
+              </Route> */}
               {/* <Route path="/persons">
                   <PersonList 
                       candidate_lists={this.state.candidate_lists} 
