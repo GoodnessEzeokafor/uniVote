@@ -15,7 +15,7 @@ export default class ViewCandidatesModal extends Component {
     //       }
 
     // }
-
+ 
     renderTables(){
         const temp = ``
         const result =[]
@@ -54,7 +54,10 @@ export default class ViewCandidatesModal extends Component {
         this.state = {
             candidateCount:this.props.candidateCount,
             candidate_lists:[],
-            Election:this.props.ElectionDapp
+            Election:this.props.ElectionDapp,
+            message_state:false,
+            message:''
+ 
         }
         // this.getCandidates = this.getCandidates(this)
     }
@@ -82,13 +85,22 @@ export default class ViewCandidatesModal extends Component {
                   <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header">
-        <h5 className="modal-title text-center">
-           ELECTION
-            </h5>
+                {!this.state.message_state ? 
+                    <span></span>                    
+                    :
+                <div className="col-lg-12">
+                    <div class="alert alert-info alert-highlighted" role="alert">
+                    <h5 className="modal-title text-center">
+                        ELECTION ELECTION ELECTION
+                    </h5>
+                    </div>
+                    </div>
+                }
             <small></small>
                   <button onClick={this.props.handleClose} type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>  
                 <div className="modal-body">
+                <div class="table-responsive">
                 <table class="table">
                 <thead class="thead-dark">
                      <tr>
@@ -144,6 +156,9 @@ export default class ViewCandidatesModal extends Component {
                             .once('receipt', (receipt) => {
                                 console.log(receipt);
                                 // this.setState({loading:false})
+                                this.setState({message_state:true})
+                                this.setState({message:"THANKS FOR VOTING ON OUR PLATFORM"})
+                                
                             })
                             event.preventDefault()
                         }}
@@ -158,7 +173,7 @@ export default class ViewCandidatesModal extends Component {
                     :<span></span>}
                     </tbody>
                 </table>
-
+                </div>
                 </div>
                 <div className="modal-footer">             
                   <button 

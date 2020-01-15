@@ -6,18 +6,29 @@ import React, { Component } from 'react';
 import Fortmatic from "fortmatic";
 
 export default class Home extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
+    constructor(props) {
+        super(props);
+        this.state = {
+            message_state:false,
+            message:''
+        }
+    }
 
 
     render() {
         return (
             <div>
 
+                    {!this.state.message_state ? 
+                    <span></span>                    
+                    :
+                    <div className="col-lg-12">
+                    <div class="alert alert-info alert-highlighted" role="alert">
+                        {this.state.message}
+                    </div>
+                    </div>
 
-
-
+                    }
 
                     <div className="col-lg-6 mr-auto ml-auto">
                         {/* <!-- Block buttons --> */}
@@ -56,7 +67,9 @@ export default class Home extends Component {
                                     .send({from:this.props.account})
                                     .once('receipt', (receipt) => {
                                         console.log(receipt);
-                                        // this.setState({loading:false})
+                                        this.setState({message_state:true})
+                                        this.setState({message:"THANKS FOR REGISTERING ON OUR PLATFORM"})
+                                        
                                         // window.location.reload()
                                     })
                                    this.props.HideLoader()
