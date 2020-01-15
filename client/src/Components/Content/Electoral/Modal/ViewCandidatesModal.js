@@ -53,7 +53,8 @@ export default class ViewCandidatesModal extends Component {
         super(props);
         this.state = {
             candidateCount:this.props.candidateCount,
-            candidate_lists:[]
+            candidate_lists:[],
+            Election:this.props.ElectionDapp
         }
         // this.getCandidates = this.getCandidates(this)
     }
@@ -82,9 +83,9 @@ export default class ViewCandidatesModal extends Component {
               <div className="modal-content">
                 <div className="modal-header">
         <h5 className="modal-title text-center">
-            {this.props.getCandidates['0']} ELECTION
+           ELECTION
             </h5>
-            <small>{this.props.getCandidates['1']}</small>
+            <small></small>
                   <button onClick={this.props.handleClose} type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>  
                 <div className="modal-body">
@@ -96,6 +97,7 @@ export default class ViewCandidatesModal extends Component {
                          <th>DEPARTMENT</th>
                          <th>LEVEL</th>
                          <th>Vote</th>
+                         <th>VoteCount</th>
 
 
                     </tr>
@@ -128,7 +130,28 @@ export default class ViewCandidatesModal extends Component {
                         {/* ${result['2']} */}
                         {result.level}
                     </th>
-                    <th scope="col">VOTE</th>
+                    <th scope="col">
+                        <button className="btn btn-dark"
+                        onClick={async(event) => {
+                            // const id = parseInt(parseInt(result.id,10), parseInt(this.props.id, 10)
+                            const candidate_id = parseInt(result.id,10)
+                            const election_id = parseInt(this.props.id,10)
+                            console.log("Election ID",candidate_id, typeof candidate_id)
+                            console.log("Canidate ID:",election_id,typeof election_id)
+                            // console.log(typeof id)
+                            this.props.ElectionDapp.methods.voteCandidate(candidate_id,election_id)                                                                             
+                            .send({from:this.props.account})
+                            .once('receipt', (receipt) => {
+                                console.log(receipt);
+                                // this.setState({loading:false})
+                            })
+                            event.preventDefault()
+                        }}
+                        >
+                            Vote
+                        </button>
+                    </th>
+                <th>{result.voteCount}</th>
                     </tr>  
                     )
                 })

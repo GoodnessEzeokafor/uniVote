@@ -260,8 +260,8 @@ contract Voting{
     }
 
     function getElectionCandidates(uint _id) public view returns(
-                                string memory,
                                 // string memory,
+                                // // string memory,
                                 Candidate[] memory
                                 ){
         // return elections[_id].candidates;  
@@ -269,7 +269,7 @@ contract Voting{
 
         // return elections[_id];
         return(
-            e.name_of_election,
+            // e.name_of_election,
             // e.description_of_election,
             e.candidates
         );

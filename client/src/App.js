@@ -243,13 +243,12 @@ export default class App extends Component {
                  </li> 
                  : <span></span>}
               
-                    <li  className="has-sub active expand" >
+                    {/* <li  className="has-sub active expand" >
                       <Link className="sidenav-item-link" to="/score">
                         <i className="mdi mdi-view-dashboard-outline"></i>
                         <span className="nav-text">Live Score</span> 
-                        {/* <b className="caret"></b> */}
                       </Link>
-                    </li>
+                    </li> */}
                     <li  className="has-sub active expand" >
                       <Link className="sidenav-item-link" to="/elections">
                         <i className="mdi mdi-view-dashboard-outline"></i>
@@ -301,13 +300,13 @@ export default class App extends Component {
                     account={this.state.account}
                   />
               </Route>
-              <Route path="/score">
+              {/* <Route path="/score">
                   <Score 
                             // candidate_lists={this.state.candidate_lists} 
                             ElectionDapp={this.state.ElectionDapp}
                             account={this.state.account}
                     />
-              </Route>
+              </Route> */}
               <Route path="/elections">
                   <Elections 
                    elections={this.state.elections} 
