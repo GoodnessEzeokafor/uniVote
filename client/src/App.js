@@ -122,15 +122,17 @@ export default class App extends Component {
               
             })
           }
-          // LOAD CANDIDATES
-          for(var i=1; i <= candidateCount; i++){
-            const candidate = await ElectionDapp.methods.candidates(i).call()
-            this.setState({
-              candidate_lists:[...this.state.candidate_lists, candidate]
-            })
-          }
+          console.log({elections:this.state.elections})
 
-          console.log({candidates:this.state.candidate_lists})
+          // LOAD CANDIDATES
+          // for(var i=1; i <= candidateCount; i++){
+          //   const candidate = await ElectionDapp.methods.candidates(i).call()
+          //   this.setState({
+          //     candidate_lists:[...this.state.candidate_lists, candidate]
+          //   })
+          // }
+
+          // console.log({candidates:this.state.candidate_lists})
           this.setState({loader:false})
         //   console.log({contributors:this.state.contributors})
       }else {
@@ -241,13 +243,12 @@ export default class App extends Component {
                  </li> 
                  : <span></span>}
               
-                    <li  className="has-sub active expand" >
+                    {/* <li  className="has-sub active expand" >
                       <Link className="sidenav-item-link" to="/score">
                         <i className="mdi mdi-view-dashboard-outline"></i>
                         <span className="nav-text">Live Score</span> 
-                        {/* <b className="caret"></b> */}
                       </Link>
-                    </li>
+                    </li> */}
                     <li  className="has-sub active expand" >
                       <Link className="sidenav-item-link" to="/elections">
                         <i className="mdi mdi-view-dashboard-outline"></i>
@@ -299,19 +300,20 @@ export default class App extends Component {
                     account={this.state.account}
                   />
               </Route>
-              <Route path="/score">
+              {/* <Route path="/score">
                   <Score 
-                            candidate_lists={this.state.candidate_lists} 
+                            // candidate_lists={this.state.candidate_lists} 
                             ElectionDapp={this.state.ElectionDapp}
                             account={this.state.account}
                     />
-              </Route>
+              </Route> */}
               <Route path="/elections">
                   <Elections 
                    elections={this.state.elections} 
                    ElectionDapp={this.state.ElectionDapp}
                    account={this.state.account}
                    electionAuthority={this.state.electionAuthority}
+                   candidateCount = {this.state.candidateCount}
                    />
               </Route>
               <Route path="/profile">
@@ -320,7 +322,7 @@ export default class App extends Component {
               </Route>
               <Route path="/vote">
                   <Vote 
-                      candidate_lists={this.state.candidate_lists} 
+                      // candidate_lists={this.state.candidate_lists} 
                       ElectionDapp={this.state.ElectionDapp}
                       account={this.state.account}
                       voters={this.state.voters}

@@ -55,67 +55,124 @@ export default class Score extends Component {
               console.log("-----------------SCORE COMPONENT---------------")
               // console.log(ElectionDapp)
         
-        
+              const electionCount = await ElectionDapp.methods.electionCount().call()
               const candidateCount = await ElectionDapp.methods.candidateCount().call()
             //   const voters = await ElectionDapp.methods.voters(this.state.account).call()
               this.setState({ElectionDapp})
               this.setState({candidateCount})
         //       // Load ELECTIONS
-              // LOAD CANDIDATES
-              for(var i=1; i <= candidateCount; i++){
-                const candidate = await ElectionDapp.methods.candidates(i).call()
+
+            // Load ELECTIONS
+            for(var j=1; j <= electionCount; j++){
+                const election = await ElectionDapp.methods.elections(j).call()
                 this.setState({
-                  candidate_lists:[...this.state.candidate_lists, candidate]
+                elections:[...this.state.elections, election],
+                
                 })
-              }
+            }
+              // LOAD CANDIDATES
+              // for(var i=1; i <= candidateCount; i++){
+              //   const candidate = await ElectionDapp.methods.candidates(i).call()
+              //   this.setState({
+              //     candidate_lists:[...this.state.candidate_lists, candidate]
+              //   })
+              // }
     
-              console.log({candidates:this.state.candidate_lists})
+              // console.log({candidates:this.state.candidate_lists})
           }else {
                   window.alert("UniVote contract is not deployed to the network")
                 }
     
       }
+
+
+
+       async getCandidates(id) {
+        const getCandidate = await this.state.ElectionDapp.methods
+          .getElectionCandidates(id)
+          .call();
+        console.log("Writing To The Blockchain");
+        console.log(getCandidate);
+        this.setState({
+            candidate_lists:getCandidate
+        })
+        return getCandidate;
+      }
+      
+    // renderTables(id){
+    //     const result = ''
+    //     // const temp = ``
+    //         // return{
+    //         //     result: this.props.getCandidates
+    //         // }
+    // }
     
       constructor(props) {
         super(props);
         this.state = {
             candidate_lists:[],
             candidateCount:0,
-            ElectionDapp:null
+            electionCount:0,
+            ElectionDapp:null,
+            elections:[],
+            election_id:1
         }
     }
 
     
     render() {
+        // console.log(this.state.candidate_lists)
+        if(this.state.election_id === 0){
+            console.log("Still Loading")
+        } else{
+            this.getCandidates(this.state.election_id)
+
+        }
+
         return (
             <div>
                 <h3 className="text-center mb-2">LIVE SCORE</h3>
-            <table className="table">
-                <thead className="thead-dark">
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">FULL NAME</th>
-                        <th scope="col">DEPARTMENT</th>
-                        <th scope="col">LEVEL</th>
-                        <th scope="col">SCORE</th>
-                        </tr>
-                </thead>
-                    <tbody>
-                        {this.state.candidate_lists.map((candidate,key) => {
+                {this.state.elections.map((election, key) => {
+                    // this.setState({
+                    //     election_id:election.id
+                    // })
+                    // console.log(election.name_of_election)
+                    // console.log("This is the election", election)
+                    return(
 
-                           return(
-                        <tr key={key}>
-                        <th scope="row">{candidate.id}</th>
-                        <td>{candidate.name}</td>
-                        <td>{candidate.department}</td>
-                        <td>{candidate.level}</td>
-                        <td>{candidate.voteCount}</td>
-                        
-                        </tr>
-                            );  
-                        })}
-                    </tbody>
-                </table>
+                        <table className="table" key={key}>
+                        <thead className="thead-dark">
+                    <h3 className="mb-3">{election.name_of_election}</h3>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">FULL NAME</th>
+                                <th scope="col">DEPARTMENT</th>
+                                <th scope="col">LEVEL</th>
+                                <th scope="col">SCORE</th>
+                                </tr>
+                        </thead>
+                            <tbody>
+                                 {this.state.candidate_lists ? 
+                                    this.state.candidate_lists.map((candidate, key) => {
+                                        return(
+                                        <tr>
+                                        <th scope="row"></th>
+                                    <td>{candidate.name}</td>
+                                        <td>{candidate.department}</td>
+                                        <td>{candidate.level}</td>
+                                        <td>{candidate.voteCount}</td>
+                                        </tr>
+                                        )
+                                    })                                
+                                :<span></span>}
+                                <tr>
+                            {/* <th>{election.candidates}</th> */}
+                                </tr>
+                            </tbody>
+                        </table>
+                    )
+                })}
+
 
             </div>
         );

@@ -8,12 +8,19 @@ contract Voting{
     uint public electionEndTime; // electionENdTIme
     uint public electionCount; //total number of election
     uint public candidateCount; // totalnumber of candidates
+    uint public registerVoterCount; // totalnumber of candidates
+    
     address public electionAuthority;  // election creator
     mapping(uint => Election) public elections;  //GET ELECTION LIST
     // mapping (uint => Candidate) public candidates; // Candidate ID to number of votes
+     mapping (address => Voter) public votedStruct; // Elections one has Voted on
     mapping (address => bool) public voters; // Registered voters
-    mapping (address => bool) public hasVoted; // If a registered voter has voted or not
-    mapping(uint => Candidate) public candidates;  //GET ELECTION LIST
+    // mapping (address => []) public hasVoted; // If a registered voter has voted or not
+
+    
+    // mapping(uint => Candidate) public candidates;  //GET ELECTION LIST
+
+    bool found;
 
     // Candidate[] public candidates;
     /* MODIFIERS */
@@ -32,10 +39,10 @@ contract Voting{
     }
 
     // // Ensures voters can vote just once!!! Their fada
-    modifier vote_only_once() {
-        if (hasVoted[msg.sender]) revert();
-        _;
-    }   
+    // modifier vote_only_once() {
+    //     if (hasVoted[msg.sender]) revert();
+    //     _;
+    // }   
 
     // // Only Vote during election time and We make cash
 
@@ -57,7 +64,19 @@ contract Voting{
         string post;
         uint voteCount;
     }
+
+
     /* END CANDIDATE STRUCT */
+
+
+    // Voter Struct
+
+    struct Voter{
+        uint id;
+        uint[] votedElections;
+        // mapping (uint => Candidate)  candidates; // Candidate ID to number of votes
+        // Candidate[] candidates;
+    }
 
 
     /*  ELECTION STRUCT */
@@ -69,7 +88,7 @@ contract Voting{
         uint startTime; // 
         uint timestamp; 
         // mapping (uint => Candidate)  candidates; // Candidate ID to number of votes
-        // Candidate[] candidates;
+        Candidate[] candidates;
     }
     /* END ELECTION STRUCT */
 
@@ -91,13 +110,13 @@ contract Voting{
         string name,
         string department,
         string level,
-        string post,
         uint voteCount
     );
 
     event Voted(
         address voter,
-        bool voted
+        bool voted,
+        uint timestamp
     );
 
 
@@ -134,29 +153,38 @@ contract Voting{
 
 
     function createCandidate(
-                            uint _id,
+                        
+                            uint _electionId,
                             string memory  _name,
                             string memory _department,
                             string memory  _level,
                             string memory _post
                             ) public only_election_authority{
-        // Election memory e = elections[_id];
+        Election memory e = elections[_electionId];
+        
         candidateCount++;
         Candidate memory new_candidate = Candidate(candidateCount,_name,_department,_level,_post, 0);
+        elections[_electionId].candidates.push(new_candidate);
         // elections[_id].candidates.push(new_candidate);
-        candidates[candidateCount] = new_candidate;
-        // emit NewCandidate(
-        //         e.name_of_election,
-        //         e.description_of_election,
-        //         candidateCount,
-        //         _name,
-        //         _department,
-        //         _level, 0);
+        // candidates[candidateCount] = new_candidate;
+
+
+
+
+        emit NewCandidate(
+                e.name_of_election,
+                e.description_of_election,
+                candidateCount,
+                _name,
+                _department,
+                _level,
+                0);
     }
 
 // Register a voter for when we using the UJ API to register voters
     function register_voter(address addr) public {
         voters[addr] = true;
+        registerVoterCount++;
     }
 
       function start_election(uint duration) public only_election_authority{
@@ -164,11 +192,11 @@ contract Voting{
     }
   
 
-      function voteCandidate(uint _candidateId) public only_registered_voters
+      function voteCandidate(uint _electionId, uint _candidateId) public only_registered_voters
 
         // Remember to check why time fails in tests!!
         // only_during_election_time
-        vote_only_once
+        // vote_only_once
         {
         // // require that they haven't voted before
         // require(!voters[msg.sender]);
@@ -178,27 +206,72 @@ contract Voting{
         // require(_electionId > 0 && _electionId <= electionCount);
 
         // record that voter has voted
-        hasVoted[msg.sender] = true;
+
+        // require(hasVoted[])
+        // hasVoted[msg.sender] = _electionId;
 
         // update candidate vote Count
         // elections[_electionId].candidates[_candidateId].voteCount ++;
-        candidates[_candidateId].voteCount ++;
-        emit Voted(msg.sender,true);
+         uint[] memory votersElections = votedStruct[msg.sender].votedElections;
+
+        uint arrayLength = votersElections.length;
+        if(arrayLength == 0){
+            elections[_electionId].candidates[_candidateId - 1].voteCount ++;
+            votedStruct[msg.sender].votedElections.push(_electionId);
+             
+            emit Voted(msg.sender,true,now);
+        }
+        else if(arrayLength !=0 ){
+        for(uint i=0; i<arrayLength; i++){
+            if(votersElections[i]==_electionId){
+                found=true;
+                // break;
+                revert();
+            }
+            else {
+
+                elections[_electionId].candidates[_candidateId - 1].voteCount ++;
+                votedStruct[msg.sender].votedElections.push(_electionId);
+                
+                emit Voted(msg.sender,true,now);
+            }
+         
+            
+        }
+        // if(!found){
+           
+        //     elections[_electionId].candidates[_candidateId - 1].voteCount ++;
+        //      votedStruct[msg.sender].votedElections.push(_electionId);
+        //     emit Voted(msg.sender,true);
+        // }
+
+
+        }
+
+        
+        
+        
+
+
+         
+        
+        // singleElection.voteCount ++;
+        // emit Voted(msg.sender,true);
     }
 
     function getElectionCandidates(uint _id) public view returns(
-                                string memory,
-                                string memory
-                                // Candidate[] memory
+                                // string memory,
+                                // // string memory,
+                                Candidate[] memory
                                 ){
         // return elections[_id].candidates;  
         Election memory e = elections[_id];
 
         // return elections[_id];
         return(
-            e.name_of_election,
-            e.description_of_election
-            // e.candidates
+            // e.name_of_election,
+            // e.description_of_election,
+            e.candidates
         );
 
     }
