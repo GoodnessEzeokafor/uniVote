@@ -186,7 +186,13 @@ export default class App extends Component {
   <Router>
         <div>
         <div className="mobile-sticky-body-overlay"></div>
-        {this.state.loader ? <PlanLoader /> : 
+        {this.state.loader ? 
+                           <div className="col-lg-12">
+                    <div class="alert alert-info alert-highlighted" role="alert">
+                       <h3>LOADING PLEASE WAIT</h3>
+                    </div>
+                    </div>
+        : 
 
       <div className="wrapper">
         

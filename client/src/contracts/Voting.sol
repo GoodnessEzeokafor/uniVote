@@ -51,7 +51,11 @@ contract Voting{
         _;
     }
     constructor() public {
+        
+        // electionAuthority =  0x6cF0C47D66C9d2b273ED0C4f276353520625c073;
+        
         electionAuthority =  0x6415d68373647F99270E24eB145be4d6E0141Ab2;
+
     }
 
 

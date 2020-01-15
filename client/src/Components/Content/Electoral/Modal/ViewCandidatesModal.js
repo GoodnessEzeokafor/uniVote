@@ -125,7 +125,7 @@ export default class ViewCandidatesModal extends Component {
 
                 results_arr.map((result, key) => {
                     return(
-                    <tr>
+                    <tr key={key}>
 
                     <th scope="col">
                         {/* ${result['3']} */}
@@ -144,14 +144,15 @@ export default class ViewCandidatesModal extends Component {
                     </th>
                     <th scope="col">
                         <button className="btn btn-dark"
+                        id = {result.id}
                         onClick={async(event) => {
                             // const id = parseInt(parseInt(result.id,10), parseInt(this.props.id, 10)
-                            const candidate_id = parseInt(result.id,10)
+                            const candidate_id = parseInt(event.target.id,10)
                             const election_id = parseInt(this.props.id,10)
                             console.log("Election ID",candidate_id, typeof candidate_id)
                             console.log("Canidate ID:",election_id,typeof election_id)
                             // console.log(typeof id)
-                            this.props.ElectionDapp.methods.voteCandidate(candidate_id,election_id)                                                                             
+                            this.props.ElectionDapp.methods.voteCandidate(election_id,candidate_id)                                                                             
                             .send({from:this.props.account})
                             .once('receipt', (receipt) => {
                                 console.log(receipt);
