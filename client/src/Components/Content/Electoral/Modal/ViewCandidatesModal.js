@@ -85,6 +85,7 @@ export default class ViewCandidatesModal extends Component {
                   <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header">
+                <h3 className="text-center">FINAL RESULT</h3>
                 {!this.state.message_state ? 
                     <span></span>                    
                     :
@@ -145,6 +146,8 @@ export default class ViewCandidatesModal extends Component {
                     <th scope="col">
                         <button className="btn btn-dark"
                         id = {result.id}
+                        disabled
+                        title="DISABLED"
                         onClick={async(event) => {
                             // const id = parseInt(parseInt(result.id,10), parseInt(this.props.id, 10)
                             const candidate_id = parseInt(event.target.id,10)
