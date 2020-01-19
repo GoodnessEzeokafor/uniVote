@@ -57,7 +57,6 @@ export default class ViewCandidatesModal extends Component {
             Election:this.props.ElectionDapp,
             message_state:false,
             message:''
- 
         }
         // this.getCandidates = this.getCandidates(this)
     }
@@ -146,8 +145,8 @@ export default class ViewCandidatesModal extends Component {
                     <th scope="col">
                         <button className="btn btn-dark"
                         id = {result.id}
-                        disabled
-                        title="DISABLED"
+                        // disabled
+                        // title="DISABLED"
                         onClick={async(event) => {
                             // const id = parseInt(parseInt(result.id,10), parseInt(this.props.id, 10)
                             const candidate_id = parseInt(event.target.id,10)

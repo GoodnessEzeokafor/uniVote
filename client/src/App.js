@@ -101,6 +101,8 @@ export default class App extends Component {
           const electionCount = await ElectionDapp.methods.electionCount().call()
           const candidateCount = await ElectionDapp.methods.candidateCount().call()
           const voters = await ElectionDapp.methods.voters(this.state.account).call()
+          const liveScoreCandidatesCount = await ElectionDapp.methods.liveScoreCandidateCount().call()
+          // liveScoreCandidates
           console.log("Account of Election Coordinator:",electionAuthority)
           console.log("Account of the deployer", this.state.account)
           this.setState({electionAuthority})
@@ -109,12 +111,21 @@ export default class App extends Component {
           this.setState({candidateCount})
           this.setState({electionCount})
           this.setState({voters})
+          this.setState({liveScoreCandidatesCount})
           if(voters === true){
             console.log("VOTERS:", voters);
           } else{
             console.log("NOT TRUE:")
           }
-    //       // Load ELECTIONS
+    //       // Load CANDIDATES
+          for(var i=1; i <= liveScoreCandidatesCount; i++){
+            const candidate = await ElectionDapp.methods.liveScoreCandidates(i).call()
+            this.setState({
+              liveScoreCandidates:[...this.state.liveScoreCandidates, candidate],
+              
+            })
+          }
+//ELECTION
           for(var j=1; j <= electionCount; j++){
             const election = await ElectionDapp.methods.elections(j).call()
             this.setState({
@@ -173,9 +184,12 @@ export default class App extends Component {
      dapp_name:'',
      elections:[],
      candidate_lists:[],
+     liveScoreCandidates:[],
      candidateCount:0,
      electionCount:0,
-     voters:null
+     voters:null,
+     liveScoreCandidatesCount:0,
+
     //  message:''
     }
    }
@@ -249,12 +263,12 @@ export default class App extends Component {
                  </li> 
                  : <span></span>}
               
-                    {/* <li  className="has-sub active expand" >
+                    <li  className="has-sub active expand" >
                       <Link className="sidenav-item-link" to="/score">
                         <i className="mdi mdi-view-dashboard-outline"></i>
                         <span className="nav-text">Live Score</span> 
                       </Link>
-                    </li> */}
+                    </li>
                     <li  className="has-sub active expand" >
                       <Link className="sidenav-item-link" to="/elections">
                         <i className="mdi mdi-view-dashboard-outline"></i>
@@ -306,13 +320,15 @@ export default class App extends Component {
                     account={this.state.account}
                   />
               </Route>
-              {/* <Route path="/score">
+              <Route path="/score">
                   <Score 
                             // candidate_lists={this.state.candidate_lists} 
                             ElectionDapp={this.state.ElectionDapp}
+                            liveScoreCandidates={this.state.liveScoreCandidates}
                             account={this.state.account}
+                            liveScoreCandidatesCount={this.state.liveScoreCandidatesCount}
                     />
-              </Route> */}
+              </Route>
               <Route path="/elections">
                   <Elections 
                    elections={this.state.elections} 
