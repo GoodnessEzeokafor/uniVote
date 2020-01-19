@@ -61,6 +61,8 @@ export default class Home extends Component {
                                 className="mb-1 btn btn-block  btn-secondary"
                                 onClick ={async(event) => {
 
+                                    const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4");
+                                    if(this.props.persons.includes(fm.getProvider())){
                                     console.log("HELLO VOTER")
                                     this.props.ShowLoader()
                                     this.props.ElectionDapp.methods.register_voter(this.props.account)                                                                             
@@ -72,6 +74,10 @@ export default class Home extends Component {
                                         
                                         // window.location.reload()
                                     })
+                                }
+                                else{
+                                    alert("This Email is not eligible to vote on this platform")
+                                }
                                    this.props.HideLoader()
                                     event.preventDefault()
                                 }}>REGISTER TO VOTE</button>

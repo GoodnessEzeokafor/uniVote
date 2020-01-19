@@ -3,6 +3,8 @@ import Nav from "./Components/Content/Nav"
 import { Route, Link, Switch, BrowserRouter as Router } from "react-router-dom";
 import Web3 from "web3";
 import Fortmatic from "fortmatic";
+import axios from "axios"
+
 
 
 /* COMPONENTS */
@@ -152,6 +154,15 @@ export default class App extends Component {
 
   }
 
+  componentDidMount() {
+    // axios.get(`https://jsonplaceholder.typicode.com/users`)
+    axios.get(`/users`)
+      .then(res => {
+        const persons = res.data.userdetails;
+        this.setState({ persons });
+      })
+  }
+
   ShowLoader(){
 
     this.setState({
@@ -189,6 +200,7 @@ export default class App extends Component {
      electionCount:0,
      voters:null,
      liveScoreCandidatesCount:0,
+     persons : []
 
     //  message:''
     }
@@ -365,7 +377,8 @@ export default class App extends Component {
                       account={this.state.account}    
                       voters={this.state.voters}   
                       ShowLoader={this.ShowLoader}     
-                      HideLoader={this.HideLoader}          
+                      HideLoader={this.HideLoader} 
+                      persons ={this.state.persons}          
                     />
               </Route>              
             </Switch>
