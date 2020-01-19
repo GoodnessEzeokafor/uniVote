@@ -8,6 +8,11 @@ contract Voting{
     uint public electionEndTime; // electionENdTIme
     uint public electionCount; //total number of election
     uint public candidateCount; // totalnumber of candidates
+
+    // Live Score
+    uint public liveScoreCandidateCount; // totalnumber of candidates
+    mapping(uint => LiveScoreCandidate) public liveScoreCandidates;  //GET ELECTION LIST
+    
     uint public registerVoterCount; // totalnumber of candidates
     
     address public electionAuthority;  // election creator
@@ -16,8 +21,6 @@ contract Voting{
      mapping (address => Voter) public votedStruct; // Elections one has Voted on
     mapping (address => bool) public voters; // Registered voters
     // mapping (address => []) public hasVoted; // If a registered voter has voted or not
-
-    
     // mapping(uint => Candidate) public candidates;  //GET ELECTION LIST
 
     bool found;
@@ -61,6 +64,15 @@ contract Voting{
 
     /*  CANDIDATE STRUCT */
     struct Candidate {
+        uint id;
+        string name;
+        string department;
+        string level;
+        string post;
+        uint voteCount;
+    }
+
+struct LiveScoreCandidate {
         uint id;
         string name;
         string department;
@@ -167,14 +179,12 @@ contract Voting{
         Election memory e = elections[_electionId];
         
         candidateCount++;
+        liveScoreCandidateCount++;
         Candidate memory new_candidate = Candidate(candidateCount,_name,_department,_level,_post, 0);
         elections[_electionId].candidates.push(new_candidate);
+        liveScoreCandidates[liveScoreCandidateCount] = LiveScoreCandidate(liveScoreCandidateCount,_name,_department,_level,_post, 0);
         // elections[_id].candidates.push(new_candidate);
         // candidates[candidateCount] = new_candidate;
-
-
-
-
         emit NewCandidate(
                 e.name_of_election,
                 e.description_of_election,
@@ -222,7 +232,7 @@ contract Voting{
         if(arrayLength == 0){
             elections[_electionId].candidates[_candidateId - 1].voteCount ++;
             votedStruct[msg.sender].votedElections.push(_electionId);
-             
+            liveScoreCandidates[_candidateId].voteCount ++;
             emit Voted(msg.sender,true,now);
         }
         else if(arrayLength !=0 ){
@@ -236,7 +246,7 @@ contract Voting{
 
                 elections[_electionId].candidates[_candidateId - 1].voteCount ++;
                 votedStruct[msg.sender].votedElections.push(_electionId);
-                
+                              liveScoreCandidates[_candidateId].voteCount ++;
                 emit Voted(msg.sender,true,now);
             }
          

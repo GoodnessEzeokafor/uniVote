@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CandidateImg from "./candidates.png"
-import {  Link,  BrowserRouter as Router } from "react-router-dom";
+// import CandidateImg from "./candidates.png"
+// import {  Link,  BrowserRouter as Router } from "react-router-dom";
 import Web3 from "web3";
 import Fortmatic from "fortmatic";
 import ElectionAbi from "../../abis/Voting.json";
