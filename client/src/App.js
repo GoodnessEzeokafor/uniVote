@@ -14,14 +14,12 @@ import Vote from "./Components/Content/Vote"
 // import Profile from "./Components/Profile/Dashboard"
 import ElectionForm from "./Components/Content/Electoral/ElectionForm"
 import Elections from "./Components/Content/Electoral/Elections"
-import PersonList from "./Components/PersonList"
 
 // import Login from "./Components/Auth/Login"
 // import Signup from "./Components/Auth/Signup"
 /* COMPONENTS */
 
 import ElectionAbi from "./abis/Voting.json";
-import PlanLoader from './Components/Loader';
 import CardProfile from './Components/Profile/Dashboard';
 
 export default class App extends Component {
@@ -103,7 +101,7 @@ export default class App extends Component {
           const electionCount = await ElectionDapp.methods.electionCount().call()
           const candidateCount = await ElectionDapp.methods.candidateCount().call()
           const voters = await ElectionDapp.methods.voters(this.state.account).call()
-          const liveScoreCandidatesCount = await ElectionDapp.methods.liveScoreCandidateCount().call()
+          // const liveScoreCandidatesCount = await ElectionDapp.methods.liveScoreCandidateCount().call()
           // liveScoreCandidates
           console.log("Account of Election Coordinator:",electionAuthority)
           console.log("Account of the deployer", this.state.account)
@@ -113,20 +111,19 @@ export default class App extends Component {
           this.setState({candidateCount})
           this.setState({electionCount})
           this.setState({voters})
-          this.setState({liveScoreCandidatesCount})
+          // this.setState({liveScoreCandidatesCount})
           if(voters === true){
             console.log("VOTERS:", voters);
           } else{
             console.log("NOT TRUE:")
           }
-    //       // Load CANDIDATES
-          for(var i=1; i <= liveScoreCandidatesCount; i++){
-            const candidate = await ElectionDapp.methods.liveScoreCandidates(i).call()
-            this.setState({
-              liveScoreCandidates:[...this.state.liveScoreCandidates, candidate],
-              
-            })
-          }
+    // //       // Load CANDIDATES
+    //       for(var i=1; i <= liveScoreCandidatesCount; i++){
+    //         const candidate = await ElectionDapp.methods.liveScoreCandidates(i).call()
+    //         this.setState({
+    //           liveScoreCandidates:[...this.state.liveScoreCandidates, candidate],              
+    //         })
+    //       }
 //ELECTION
           for(var j=1; j <= electionCount; j++){
             const election = await ElectionDapp.methods.elections(j).call()
@@ -334,15 +331,15 @@ export default class App extends Component {
                     account={this.state.account}
                   />
               </Route>
-              <Route path="/score">
+              {/* <Route path="/score">
                   <Score 
                             // candidate_lists={this.state.candidate_lists} 
                             ElectionDapp={this.state.ElectionDapp}
-                            liveScoreCandidates={this.state.liveScoreCandidates}
+                            // liveScoreCandidates={this.state.liveScoreCandidates}
                             account={this.state.account}
-                            liveScoreCandidatesCount={this.state.liveScoreCandidatesCount}
+                            // liveScoreCandidatesCount={this.state.liveScoreCandidatesCount}
                     />
-              </Route>
+              </Route> */}
               <Route path="/elections">
                   <Elections 
                    elections={this.state.elections} 
