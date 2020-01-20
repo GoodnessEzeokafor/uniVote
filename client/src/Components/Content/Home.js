@@ -86,6 +86,7 @@ componentDidMount(){
                                             this.setState({message:"THANKS FOR REGISTERING ON OUR PLATFORM"})    
                                             }
                                          )
+                                         window.reload()
                                     }else{
                                         alert("NOT A STUDENT")
                                     }
