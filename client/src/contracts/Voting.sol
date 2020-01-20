@@ -246,7 +246,7 @@ struct LiveScoreCandidate {
 
                 elections[_electionId].candidates[_candidateId - 1].voteCount ++;
                 votedStruct[msg.sender].votedElections.push(_electionId);
-                              liveScoreCandidates[_candidateId].voteCount ++;
+                liveScoreCandidates[_candidateId].voteCount ++;
                 emit Voted(msg.sender,true,now);
             }
          
