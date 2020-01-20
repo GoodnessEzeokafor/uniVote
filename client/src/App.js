@@ -28,7 +28,7 @@ export default class App extends Component {
     await this.loadBlockchainData();
     // await this.checkIncognito();
 
-    axios.get(`/users`)
+   await axios.get(`/users`)
       .then(res => {
         const persons = res.data.userdetails;
         this.setState({ persons });
