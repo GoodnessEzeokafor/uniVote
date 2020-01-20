@@ -10,15 +10,33 @@ export default class Home extends Component {
         super(props);
         this.state = {
             message_state:false,
-            message:''
+            message:'',
+            isStudent:false
         }
     }
+componentDidMount(){
+    this.verifyEmail()
+}
 
+    verifyEmail(){
+        // console.log(this.props.persons)
+        console.log("LOGGED IN EMAIL:",this.props.email)
+        for(var i=0;i< this.props.persons.length; i++){
+            if(this.props.persons[i].email === this.props.email){
+                this.setState({isStudent:true})
+                console.log(this.props.email)
+                 break;
+                }
+            //  if(this.props.persons[i].email !== this.props.email){
+            //      alert("NOT REGISTERED TO VOTE")
+            //      break;
+            //  }   
+        }
 
+    }
     render() {
         return (
-            <div>
-
+            <div>                
                     {!this.state.message_state ? 
                     <span></span>                    
                     :
@@ -29,7 +47,6 @@ export default class Home extends Component {
                     </div>
 
                     }
-
                     <div className="col-lg-6 mr-auto ml-auto">
                         {/* <!-- Block buttons --> */}
                         <div className="card card-default">
@@ -37,16 +54,14 @@ export default class Home extends Component {
                         <div className="card-header card-header-border-bottom">
         <h2>Welcome to Univote {this.props.email}</h2>
                             </div>
-                            <div className="card-header card-header-border-bottom">
+                            <div className="card-header card-header-border-bottom">                 
                             {!this.props.voters ? 
                                 <center><h2>CLICK ON THIS BUTTON TO REGISTER</h2></center>
                                 :
                                 <center><h2>ALREADY REGISTERED!!</h2></center>
 
                                 }
-                            </div>
-
-                            
+                            </div>       
                             <div className="card-body">
                                 {this.props.voters ? 
                                     <button 
@@ -61,46 +76,19 @@ export default class Home extends Component {
                                 className="mb-1 btn btn-block  btn-secondary"
                                 onClick ={async(event) => {
                                     event.persist()
-                                    
-                                    const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4");
-
-                                    const user = await fm.user.getUser()
-                                    console.log(user.email)
-
-                                    for (let k in this.props.persons) {
-                                        
-                                        
-                                        if (this.props.persons[k].email.toLowerCase() === user.email.toLowerCase() ) {
-
-                                            // return true;
-                                            console.log("HELLO VOTER")
-                                            console.log(user)
                                     this.props.ShowLoader()
-                                    this.props.ElectionDapp.methods.register_voter(this.props.account)                                                                             
-                                    .send({from:this.props.account})
-                                    .once('receipt', (receipt) => {
-                                        console.log(receipt);
-                                        this.setState({message_state:true})
-                                        this.setState({message:"THANKS FOR REGISTERING ON OUR PLATFORM"})
-                                        
-                                        
-                                        // window.location.reload()
-                                    })
-                                    break
-
-                                        }
-
-                                        
-                                        else{
-                                            alert("This Email is not eligible to vote on this platform")
-                                            console.log(user.email)
-                                        }
-                                        break;
+                                    if(this.state.isStudent){
+                                        this.props.ElectionDapp.methods.register_voter(this.props.account)                                                                             
+                                        .send({from:this.props.account})
+                                        .once('receipt', (receipt) => {
+                                            console.log(receipt);
+                                            this.setState({message_state:true})
+                                            this.setState({message:"THANKS FOR REGISTERING ON OUR PLATFORM"})    
+                                            }
+                                         )
+                                    }else{
+                                        alert("NOT A STUDENT")
                                     }
-                                   
-                                    
-                                
-                                    
                                    this.props.HideLoader()
                                     event.preventDefault()
                                 }}>REGISTER TO VOTE</button>
