@@ -84,7 +84,9 @@ componentDidMount(){
                                             console.log(receipt);
                                             this.setState({message_state:true})
                                             this.setState({message:"THANKS FOR REGISTERING ON OUR PLATFORM"})    
-                                            }
+                                            window.location.reload()
+  
+                                        }
                                          )
                                     }else{
                                         alert("NOT A STUDENT")

@@ -232,7 +232,7 @@ struct LiveScoreCandidate {
 
         uint arrayLength = votersElections.length;
         if(arrayLength == 0){
-            elections[_electionId].candidates[_candidateId - 1].voteCount ++;
+            elections[_electionId].candidates[_candidateId - 1].voteCount++;
             // liveScoreCandidates[_candidateId].voteCount ++;
             votedStruct[msg.sender].votedElections.push(_electionId);
             emit Voted(msg.sender,true,now);
@@ -246,7 +246,7 @@ struct LiveScoreCandidate {
             }
             else {
 
-                elections[_electionId].candidates[_candidateId - 1].voteCount ++;
+                elections[_electionId].candidates[_candidateId - 1].voteCount++ ;
                 votedStruct[msg.sender].votedElections.push(_electionId);
                 // liveScoreCandidates[_candidateId].voteCount ++;
                 emit Voted(msg.sender,true,now);
