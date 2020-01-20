@@ -60,8 +60,21 @@ export default class Home extends Component {
                                 type="button" 
                                 className="mb-1 btn btn-block  btn-secondary"
                                 onClick ={async(event) => {
+                                    event.persist()
+                                    
+                                    const fm = new Fortmatic("pk_test_BB47BFAE1F3D47D4");
 
-                                    console.log("HELLO VOTER")
+                                    const user = await fm.user.getUser()
+                                    console.log(user.email)
+
+                                    for (let k in this.props.persons) {
+                                        
+                                        
+                                        if (this.props.persons[k].email.toLowerCase() === user.email.toLowerCase() ) {
+
+                                            // return true;
+                                            console.log("HELLO VOTER")
+                                            console.log(user)
                                     this.props.ShowLoader()
                                     this.props.ElectionDapp.methods.register_voter(this.props.account)                                                                             
                                     .send({from:this.props.account})
@@ -70,8 +83,24 @@ export default class Home extends Component {
                                         this.setState({message_state:true})
                                         this.setState({message:"THANKS FOR REGISTERING ON OUR PLATFORM"})
                                         
+                                        
                                         // window.location.reload()
                                     })
+                                    break
+
+                                        }
+
+                                        
+                                        else{
+                                            alert("This Email is not eligible to vote on this platform")
+                                            console.log(user.email)
+                                        }
+                                        break;
+                                    }
+                                   
+                                    
+                                
+                                    
                                    this.props.HideLoader()
                                     event.preventDefault()
                                 }}>REGISTER TO VOTE</button>
