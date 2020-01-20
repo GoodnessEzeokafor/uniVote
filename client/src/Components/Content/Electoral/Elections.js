@@ -73,7 +73,7 @@ export default class Elections extends Component {
                             <ViewCandidatesModal 
                                  show={this.state.show2}
                                  handleClose={this.hideModal2}
-                                 id={parseInt(election.id,10)}
+                                 election_id={parseInt(election.id,10)}
                                  // single_project={this.state.single_project}
                                  ElectionDapp = {this.props.ElectionDapp}
                                  account={this.props.account}

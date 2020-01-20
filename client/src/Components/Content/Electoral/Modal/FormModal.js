@@ -96,17 +96,8 @@ export default class FormModal extends Component {
                                                 ref={(input) => this.post = input} 
                                                 className="form-control" name="" id="">
                                              <option id="PRESIDENT" value="PRESIDENT">PRESIDENT</option>
-                                             <option id="VICE-PRESIDENT" value="VICE-PRESIDENT">VICE PRESIDENT</option>
                                              <option id="Secretary-General" value="SECRETARY-GENERAL">SECRETARY GENERAL</option>
-                                             <option id="Financial-secretary" value="FINIANCIAL-SECRETARY">FINIANCIAL SECRETARY</option>
-                                             <option id="Assistant-Secretary-General" value="ASSISTANT-SECRETARY-GENERAL"> ASSISTANT SECRETARY GENERAL</option>
-                                             <option id="Welfare-Secretary" value="WELFARE-SECRETARY"> WELFARE SECRETARY</option>
-                                             <option id="Director-of-Software" value="DIRECTOR-OF-SOFTWARE"> DIRECTOR OF SOFTWARE</option>
-                                             <option id="Director-of-Socials" value="DIRECTOR-OF-SOCIALS">DIRECTOR OF SOCIALS</option>
-                                             <option id="Director-of-Sports" value="DIRECTOR-OF-SPORTS">DIRECTOR OF SPORTS</option>
-                                             <option id="Public-Relations-Officer" value="PUBLIC-RELATIONS-OFFICER">PUBLIC RELATIONS OFFICER</option>
-                                             <option id="Auditor-General" value="AUDITOR-GENERAL">AUDITOR GENERAL</option>
-                                             <option id="Treasurer" value="TREASURER">TREASURER</option>
+                                             <option id="Welfare-Secretary" value="WELFARE-SECRETARY"> WELFARE SECRETARY</option>                                             
                                            </select>
                                     <div className="valid-feedback">
                                         Looks good!
