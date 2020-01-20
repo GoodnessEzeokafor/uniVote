@@ -110,8 +110,6 @@ export default class ViewCandidatesModal extends Component {
                          <th>LEVEL</th>
                          <th>Vote</th>
                          <th>VoteCount</th>
-
-
                     </tr>
                 </thead>
                     <tbody>
