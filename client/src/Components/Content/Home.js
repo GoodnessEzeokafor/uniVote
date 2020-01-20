@@ -22,7 +22,7 @@ componentDidMount(){
         // console.log(this.props.persons)
         console.log("LOGGED IN EMAIL:",this.props.email)
         for(var i=0;i< this.props.persons.length; i++){
-            if(this.props.persons[i].email === this.props.email){
+            if(this.props.persons[i].email.toLowerCase() === this.props.email.toLowerCase()){
                 this.setState({isStudent:true})
                 console.log(this.props.email)
                  break;
