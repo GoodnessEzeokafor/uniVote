@@ -173,7 +173,7 @@ export default class ViewCandidatesModal extends Component {
                     </tr>  
                     )
                 })
-                    :<span></span>}
+                    :<tr></tr>}
                     </tbody>
                 </table>
                 </div>

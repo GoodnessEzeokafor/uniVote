@@ -54,8 +54,8 @@ export default class Elections extends Component {
                         <div className="card-deck">
                            {this.props.elections.map((election,key) => {
                                return(
-                                <div className="col-md-6 mb-3">
-                                <div className="card" key={key}>
+                                <div className="col-md-6 mb-3"  key={key}>
+                                <div className="card">
                                 <FormModal
                                 show={this.state.show}
                                 handleClose={this.hideModal}
@@ -64,6 +64,9 @@ export default class Elections extends Component {
                                 ElectionDapp = {this.props.ElectionDapp}
                                 account={this.props.account}
 
+
+
+                                
                             />
 
 <CountDown targetDate="Jan 15, 2020" targetTime="23:00:00" />;
