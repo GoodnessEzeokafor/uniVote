@@ -129,6 +129,7 @@ export default class ViewCandidatesModal extends Component {
 
                     <th scope="col">
                         {/* ${result['3']} */}
+                        {result.id}
                         </th>
                     <th scope="col">
                         {/* ${result['0']} */}
@@ -149,12 +150,12 @@ export default class ViewCandidatesModal extends Component {
                         // title="DISABLED"
                         onClick={async(event) => {
                             // const id = parseInt(parseInt(result.id,10), parseInt(this.props.id, 10)
-                            const candidate_id = parseInt(event.target.id,10)
-                            const election_id = parseInt(this.props.id,10)
-                            console.log("Election ID",candidate_id, typeof candidate_id)
-                            console.log("Canidate ID:",election_id,typeof election_id)
+                            const candidate_id = parseInt(result.id,10)
+                            const election_id = this.props.id
+                            console.log("Election ID",this.props.election_id, typeof this.props.election_id)
+                            console.log("Canidate ID:",candidate_id,typeof election_id)
                             // console.log(typeof id)
-                            this.props.ElectionDapp.methods.voteCandidate(election_id,candidate_id)                                                                             
+                            this.props.ElectionDapp.methods.voteCandidate(this.props.election_id,candidate_id)                                                                             
                             .send({from:this.props.account})
                             .once('receipt', (receipt) => {
                                 console.log(receipt);

@@ -55,9 +55,9 @@ contract Voting{
     }
     constructor() public {
         
-        // electionAuthority =  0x6cF0C47D66C9d2b273ED0C4f276353520625c073;
+        electionAuthority =  msg.sender;
         
-        electionAuthority =  0x6415d68373647F99270E24eB145be4d6E0141Ab2;
+        // electionAuthority =  0x6415d68373647F99270E24eB145be4d6E0141Ab2;
 
     }
 
@@ -179,10 +179,10 @@ struct LiveScoreCandidate {
         Election memory e = elections[_electionId];
         
         candidateCount++;
-        liveScoreCandidateCount++;
+        // liveScoreCandidateCount++;
         Candidate memory new_candidate = Candidate(candidateCount,_name,_department,_level,_post, 0);
         elections[_electionId].candidates.push(new_candidate);
-        liveScoreCandidates[liveScoreCandidateCount] = LiveScoreCandidate(liveScoreCandidateCount,_name,_department,_level,_post, 0);
+        // liveScoreCandidates[liveScoreCandidateCount] = LiveScoreCandidate(liveScoreCandidateCount,_name,_department,_level,_post, 0);
         // elections[_id].candidates.push(new_candidate);
         // candidates[candidateCount] = new_candidate;
         emit NewCandidate(
@@ -231,8 +231,8 @@ struct LiveScoreCandidate {
         uint arrayLength = votersElections.length;
         if(arrayLength == 0){
             elections[_electionId].candidates[_candidateId - 1].voteCount ++;
+            // liveScoreCandidates[_candidateId].voteCount ++;
             votedStruct[msg.sender].votedElections.push(_electionId);
-            liveScoreCandidates[_candidateId].voteCount ++;
             emit Voted(msg.sender,true,now);
         }
         else if(arrayLength !=0 ){
@@ -246,7 +246,7 @@ struct LiveScoreCandidate {
 
                 elections[_electionId].candidates[_candidateId - 1].voteCount ++;
                 votedStruct[msg.sender].votedElections.push(_electionId);
-                liveScoreCandidates[_candidateId].voteCount ++;
+                // liveScoreCandidates[_candidateId].voteCount ++;
                 emit Voted(msg.sender,true,now);
             }
          
