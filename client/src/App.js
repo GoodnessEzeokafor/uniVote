@@ -26,8 +26,15 @@ export default class App extends Component {
   async componentDidMount() {
     await this.loadWeb3();
     await this.loadBlockchainData();
+    // await this.checkIncognito();
   }
 
+
+  // async checkIncognito(){
+  //   isPrivateWindow(function(is_private) {
+  //     document.getElementById('root').innerHTML = is_private === null ? 'cannot detect' : is_private ? 'private <span>👻</span>' : console.log(" Not Private");
+  //   });
+  // }
 
   async loadWeb3() {
     this.setState({loader:true})
@@ -198,7 +205,7 @@ export default class App extends Component {
      candidateCount:0,
      electionCount:0,
      voters:null,
-     liveScoreCandidatesCount:0,
+    //  liveScoreCandidatesCount:0,
      persons : []
 
     //  message:''

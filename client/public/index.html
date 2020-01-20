@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+  <script type="text/javascript">
+    if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
+        document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.3/bluebird.min.js"><\/script><script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.2.5/polyfill.min.js"><\/script>');
+</script>
+  <script src="/incognito.js"></script>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -97,6 +102,11 @@
 <script src="/assets/js/date-range.js"></script>
 <script src="/assets/js/map.js"></script>
 <script src="/assets/js/custom.js"></script>
+<script>
+	isPrivateWindow(function(is_private) {
+		document.getElementById('root').innerHTML = is_private === null ? 'cannot detect' : is_private ?  window.stop() : 'not private <span>🖐️</span>';
+	});
+	</script>
 
   </body>
 </html>
