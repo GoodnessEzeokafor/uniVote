@@ -55,9 +55,9 @@ contract Voting{
     }
     constructor() public {
         
-        electionAuthority =  msg.sender;
+        // electionAuthority =  msg.sender;
         
-        // electionAuthority =  0x6415d68373647F99270E24eB145be4d6E0141Ab2;
+        electionAuthority =  0x6415d68373647F99270E24eB145be4d6E0141Ab2;
 
     }
 
@@ -179,8 +179,10 @@ struct LiveScoreCandidate {
         Election memory e = elections[_electionId];
         
         candidateCount++;
-        // liveScoreCandidateCount++;
-        Candidate memory new_candidate = Candidate(candidateCount,_name,_department,_level,_post, 0);
+        // // liveScoreCandidateCount++;
+        // uint _id = 0;
+        // uint _id = elections[_electionId].candidates.length ++;
+        Candidate memory new_candidate = Candidate(elections[_electionId].candidates.length + 1,_name,_department,_level,_post, 0);
         elections[_electionId].candidates.push(new_candidate);
         // liveScoreCandidates[liveScoreCandidateCount] = LiveScoreCandidate(liveScoreCandidateCount,_name,_department,_level,_post, 0);
         // elections[_id].candidates.push(new_candidate);
@@ -274,7 +276,7 @@ struct LiveScoreCandidate {
     }
 
     function getElectionCandidates(uint _id) public view returns(
-                                // string memory,
+                                uint,
                                 // // string memory,
                                 Candidate[] memory
                                 ){
@@ -283,7 +285,7 @@ struct LiveScoreCandidate {
 
         // return elections[_id];
         return(
-            // e.name_of_election,
+            e.id,
             // e.description_of_election,
             e.candidates
         );

@@ -54,7 +54,7 @@ export default class Elections extends Component {
                         <div className="card-deck">
                            {this.props.elections.map((election,key) => {
                                return(
-                                <div className="col-md-6 mb-3"  key={key}>
+                                <div className="col-md-6 mb-3" key={election.id}>
                                 <div className="card">
                                 <FormModal
                                 show={this.state.show}
@@ -63,6 +63,7 @@ export default class Elections extends Component {
                                 // single_project={this.state.single_project}
                                 ElectionDapp = {this.props.ElectionDapp}
                                 account={this.props.account}
+                               
 
 
 
@@ -73,7 +74,8 @@ export default class Elections extends Component {
                             <ViewCandidatesModal 
                                  show={this.state.show2}
                                  handleClose={this.hideModal2}
-                                 election_id={parseInt(election.id,10)}
+                                 key={key}
+                                 election_id={parseInt(key,10)}
                                  // single_project={this.state.single_project}
                                  ElectionDapp = {this.props.ElectionDapp}
                                  account={this.props.account}
@@ -101,8 +103,8 @@ export default class Elections extends Component {
                                         //  to={`/project/${project.id}`}
                                         onClick={async(event) => {
                                             this.showModal();
-                                        //     const id = parseInt(event.target.id, 10);
-                                        //     // console.log(id, typeof id);
+                                            // const id = parseInt(event.target.id, 10);
+                                            // console.log(id, typeof id);
                                         //     const single_project = await this.getSingleProject(id);
                                         // console.log("Content:",single_project["name"])
                                         //     this.setState({ single_project });
