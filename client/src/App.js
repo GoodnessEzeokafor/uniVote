@@ -103,7 +103,7 @@ export default class App extends Component {
           const electionCount = await ElectionDapp.methods.electionCount().call()
           const candidateCount = await ElectionDapp.methods.candidateCount().call()
           const voters = await ElectionDapp.methods.voters(this.state.account).call()
-          const liveScoreCandidatesCount = await ElectionDapp.methods.liveScoreCandidateCount().call()
+          // const liveScoreCandidatesCount = await ElectionDapp.methods.liveScoreCandidateCount().call()
           // liveScoreCandidates
           console.log("Account of Election Coordinator:",electionAuthority)
           console.log("Account of the deployer", this.state.account)
@@ -113,20 +113,20 @@ export default class App extends Component {
           this.setState({candidateCount})
           this.setState({electionCount})
           this.setState({voters})
-          this.setState({liveScoreCandidatesCount})
+          // this.setState({liveScoreCandidatesCount})
           if(voters === true){
             console.log("VOTERS:", voters);
           } else{
             console.log("NOT TRUE:")
           }
     //       // Load CANDIDATES
-          for(var i=1; i <= liveScoreCandidatesCount; i++){
-            const candidate = await ElectionDapp.methods.liveScoreCandidates(i).call()
-            this.setState({
-              liveScoreCandidates:[...this.state.liveScoreCandidates, candidate],
+          // for(var i=1; i <= liveScoreCandidatesCount; i++){
+          //   const candidate = await ElectionDapp.methods.liveScoreCandidates(i).call()
+          //   this.setState({
+          //     liveScoreCandidates:[...this.state.liveScoreCandidates, candidate],
               
-            })
-          }
+          //   })
+          // }
 //ELECTION
           for(var j=1; j <= electionCount; j++){
             const election = await ElectionDapp.methods.elections(j).call()
@@ -201,7 +201,7 @@ export default class App extends Component {
      candidateCount:0,
      electionCount:0,
      voters:null,
-     liveScoreCandidatesCount:0,
+    //  liveScoreCandidatesCount:0,
      persons : []
 
     //  message:''
@@ -340,7 +340,7 @@ export default class App extends Component {
                             ElectionDapp={this.state.ElectionDapp}
                             liveScoreCandidates={this.state.liveScoreCandidates}
                             account={this.state.account}
-                            liveScoreCandidatesCount={this.state.liveScoreCandidatesCount}
+                            // liveScoreCandidatesCount={this.state.liveScoreCandidatesCount}
                     />
               </Route>
               <Route path="/elections">
