@@ -46,7 +46,7 @@ export default class ViewCandidatesModal extends Component {
             // return temp
             // console.log(this.state.candidate_lists)
             return{
-                result: this.props.getCandidates
+                result: this.props.getCandidates['1']
             }
     }
     constructor(props) {
@@ -151,18 +151,20 @@ export default class ViewCandidatesModal extends Component {
                         onClick={async(event) => {
                             // const id = parseInt(parseInt(result.id,10), parseInt(this.props.id, 10)
                             const candidate_id = parseInt(result.id,10)
-                            const election_id = this.props.id
-                            console.log("Election ID",this.props.election_id, typeof this.props.election_id)
-                            console.log("Canidate ID:",candidate_id,typeof election_id)
+                            // const election_id = this.props.id
+                            // console.log("Election ID",this.props.election_id, typeof this.props.election_id)
                             // console.log(typeof id)
-                            this.props.ElectionDapp.methods.voteCandidate(this.props.election_id,candidate_id)                                                                             
+                            const elect_id = parseInt(this.props.getCandidates['0'],10) 
+                            console.log("Canidate ID:",result.id,typeof candidate_id)
+                            console.log("ELECTION ID:", elect_id, typeof elect_id)
+
+                            this.props.ElectionDapp.methods.voteCandidate(elect_id,candidate_id)                                                                             
                             .send({from:this.props.account})
                             .once('receipt', (receipt) => {
                                 console.log(receipt);
                                 // this.setState({loading:false})
                                 this.setState({message_state:true})
                                 this.setState({message:"THANKS FOR VOTING ON OUR PLATFORM"})
-                                
                             })
                             event.preventDefault()
                         }}
