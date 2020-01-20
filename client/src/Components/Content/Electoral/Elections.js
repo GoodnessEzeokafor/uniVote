@@ -64,6 +64,9 @@ export default class Elections extends Component {
                                 ElectionDapp = {this.props.ElectionDapp}
                                 account={this.props.account}
 
+
+
+                                
                             />
 
 <CountDown targetDate="Jan 15, 2020" targetTime="23:00:00" />;
