@@ -37,6 +37,8 @@ export default class Home extends Component {
             })
     
             // this.fetchData()
+        this.verifyEmail()
+
         }
     
     // fetchData = () => {
@@ -113,7 +115,6 @@ export default class Home extends Component {
                                     event.persist()
                                     // this.props.ShowLoader()
                                     // this.verifyEmail()
-                                    this.verifyEmail()
 
                                     if(this.state.isStudent){
                                         this.props.ElectionDapp.methods.register_voter(this.props.account)                                                                             
