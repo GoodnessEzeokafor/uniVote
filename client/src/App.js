@@ -387,7 +387,8 @@ export default class App extends Component {
                       voters={this.state.voters}   
                       ShowLoader={this.ShowLoader}     
                       HideLoader={this.HideLoader} 
-                      persons ={this.state.persons}    
+                      persons ={this.state.persons}
+                      registeredUserCount={this.state.registeredUserCount}    
                       // email={}      
                     />
               </Route>              

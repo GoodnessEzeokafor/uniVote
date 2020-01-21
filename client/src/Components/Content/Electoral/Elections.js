@@ -115,7 +115,7 @@ export default class Elections extends Component {
                                             
                                             // {this.showModal()}
                                         }
-                                        > Add Candidate
+                                        > SCORES
                                         </button>
                                         
                                         :<span></span>}
