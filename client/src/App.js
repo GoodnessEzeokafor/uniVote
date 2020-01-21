@@ -371,14 +371,14 @@ export default class App extends Component {
                       voters={this.state.voters}
                   />
               </Route> */}
-              <Route path="/persons">
+              {/* <Route path="/persons">
                   <PersonList 
                       candidate_lists={this.state.candidate_lists} 
                       ElectionDapp={this.state.ElectionDapp}
                       account={this.state.account}
                       voters={this.state.voters}
                   />
-              </Route>
+              </Route> */}
               <Route path="/">
                   <Home 
                       ElectionDapp={this.state.ElectionDapp}
