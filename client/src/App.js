@@ -9,12 +9,10 @@ import axios from "axios"
 
 /* COMPONENTS */
 import Home from"./Components/Content/Home"
-import Score from"./Components/Content/Score"
-import Vote from "./Components/Content/Vote"
 // import Profile from "./Components/Profile/Dashboard"
 import ElectionForm from "./Components/Content/Electoral/ElectionForm"
 import Elections from "./Components/Content/Electoral/Elections"
-
+import PersonList from "./Components/PersonList"
 // import Login from "./Components/Auth/Login"
 // import Signup from "./Components/Auth/Signup"
 /* COMPONENTS */
@@ -298,12 +296,12 @@ export default class App extends Component {
                         {/* <b className="caret"></b> */}
                       </Link>
                     </li>    
-                    {/* <li  className="has-sub" >
+                    <li  className="has-sub" >
                       <Link className="sidenav-item-link" to="/persons">
                         <i className="mdi mdi-chart-pie"></i>
                         <span className="nav-text">Persons</span> 
                       </Link>
-                    </li> */}                            
+                    </li>                            
                 </ul>
               </div>
               {/* <hr className="separator" /> */}
@@ -358,14 +356,14 @@ export default class App extends Component {
                       voters={this.state.voters}
                   />
               </Route> */}
-              {/* <Route path="/persons">
+              <Route path="/persons">
                   <PersonList 
                       candidate_lists={this.state.candidate_lists} 
                       ElectionDapp={this.state.ElectionDapp}
                       account={this.state.account}
                       voters={this.state.voters}
                   />
-              </Route> */}
+              </Route>
               <Route path="/">
                   <Home 
                       ElectionDapp={this.state.ElectionDapp}
