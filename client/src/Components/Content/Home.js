@@ -47,7 +47,7 @@ export default class Home extends Component {
             if(this.state.persons[i].email.toLowerCase() === this.props.email.toLowerCase()){
                 this.setState({isStudent:true})
                 console.log(this.props.email)
-                
+
                  break;
                 }
             //  if(this.props.persons[i].email !== this.props.email){
@@ -99,7 +99,7 @@ export default class Home extends Component {
                                 className="mb-1 btn btn-block  btn-secondary"
                                 onClick ={async(event) => {
                                     event.persist()
-                                    this.props.ShowLoader()
+                                    // this.props.ShowLoader()
                                     this.verifyEmail()
                                     if(this.state.isStudent){
                                         this.props.ElectionDapp.methods.register_voter(this.props.account)                                                                             
@@ -115,7 +115,7 @@ export default class Home extends Component {
                                     }else{
                                         alert("NOT A STUDENT")
                                     }
-                                   this.props.HideLoader()
+                                //    this.props.HideLoader()
                                     event.preventDefault()
                                 }}>REGISTER TO VOTE</button>
 
