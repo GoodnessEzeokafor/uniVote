@@ -19,6 +19,10 @@ export default class Home extends Component {
         this.setState({ persons });
         // console.log(this.state.persons.length)
         })
+
+
+        this.verifyEmail()
+
     }
 
     componentWillUnmount() {
@@ -33,6 +37,7 @@ export default class Home extends Component {
             isStudent:false,
             persons:[]
         }
+
     }
 
     
@@ -100,7 +105,7 @@ export default class Home extends Component {
                                 onClick ={async(event) => {
                                     event.persist()
                                     // this.props.ShowLoader()
-                                    this.verifyEmail()
+                                    // this.verifyEmail()
                                     if(this.state.isStudent){
                                         this.props.ElectionDapp.methods.register_voter(this.props.account)                                                                             
                                         .send({from:this.props.account})
