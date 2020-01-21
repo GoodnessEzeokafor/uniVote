@@ -9,11 +9,11 @@ import Fortmatic from "fortmatic";
 export default class Home extends Component {
     _isMounted = false;
 
- componentDidMount() {
+ async componentDidMount() {
     // axios.get(`https://jsonplaceholder.typicode.com/users`)
     this._isMounted = true;
 
-   axios.get(`/users`)
+   await axios.get(`/users`)
         .then(res => {
         const persons = res.data.userdetails;
         this.setState({ persons });
@@ -25,15 +25,15 @@ export default class Home extends Component {
         this._isMounted = false;
       }
     
-    // constructor(props) {
-    //     super(props);
-        state = {
+    constructor(props) {
+        super(props);
+        this.state = {
             message_state:false,
             message:'',
             isStudent:false,
             persons:[]
         }
-    // }
+    }
 
     
 // componentDidMount(){
