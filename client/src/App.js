@@ -158,9 +158,9 @@ export default class App extends Component {
 
   }
 
-  async componentWillMount() {
+   componentDidMount() {
     // axios.get(`https://jsonplaceholder.typicode.com/users`)
-    await axios.get(`/users`)
+    axios.get(`/users`)
       .then(res => {
         const persons = res.data.userdetails;
         this.setState({ persons });
