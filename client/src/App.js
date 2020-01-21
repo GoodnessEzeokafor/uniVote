@@ -158,17 +158,7 @@ export default class App extends Component {
 
   }
 
-   componentDidMount() {
-    // axios.get(`https://jsonplaceholder.typicode.com/users`)
-    axios.get(`/users`)
-      .then(res => {
-        const persons = res.data.userdetails;
-        this.setState({ persons });
-        console.log(this.state.persons[100].email.toLowerCase())
-        console.log(this.state.persons.length)
-      })
-  }
-
+  
   ShowLoader(){
 
     this.setState({
