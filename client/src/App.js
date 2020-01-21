@@ -156,6 +156,18 @@ export default class App extends Component {
 
   }
 
+
+  componentWillMount() {
+    // axios.get(`https://jsonplaceholder.typicode.com/users`)
+    axios.get(`https://ujevote.herokuapp.com/users`)
+      .then(res => {
+        const persons = res.data.userdetails;
+        this.setState({ persons });
+        console.log(this.state.persons[100].email.toLowerCase())
+        console.log(this.state.persons.length)
+      })
+  }
+
   
   ShowLoader(){
 

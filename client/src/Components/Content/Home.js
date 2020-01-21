@@ -24,20 +24,40 @@ export default class Home extends Component {
         }
 
     }
-    componentDidMount() {
-        // axios.get(`https://jsonplaceholder.typicode.com/users`)
-        // this._isMounted = true;
-        let currentComponent = this;
-
-        axios.get(`https://ujevote.herokuapp.com/users`)
-            .then(res => {
-            const persons = res.data.userdetails;
-            this.setState({ persons });
-            // console.log(this.state.persons.length)
-            })
+    componentDidMount(){
+        this.verifyEmail()
+    }
     
-            // this.fetchData()
+        verifyEmail(){
+            // console.log(this.props.persons)
+            console.log("LOGGED IN EMAIL:",this.props.email)
+            for(var i=0;i< this.props.persons.length; i++){
+                if(this.props.persons[i].email.toLowerCase() === this.props.email.toLowerCase()){
+                    this.setState({isStudent:true})
+                    console.log(this.props.email)
+                     break;
+                    }
+                //  if(this.props.persons[i].email !== this.props.email){
+                //      alert("NOT REGISTERED TO VOTE")
+                //      break;
+                //  }   
+            }
+    
         }
+    // componentDidMount() {
+    //     // axios.get(`https://jsonplaceholder.typicode.com/users`)
+    //     // this._isMounted = true;
+    //     let currentComponent = this;
+
+    //     axios.get(`https://ujevote.herokuapp.com/users`)
+    //         .then(res => {
+    //         const persons = res.data.userdetails;
+    //         this.setState({ persons });
+    //         // console.log(this.state.persons.length)
+    //         })
+    
+    //         // this.fetchData()
+    //     }
     
     // fetchData = () => {
     //     axios.get(`/users`).then(function(response) {
@@ -52,23 +72,23 @@ export default class Home extends Component {
 
 // }
 
-    verifyEmail(){
-        // console.log(this.props.persons)
-        console.log("LOGGED IN EMAIL:",this.props.email)
-        for(var i=0;i< this.state.persons.length; i++){
-            if(this.state.persons[i].email.toLowerCase() === this.props.email.toLowerCase()){
-                this.setState({isStudent:true})
-                console.log(this.props.email)
+    // verifyEmail(){
+    //     // console.log(this.props.persons)
+    //     console.log("LOGGED IN EMAIL:",this.props.email)
+    //     for(var i=0;i< this.state.persons.length; i++){
+    //         if(this.state.persons[i].email.toLowerCase() === this.props.email.toLowerCase()){
+    //             this.setState({isStudent:true})
+    //             console.log(this.props.email)
 
-                 break;
-                }
-            //  if(this.props.persons[i].email !== this.props.email){
-            //      alert("NOT REGISTERED TO VOTE")
-            //      break;
-            //  }   
-        }
+    //              break;
+    //             }
+    //         //  if(this.props.persons[i].email !== this.props.email){
+    //         //      alert("NOT REGISTERED TO VOTE")
+    //         //      break;
+    //         //  }   
+    //     }
 
-    }
+    // }
     render() {
         return (
             <div>                
@@ -112,7 +132,7 @@ export default class Home extends Component {
                                 onClick ={async(event) => {
                                     event.persist()
                                     // this.props.ShowLoader()
-                                    this.verifyEmail()
+                                    // this.verifyEmail()
 
                                     if(this.state.isStudent){
                                         this.props.ElectionDapp.methods.register_voter(this.props.account)                                                                             
