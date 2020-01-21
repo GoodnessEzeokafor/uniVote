@@ -311,12 +311,12 @@ export default class App extends Component {
                         {/* <b className="caret"></b> */}
                       </Link>
                     </li>    
-                    <li  className="has-sub" >
+                    {/* <li  className="has-sub" >
                       <Link className="sidenav-item-link" to="/persons">
                         <i className="mdi mdi-chart-pie"></i>
                         <span className="nav-text">Persons</span> 
                       </Link>
-                    </li>                            
+                    </li>                             */}
                 </ul>
               </div>
               {/* <hr className="separator" /> */}
