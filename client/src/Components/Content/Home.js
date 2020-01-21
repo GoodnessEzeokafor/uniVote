@@ -157,7 +157,7 @@ export default class Home extends Component {
                                         <br></br>
                                         <br></br>
 
-                                        <button 
+                                        {/* <button 
                                         type="button" 
                                         className="mb-1 btn btn-block  btn-primary"
                                         onClick ={async() => {
@@ -166,7 +166,7 @@ export default class Home extends Component {
                                             await fm.user.logout();
                                                window.location.reload()
                                             // event.preventDefault()
-                                        }}>Logout</button>
+                                        }}>Logout</button> */}
                             </div>
                         </div>
                     </div>
