@@ -12,7 +12,7 @@ import Home from"./Components/Content/Home"
 // import Profile from "./Components/Profile/Dashboard"
 import ElectionForm from "./Components/Content/Electoral/ElectionForm"
 import Elections from "./Components/Content/Electoral/Elections"
-import PersonList from "./Components/PersonList"
+
 // import Login from "./Components/Auth/Login"
 // import Signup from "./Components/Auth/Signup"
 /* COMPONENTS */
@@ -284,12 +284,12 @@ export default class App extends Component {
                  </li> 
                  : <span></span>}
               
-                    <li  className="has-sub active expand" >
+                    {/* <li  className="has-sub active expand" >
                       <Link className="sidenav-item-link" to="/score">
                         <i className="mdi mdi-view-dashboard-outline"></i>
                         <span className="nav-text">Live Score</span> 
                       </Link>
-                    </li>
+                    </li> */}
                     <li  className="has-sub active expand" >
                       <Link className="sidenav-item-link" to="/elections">
                         <i className="mdi mdi-view-dashboard-outline"></i>
@@ -299,9 +299,9 @@ export default class App extends Component {
                     </li>
                     
                     {/* <li  className="has-sub active expand">
-                      <Link className="sidenav-item-link" to="/vote">
+                      <Link className="sidenav-item-link" to="/winner">
                         <i className="mdi mdi-folder-multiple-outline"></i>
-                        <span className="nav-text">Vote</span> 
+                        <span className="nav-text">Winner</span> 
                       </Link>
                     </li> */}
                     <li  className="has-sub active expand">
@@ -363,8 +363,8 @@ export default class App extends Component {
                   <CardProfile  email = {this.state.email}
                   account={this.state.account} />
               </Route>
-              {/* <Route path="/vote">
-                  <Vote 
+              {/* <Route path="/winner">
+                  <Winner 
                       // candidate_lists={this.state.candidate_lists} 
                       ElectionDapp={this.state.ElectionDapp}
                       account={this.state.account}
