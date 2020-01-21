@@ -128,10 +128,10 @@ export default class Elections extends Component {
                                         onClick={async(event) => {
                                             this.showModal2();
                                             const id = parseInt(event.target.id, 10);
-                                            console.log(id, typeof id);
-                                            console.log(id)
+                                            // console.log(id, typeof id);
+                                            // console.log(id)
                                             const getcandidates = await this.getCandidates(id);
-                                        console.log("Content:",getcandidates)
+                                        // console.log("Content:",getcandidates)
                                             this.setState({ getcandidates });
                                             event.persist();
                                         }}

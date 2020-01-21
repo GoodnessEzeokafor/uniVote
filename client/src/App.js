@@ -89,10 +89,10 @@ export default class App extends Component {
         // gets the email of the user
         var loggedInMail = await fm.user.getUser(); 
         var email = loggedInMail.email
-        console.log(email)
+        // console.log(email)
 
         this.setState({email})
-        console.log("Balance:",balance)
+        // console.log("Balance:",balance)
     
     //     // // get network data
         const ElectionNetworkData= ElectionAbi.networks[networkId]
@@ -109,8 +109,8 @@ export default class App extends Component {
           const registeredUserCount = await ElectionDapp.methods.registerVoterCount().call()
           // const liveScoreCandidatesCount = await ElectionDapp.methods.liveScoreCandidateCount().call()
           // liveScoreCandidates
-          console.log("Account of Election Coordinator:",electionAuthority)
-          console.log("Account of the deployer", this.state.account)
+          // console.log("Account of Election Coordinator:",electionAuthority)
+          // console.log("Account of the deployer", this.state.account)
           this.setState({electionAuthority})
           this.setState({ElectionDapp})
           this.setState({dapp_name})
@@ -139,7 +139,7 @@ export default class App extends Component {
               
             })
           }
-          console.log({elections:this.state.elections})
+          // console.log({elections:this.state.elections})
 
           // LOAD CANDIDATES
           // for(var i=1; i <= candidateCount; i++){
@@ -166,8 +166,8 @@ export default class App extends Component {
       .then(res => {
         const persons = res.data.userdetails;
         this.setState({ persons });
-        console.log(this.state.persons[100].email.toLowerCase())
-        console.log(this.state.persons.length)
+        // console.log(this.state.persons[100].email.toLowerCase())
+        // console.log(this.state.persons.length)
       })
   }
 
