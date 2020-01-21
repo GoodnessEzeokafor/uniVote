@@ -9,25 +9,10 @@ import Fortmatic from "fortmatic";
 export default class Home extends Component {
     _isMounted = false;
 
- async componentDidMount() {
-    // axios.get(`https://jsonplaceholder.typicode.com/users`)
-    this._isMounted = true;
-
-   await axios.get(`/users`)
-        .then(res => {
-        const persons = res.data.userdetails;
-        this.setState({ persons });
-        // console.log(this.state.persons.length)
-        })
-
-
-        this.verifyEmail()
-
-    }
-
-    componentWillUnmount() {
-        this._isMounted = false;
-      }
+    
+    // componentWillUnmount() {
+    //     this._isMounted = false;
+    //   }
     
     constructor(props) {
         super(props);
@@ -39,6 +24,28 @@ export default class Home extends Component {
         }
 
     }
+    componentDidMount() {
+        // axios.get(`https://jsonplaceholder.typicode.com/users`)
+        // this._isMounted = true;
+        let currentComponent = this;
+
+        axios.get(`https://ujevote.herokuapp.com/users`)
+            .then(res => {
+            const persons = res.data.userdetails;
+            currentComponent.setState({ persons });
+            // console.log(this.state.persons.length)
+            })
+    
+            // this.fetchData()
+        }
+    
+    // fetchData = () => {
+    //     axios.get(`/users`).then(function(response) {
+    //         const persons = response.data.userdetails
+    //         console.log(persons)
+    //         this.setState({ persons })
+    //     })
+    // }
 
     
 // componentDidMount(){
@@ -106,6 +113,8 @@ export default class Home extends Component {
                                     event.persist()
                                     // this.props.ShowLoader()
                                     // this.verifyEmail()
+                                    this.verifyEmail()
+
                                     if(this.state.isStudent){
                                         this.props.ElectionDapp.methods.register_voter(this.props.account)                                                                             
                                         .send({from:this.props.account})
