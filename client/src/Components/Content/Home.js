@@ -127,7 +127,7 @@ export default class Home extends Component {
                                         }
                                          )
                                     }else{
-                                        alert("NOT A STUDENT")
+                                        alert("PLEASE TRY AGAIN, IF YOU ARE NOT A STUDENT PLEASE VIEW THE LIVE SCORE")
                                     }
                                 //    this.props.HideLoader()
                                     event.preventDefault()
