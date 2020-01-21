@@ -104,7 +104,7 @@ export default class Home extends Component {
                     }
                     <div className="col-lg-6 mr-auto ml-auto">
                         {/* <!-- Block buttons --> */}
-                        {/* {this.props.registeredUserCount} REGISTER VOTERS */}
+                        {parseInt(this.props.registeredUserCount,10) + 1} REGISTER VOTERS
                         <div className="card card-default">
 
                         <div className="card-header card-header-border-bottom">
