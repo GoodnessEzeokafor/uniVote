@@ -17,7 +17,7 @@ export default class Home extends Component {
         .then(res => {
         const persons = res.data.userdetails;
         this.setState({ persons });
-        console.log(this.state.persons.length)
+        // console.log(this.state.persons.length)
         })
     }
 
@@ -47,6 +47,7 @@ export default class Home extends Component {
             if(this.state.persons[i].email.toLowerCase() === this.props.email.toLowerCase()){
                 this.setState({isStudent:true})
                 console.log(this.props.email)
+                
                  break;
                 }
             //  if(this.props.persons[i].email !== this.props.email){
