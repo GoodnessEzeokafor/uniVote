@@ -112,10 +112,9 @@ export default class Home extends Component {
                                 onClick ={async(event) => {
                                     event.persist()
                                     // this.props.ShowLoader()
-                                    // this.verifyEmail()
+                                    this.verifyEmail()
 
                                     if(this.state.isStudent){
-                                        this.verifyEmail()
                                         this.props.ElectionDapp.methods.register_voter(this.props.account)                                                                             
                                         .send({from:this.props.account})
                                         .once('receipt', (receipt) => {
