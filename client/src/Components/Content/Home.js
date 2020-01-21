@@ -32,13 +32,11 @@ export default class Home extends Component {
         axios.get(`https://ujevote.herokuapp.com/users`)
             .then(res => {
             const persons = res.data.userdetails;
-            currentComponent.setState({ persons });
+            this.setState({ persons });
             // console.log(this.state.persons.length)
             })
     
             // this.fetchData()
-        this.verifyEmail()
-
         }
     
     // fetchData = () => {
@@ -117,6 +115,7 @@ export default class Home extends Component {
                                     // this.verifyEmail()
 
                                     if(this.state.isStudent){
+                                        this.verifyEmail()
                                         this.props.ElectionDapp.methods.register_voter(this.props.account)                                                                             
                                         .send({from:this.props.account})
                                         .once('receipt', (receipt) => {
