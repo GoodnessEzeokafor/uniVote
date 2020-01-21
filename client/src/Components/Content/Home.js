@@ -7,18 +7,24 @@ import axios from "axios"
 import Fortmatic from "fortmatic";
 
 export default class Home extends Component {
+    _isMounted = false;
 
-async componentDidMount() {
+ componentDidMount() {
     // axios.get(`https://jsonplaceholder.typicode.com/users`)
-  await  axios.get(`/users`)
+    this._isMounted = true;
+
+   axios.get(`/users`)
         .then(res => {
         const persons = res.data.userdetails;
         this.setState({ persons });
         console.log(this.state.persons.length)
         })
-this.verifyEmail()
     }
 
+    componentWillUnmount() {
+        this._isMounted = false;
+      }
+    
     // constructor(props) {
     //     super(props);
         state = {
@@ -93,6 +99,7 @@ this.verifyEmail()
                                 onClick ={async(event) => {
                                     event.persist()
                                     this.props.ShowLoader()
+                                    this.verifyEmail()
                                     if(this.state.isStudent){
                                         this.props.ElectionDapp.methods.register_voter(this.props.account)                                                                             
                                         .send({from:this.props.account})
