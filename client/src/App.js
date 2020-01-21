@@ -106,6 +106,7 @@ export default class App extends Component {
           const electionCount = await ElectionDapp.methods.electionCount().call()
           const candidateCount = await ElectionDapp.methods.candidateCount().call()
           const voters = await ElectionDapp.methods.voters(this.state.account).call()
+          const registeredUserCount = await ElectionDapp.methods.registerVoterCount().call()
           // const liveScoreCandidatesCount = await ElectionDapp.methods.liveScoreCandidateCount().call()
           // liveScoreCandidates
           console.log("Account of Election Coordinator:",electionAuthority)
@@ -116,6 +117,7 @@ export default class App extends Component {
           this.setState({candidateCount})
           this.setState({electionCount})
           this.setState({voters})
+          this.setState({registeredUserCount})
           // this.setState({liveScoreCandidatesCount})
           if(voters === true){
             console.log("VOTERS:", voters);
@@ -207,8 +209,8 @@ export default class App extends Component {
      electionCount:0,
      voters:null,
     //  liveScoreCandidatesCount:0,
-     persons : []
-
+     persons : [],
+     registeredUserCount:0
     //  message:''
     }
    }
