@@ -64,15 +64,10 @@ export default class Elections extends Component {
                                 id={parseInt(election.id,10)}
                                 // single_project={this.state.single_project}
                                 ElectionDapp = {this.props.ElectionDapp}
-                                account={this.props.account}
-                               
-
-
-
-                                
+                                account={this.props.account} 
                             />
 
-<CountDown targetDate="Jan 21, 2020" targetTime="21:00:00" />;
+<CountDown targetDate="Feb 21, 2020" targetTime="21:00:00" />;
                             <ViewCandidatesModal 
                                  show={this.state.show2}
                                  handleClose={this.hideModal2}
