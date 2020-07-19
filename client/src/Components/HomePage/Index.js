@@ -7,230 +7,704 @@ export default class Home extends Component{
 
             <>
 
-<div className="body-wrap">
-  <header className="site-header">
-    <div className="container">
-      <div className="site-header-inner">
-        <div className="brand header-brand">
-          <h1 className="m-0">
-            <a href="#">
-              <img className="header-logo-image" src="/landingPage/dist/images/logo.svg" alt="Logo" />
-            </a>
-          </h1>
+{/* <!-- ======= Hero Section ======= --> */}
+  <section class="hero">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-12">
+          <a class="hero-brand" href="index.html" title="Home"><img alt="Bell Logo" src="/assets/img/logo.png" /></a>
         </div>
+      </div>
+
+      <div class="col-md-12">
+        <h1>
+          A theme with personality
+        </h1>
+
+        <p class="tagline">
+          This is a powerful theme with some great features that you can use in your future projects.
+        </p>
+        <a class="btn btn-full scrollto" href="#about">Get Started Now</a>
       </div>
     </div>
+
+  </section>
+  {/* <!-- End Hero --> */}
+
+  {/* <!-- ======= Header ======= --> */}
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <a href="index.html"><img src="/assets/img/logo-nav.png" alt="" /></a>
+        {/* <!-- Uncomment below if you prefer to use a text image -->
+        <!--<h1><a href="#hero">Bell</a></h1>--> */}
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#team">Team</a></li>
+          <li class="menu-has-children"><a href="">Drop Down</a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="menu-has-children"><a href="#">Drop Down 2</a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+              <li><a href="#">Drop Down 5</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+      {/* <!-- #nav-menu-container --> */}
+
+      <nav class="nav social-nav pull-right d-none d-lg-inline">
+        <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-envelope"></i></a>
+      </nav>
+    </div>
   </header>
-  <main>
-    <section className="hero">
-      <div className="container">
-        <div className="hero-inner">
-          <div className="hero-copy">
-            <h1 className="hero-title mt-0">UniVote</h1>
-            <p className="hero-paragraph">Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.</p>
-            <div className="hero-cta"><a className="button button-primary" href="#">Pre order now</a><a className="button" href="#">Get in touch</a></div>
-          </div>
-          <div className="hero-figure anime-element">
-            <svg className="placeholder" width={528} height={396} viewBox="0 0 528 396">
-              <rect width={528} height={396} style={{fill:"transparent" }} />
-            </svg>
-            <div className="hero-figure-box hero-figure-box-01" data-rotation="45deg" />
-            <div className="hero-figure-box hero-figure-box-02" data-rotation="-45deg" />
-            <div className="hero-figure-box hero-figure-box-03" data-rotation="0deg" />
-            <div className="hero-figure-box hero-figure-box-04" data-rotation="-135deg" />
-            <div className="hero-figure-box hero-figure-box-05" />
-            <div className="hero-figure-box hero-figure-box-06" />
-            <div className="hero-figure-box hero-figure-box-07" />
-            <div className="hero-figure-box hero-figure-box-08" data-rotation="-22deg" />
-            <div className="hero-figure-box hero-figure-box-09" data-rotation="-52deg" />
-            <div className="hero-figure-box hero-figure-box-10" data-rotation="-50deg" />
-          </div>
-        </div>
-      </div>
-    </section>
-    <section className="features section">
-      <div className="container">
-        <div className="features-inner section-inner has-bottom-divider">
-          <div className="features-wrap">
-            <div className="feature text-center is-revealing">
-              <div className="feature-inner">
-                <div className="feature-icon">
-                  <img src="/landingPage/dist/images/feature-icon-01.svg" alt="Feature 01" />
-                </div>
-                <h4 className="feature-title mt-24">Be Productive</h4>
-                <p className="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
-              </div>
-            </div>
-            <div className="feature text-center is-revealing">
-              <div className="feature-inner">
-                <div className="feature-icon">
-                  <img src="/landingPage/dist/images/feature-icon-02.svg" alt="Feature 02" />
-                </div>
-                <h4 className="feature-title mt-24">Be Productive</h4>
-                <p className="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
-              </div>
-            </div>
-            <div className="feature text-center is-revealing">
-              <div className="feature-inner">
-                <div className="feature-icon">
-                  <img src="/landingPage/dist/images/feature-icon-03.svg" alt="Feature 03" />
-                </div>
-                <h4 className="feature-title mt-24">Be Productive</h4>
-                <p className="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
-              </div>
-            </div>
+  {/* <!-- End Header --> */}
 
-            <div className="feature text-center is-revealing">
-              <div className="feature-inner">
-                <div className="feature-icon">
-                  <img src="/landingPage/dist/images/feature-icon-04.svg" alt="Feature 04" />
-                </div>
-                <h4 className="feature-title mt-24">Be Productive</h4>
-                <p className="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
-              </div>
+  <main id="main">
+
+    {/* <!-- ======= About Section ======= --> */}
+    <section class="about" id="about">
+
+      <div class="container text-center">
+        <h2>
+          About Bell Theme
+        </h2>
+
+        <p>
+          Voluptua scripserit per ad, laudem viderer sit ex. Ex alia corrumpit voluptatibus usu, sed unum convenire id. Ut cum nisl moderatius, per nihil dicant commodo an. Eum tacimates erroribus ad. Atqui feugiat euripidis ea pri, sed veniam tacimates ex. Menandri
+          temporibus an duo.
+        </p>
+
+        <div class="row stats-row">
+          <div class="stats-col text-center col-md-3 col-sm-6">
+            <div class="circle">
+              <span class="stats-no" data-toggle="counter-up">232</span> Satisfied Customers
             </div>
-            <div className="feature text-center is-revealing">
-              <div className="feature-inner">
-                <div className="feature-icon">
-                  <img src="/landingPage/dist/images/feature-icon-05.svg" alt="Feature 05" />
-                </div>
-                <h4 className="feature-title mt-24">Be Productive</h4>
-                <p className="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
-              </div>
+          </div>
+
+          <div class="stats-col text-center col-md-3 col-sm-6">
+            <div class="circle">
+              <span class="stats-no" data-toggle="counter-up">79</span> Released Projects
             </div>
-            <div className="feature text-center is-revealing">
-              <div className="feature-inner">
-                <div className="feature-icon">
-                  <img src="/landingPage/dist/images/feature-icon-06.svg" alt="Feature 06" />
-                </div>
-                <h4 className="feature-title mt-24">Be Productive</h4>
-                <p className="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
-              </div>
+          </div>
+
+          <div class="stats-col text-center col-md-3 col-sm-6">
+            <div class="circle">
+              <span class="stats-no" data-toggle="counter-up">1,463</span> Hours Of Support
+            </div>
+          </div>
+
+          <div class="stats-col text-center col-md-3 col-sm-6">
+            <div class="circle">
+              <span class="stats-no" data-toggle="counter-up">15</span> Hard Workers
             </div>
           </div>
         </div>
       </div>
+
     </section>
-    <section className="pricing section">
-      <div className="container-sm">
-        <div className="pricing-inner section-inner">
-          <div className="pricing-header text-center">
-            <h2 className="section-title mt-0">Unlimited for all</h2>
-            <p className="section-paragraph mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut ad quis nostrud.</p>
+    {/* <!-- End About Section --> */}
+
+    {/* <!-- ======= Welcome Section ======= --> */}
+    <section class="welcome text-center">
+      <h2>Welcome to a perfect theme</h2>
+      <p>
+        This is the most powerful theme with thousands of options that you have never seen before.
+      </p>
+      <img alt="Bell - A perfect theme" class="gadgets-img hidden-md-down" src="/assets/img/gadgets.png" />
+    </section>
+    {/* <!-- End Welcome Section --> */}
+
+    {/* <!-- ======= Features Section ======= --> */}
+    <section class="features" id="features">
+
+      <div class="container">
+        <h2 class="text-center">
+          Features
+        </h2>
+
+        <div class="row">
+          <div class="feature-col col-lg-4 col-xs-12">
+            <div class="card card-block text-center">
+              <div>
+                <div class="feature-icon">
+                  <span class="fa fa-rocket"></span>
+                </div>
+              </div>
+
+              <div>
+                <h3>
+                  Custom Design
+                </h3>
+
+                <p>
+                  Eque feugiat contentiones ei has. Id summo mundi explicari his, nec in maiorum scriptorem.
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="row">
-            <div className="col-md-3">
-            <h4 className="feature-title mt-24">Be Productive</h4>
 
+          <div class="feature-col col-lg-4 col-xs-12">
+            <div class="card card-block text-center">
+              <div>
+                <div class="feature-icon">
+                  <span class="fa fa-envelope"></span>
+                </div>
+              </div>
+
+              <div>
+                <h3>
+                  Responsive Layout
+                </h3>
+
+                <p>
+                  Eque feugiat contentiones ei has. Id summo mundi explicari his, nec in maiorum scriptorem.
+                </p>
+              </div>
             </div>
-            <div className="col-md-3">
-
-            <h4 className="feature-title mt-24">Be Productive</h4>
-            </div>
-            <div className="col-md-3">
-
-            <h4 className="feature-title mt-24">Be Productive</h4>
-            </div>
-
           </div>
-          {/* <div className="pricing-tables-wrap">
-            <div className="pricing-table">
-              <div className="pricing-table-inner is-revealing">
-                <div className="pricing-table-main">
-                  <div className="pricing-table-header pb-24">
-                    <div className="pricing-table-price"><span className="pricing-table-price-currency h2">$</span><span className="pricing-table-price-amount h1">49</span><span className="text-xs">/month</span></div>
+
+          <div class="feature-col col-lg-4 col-xs-12">
+            <div class="card card-block text-center">
+              <div>
+                <div class="feature-icon">
+                  <span class="fa fa-bell"></span>
+                </div>
+              </div>
+
+              <div>
+                <h3>
+                  Innovative Ideas
+                </h3>
+
+                <p>
+                  Eque feugiat contentiones ei has. Id summo mundi explicari his, nec in maiorum scriptorem.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="feature-col col-lg-4 col-xs-12">
+            <div class="card card-block text-center">
+              <div>
+                <div class="feature-icon">
+                  <span class="fa fa-database"></span>
+                </div>
+              </div>
+
+              <div>
+                <h3>
+                  Good Documentation
+                </h3>
+
+                <p>
+                  Eque feugiat contentiones ei has. Id summo mundi explicari his, nec in maiorum scriptorem.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-col col-lg-4 col-xs-12">
+            <div class="card card-block text-center">
+              <div>
+                <div class="feature-icon">
+                  <span class="fa fa-cutlery"></span>
+                </div>
+              </div>
+
+              <div>
+                <h3>
+                  Excellent Features
+                </h3>
+
+                <p>
+                  Eque feugiat contentiones ei has. Id summo mundi explicari his, nec in maiorum scriptorem.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-col col-lg-4 col-xs-12">
+            <div class="card card-block text-center">
+              <div>
+                <div class="feature-icon">
+                  <span class="fa fa-dashboard"></span>
+                </div>
+              </div>
+
+              <div>
+                <h3>
+                  Retina Ready
+                </h3>
+                <p>
+                  Eque feugiat contentiones ei has. Id summo mundi explicari his, nec in maiorum scriptorem.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    {/* <!-- End Features Section --> */}
+
+    {/* <!-- ======= Call to Action Section ======= --> */}
+    <section class="cta">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9 col-sm-12 text-lg-left text-center">
+            <h2>
+              Call to Action Section
+            </h2>
+
+            <p>
+              Lorem ipsum dolor sit amet, nec ad nisl mandamus imperdiet, ut corpora cotidieque cum. Et brute iracundia his, est eu idque dictas gubergren
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-sm-12 text-lg-right text-center">
+            <a class="btn btn-ghost" href="#">Buy This Theme</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    {/* <!-- End Call to Action Section --> */}
+
+    {/* <!-- ======= Portfolio Section ======= --> */}
+    <section class="portfolio" id="portfolio">
+
+      <div class="container text-center">
+        <h2>
+          Portfolio
+        </h2>
+
+        <p>
+          Voluptua scripserit per ad, laudem viderer sit ex. Ex alia corrumpit voluptatibus usu, sed unum convenire id. Ut cum nisl moderatius, Per nihil dicant commodo an.
+        </p>
+      </div>
+
+      <div class="portfolio-grid">
+        <div class="row">
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="assets/img/porf-1.jpg" class="venobox" data-gall="portfolioGallery">
+                <img alt="" src="assets/img/porf-1.jpg" />
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
                   </div>
-                  <div className="pricing-table-features-title text-xs pt-24 pb-24">What you will get</div>
-                  <ul className="pricing-table-features list-reset text-xs">
-                    <li>
-                      <span>Lorem ipsum dolor sit nisi</span>
-                    </li>
-                    <li>
-                      <span>Lorem ipsum dolor sit nisi</span>
-                    </li>
-                    <li>
-                      <span>Lorem ipsum dolor sit nisi</span>
-                    </li>
-                    <li>
-                      <span>Lorem ipsum dolor sit nisi</span>
-                    </li>
-                  </ul>
                 </div>
-                <div className="pricing-table-cta mb-8">
-                  <a className="button button-primary button-shadow button-block" href="#">Pre order now</a>
-                </div>
-              </div>
+              </a>
             </div>
           </div>
-         */}
-        
+
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="assets/img/porf-2.jpg" class="venobox" data-gall="portfolioGallery">
+                <img alt="" src="assets/img/porf-2.jpg" />
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="assets/img/porf-3.jpg" class="venobox" data-gall="portfolioGallery">
+                <img alt="" src="assets/img/porf-3.jpg" />
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="assets/img/porf-4.jpg" class="venobox" data-gall="portfolioGallery">
+                <img alt="" src="assets/img/porf-4.jpg" />
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-    <section className="cta section">
-      <div className="container">
-        <div className="cta-inner section-inner">
-          <h3 className="section-title mt-0">Still not convinced on buying?</h3>
-          <div className="cta-cta">
-            <a className="button button-primary button-wide-mobile" href="#">Get in touch</a>
+
+        <div class="row">
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="assets/img/porf-5.jpg" class="venobox" data-gall="portfolioGallery">
+                <img alt="" src="assets/img/porf-5.jpg" />
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="assets/img/porf-6.jpg" class="venobox" data-gall="portfolioGallery">
+                <img alt="" src="assets/img/porf-6.jpg" />
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="assets/img/porf-7.jpg" class="venobox" data-gall="portfolioGallery">
+                <img alt="" src="assets/img/porf-7.jpg" />
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="assets/img/porf-8.jpg" class="venobox" data-gall="portfolioGallery">
+                <img alt="" src="assets/img/porf-8.jpg" />
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
-  </main>
-  <footer className="site-footer">
-    <div className="container">
-      <div className="site-footer-inner">
-        <div className="brand footer-brand">
-          <a href="#">
-            <img className="header-logo-image" src="/landingPage/dist/images/logo.svg" alt="Logo" />
-          </a>
+    {/* <!-- End Portfolio Section --> */}
+
+    {/* <!-- ======= Team Section ======= --> */}
+    <section class="team" id="team">
+      <div class="container">
+        <h2 class="text-center">
+          Meet our team
+        </h2>
+
+        <div class="row">
+          <div class="col-sm-3 col-xs-6">
+            <div class="card card-block">
+              <a href="#"><img alt="" class="team-img" src="assets/img/team-1.jpg" />
+                <div class="card-title-wrap">
+                  <span class="card-title">Sergio Fez</span> <span class="card-text">Art Director</span>
+                </div>
+
+                <div class="team-over">
+                  <h4 class="hidden-md-down">
+                    Connect with me
+                  </h4>
+
+                  <nav class="social-nav">
+                    <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-envelope"></i></a>
+                  </nav>
+
+                  <p>
+                    Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-sm-3 col-xs-6">
+            <div class="card card-block">
+              <a href="#"><img alt="" class="team-img" src="assets/img/team-2.jpg" />
+                <div class="card-title-wrap">
+                  <span class="card-title">Sergio Fez</span> <span class="card-text">Art Director</span>
+                </div>
+
+                <div class="team-over">
+                  <h4 class="hidden-md-down">
+                    Connect with me
+                  </h4>
+
+                  <nav class="social-nav">
+                    <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-envelope"></i></a>
+                  </nav>
+
+                  <p>
+                    Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-sm-3 col-xs-6">
+            <div class="card card-block">
+              <a href="#"><img alt="" class="team-img" src="assets/img/team-3.jpg" />
+                <div class="card-title-wrap">
+                  <span class="card-title">Sergio Fez</span> <span class="card-text">Art Director</span>
+                </div>
+
+                <div class="team-over">
+                  <h4 class="hidden-md-down">
+                    Connect with me
+                  </h4>
+
+                  <nav class="social-nav">
+                    <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-envelope"></i></a>
+                  </nav>
+
+                  <p>
+                    Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-sm-3 col-xs-6">
+            <div class="card card-block">
+              <a href="#"><img alt="" class="team-img" src="assets/img/team-4.jpg" />
+                <div class="card-title-wrap">
+                  <span class="card-title">Sergio Fez</span> <span class="card-text">Art Director</span>
+                </div>
+
+                <div class="team-over">
+                  <h4 class="hidden-md-down">
+                    Connect with me
+                  </h4>
+
+                  <nav class="social-nav">
+                    <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-envelope"></i></a>
+                  </nav>
+
+                  <p>
+                    Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
-        <ul className="footer-links list-reset">
-          <li>
-            <a href="#">Contact</a>
-          </li>
-          <li>
-            <a href="#">About us</a>
-          </li>
-          <li>
-            <a href="#">FAQ's</a>
-          </li>
-          <li>
-            <a href="#">Support</a>
-          </li>
-        </ul>
-        <ul className="footer-social-links list-reset">
-          <li>
-            <a href="#">
-              <span className="screen-reader-text">Facebook</span>
-              <svg width={16} height={16} xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.023 16L6 9H3V6h3V4c0-2.7 1.672-4 4.08-4 1.153 0 2.144.086 2.433.124v2.821h-1.67c-1.31 0-1.563.623-1.563 1.536V6H13l-1 3H9.28v7H6.023z" fill="#0270D7" />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span className="screen-reader-text">Twitter</span>
-              <svg width={16} height={16} xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 3c-.6.3-1.2.4-1.9.5.7-.4 1.2-1 1.4-1.8-.6.4-1.3.6-2.1.8-.6-.6-1.5-1-2.4-1-1.7 0-3.2 1.5-3.2 3.3 0 .3 0 .5.1.7-2.7-.1-5.2-1.4-6.8-3.4-.3.5-.4 1-.4 1.7 0 1.1.6 2.1 1.5 2.7-.5 0-1-.2-1.5-.4C.7 7.7 1.8 9 3.3 9.3c-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.3 3.1 2.3-1.1.9-2.5 1.4-4.1 1.4H0c1.5.9 3.2 1.5 5 1.5 6 0 9.3-5 9.3-9.3v-.4C15 4.3 15.6 3.7 16 3z" fill="#0270D7" />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span className="screen-reader-text">Google</span>
-              <svg width={16} height={16} xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.9 7v2.4H12c-.2 1-1.2 3-4 3-2.4 0-4.3-2-4.3-4.4 0-2.4 2-4.4 4.3-4.4 1.4 0 2.3.6 2.8 1.1l1.9-1.8C11.5 1.7 9.9 1 8 1 4.1 1 1 4.1 1 8s3.1 7 7 7c4 0 6.7-2.8 6.7-6.8 0-.5 0-.8-.1-1.2H7.9z" fill="#0270D7" />
-              </svg>
-            </a>
-          </li>
-        </ul>
-        <div className="footer-copyright">© 2019 Solid, all rights reserved</div>
+      </div>
+    </section>
+    {/* <!-- End Team Section --> */}
+
+    {/* <!-- ======= Contact Section ======= --> */}
+    <section id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h2 class="section-title">Contact Us</h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-md-4">
+            <div class="info">
+              <div>
+                <i class="fa fa-map-marker"></i>
+                <p>A108 Adam Street<br />New York, NY 535022</p>
+              </div>
+
+              <div>
+                <i class="fa fa-envelope"></i>
+                <p>info@example.com</p>
+              </div>
+
+              <div>
+                <i class="fa fa-phone"></i>
+                <p>+1 5589 55488 55s</p>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-lg-5 col-md-8">
+            <div class="form">
+              <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                <div class="form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validate"></div>
+                </div>
+                <div class="form-group">
+                  <input 
+                    type="email" 
+                    class="form-control" 
+                    name="email" id="email" placeholder="Your Email" 
+                    data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validate"></div>
+                </div>
+                <div class="form-group">
+                  <input 
+                      type="text" 
+                      class="form-control" 
+                      name="subject" 
+                      id="subject" 
+                      placeholder="Subject" 
+                      data-rule="minlen:4" 
+                      data-msg="Please enter at least 8 chars of subject" />
+                  <div class="validate"></div>
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                  <div class="validate"></div>
+                </div>
+                <div class="mb-3">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                </div>
+                <div class="text-center"><button type="submit">Send Message</button></div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    {/* <!-- End Contact Section --> */}
+
+  </main>
+  {/* <!-- End #main --> */}
+
+  {/* <!-- ======= Footer ======= --> */}
+  <footer class="site-footer">
+    <div class="bottom">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6 col-xs-12 text-lg-left text-center">
+            <p class="copyright-text">
+              &copy; Copyright <strong>Bell</strong>. All Rights Reserved
+            </p>
+            <div class="credits">
+              {/* <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Bell
+            -->
+              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+               */}
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-xs-12 text-lg-right text-center">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="index.html">Home</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#about">About Us</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#features">Features</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#portfolio">Portfolio</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#team">Team</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
       </div>
     </div>
   </footer>
-</div>
+  {/* <!-- End Footer --> */}
+
+  <a class="scrolltop" href="#"><span class="fa fa-angle-up"></span></a>
+
             </>
         )
     }
