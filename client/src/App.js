@@ -109,8 +109,8 @@ export default class App extends Component {
           const registeredUserCount = await ElectionDapp.methods.registerVoterCount().call()
           // const liveScoreCandidatesCount = await ElectionDapp.methods.liveScoreCandidateCount().call()
           // liveScoreCandidates
-          // console.log("Account of Election Coordinator:",electionAuthority)
-          // console.log("Account of the deployer", this.state.account)
+          console.log("Account of Election Coordinator:",electionAuthority)
+          console.log("Account of the deployer", this.state.account)
           this.setState({electionAuthority})
           this.setState({ElectionDapp})
           this.setState({dapp_name})
