@@ -21,11 +21,11 @@ import ElectionAbi from "./abis/Voting.json";
 import CardProfile from './Components/Profile/Dashboard';
 
 export default class App extends Component {
-  // async componentDidMount() {
-  //   await this.loadWeb3();
-  //   await this.loadBlockchainData();
-  //   // await this.checkIncognito();
-  // }
+  async componentDidMount() {
+    await this.loadWeb3();
+    await this.loadBlockchainData();
+    // await this.checkIncognito();
+  }
 
 
   // async checkIncognito(){
